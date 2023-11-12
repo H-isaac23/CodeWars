@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "workspaces": [
+    "frontend-react",
+    "server-refactored"
+  ],
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"cd frontend-react && yarn dev\" \"cd server-refactored && yarn dev\"",
+    "devBackend": "cd server-refactored && yarn dev",
+    "devFrontend": "cd frontend-react && yarn dev"
+  }
+}
