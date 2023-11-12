@@ -45,15 +45,19 @@ backend
 
 In the project directory of the backend, you can run:
 
-### `npm start`
+### `yarn dev`
 
-Runs the server in production mode.\
-The server will be listening for calls in [http://localhost:3003](http://localhost:3003).
+Runs both the frontend and the backend concurrently.
 
-### `npm run dev`
+### `yarn devFrontend`
 
-Runs the server in development mode.\
-The server will be listening for calls in [http://localhost:3000](http://localhost:3003).
+Runs the frontend server in development mode.\
+The website can be accessed in [http://localhost:5173](http://localhost:5173).
+
+### `yarn devBackend`
+
+Runs the backend server in development mode.\
+The server will be listening for calls in [http://localhost:3000](http://localhost:3000).
 
 ### Test Accounts
 
@@ -73,4 +77,4 @@ Follow these steps:
 
 5. Push to your fork.
 
-6. [Create a pull request](https://github.com/Kaichou-Project/kaichou-graduation/pulls) from the branch you committed to _in your fork_ to the branch you want to contribute to in the original repository. We don't have a format for pull request descriptions, but please include any details that would help a reviewer.
+6. [Create a pull request](https://github.com/H-isaac23/CodeWars/pulls) from the branch you committed to _in your fork_ to the branch you want to contribute to in the original repository. We don't have a format for pull request descriptions, but please include any details that would help a reviewer.
