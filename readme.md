@@ -53,7 +53,7 @@ The server will be listening for calls in [http://localhost:3003](http://localho
 ### `npm run dev`
 
 Runs the server in development mode.\
-The server will be listening for calls in [http://localhost:3003](http://localhost:3003).
+The server will be listening for calls in [http://localhost:3000](http://localhost:3003).
 
 ### Test Accounts
 
