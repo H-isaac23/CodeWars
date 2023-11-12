@@ -206,3 +206,16 @@ export const responseError = (
       return responseInternalServerError(res, msg, err);
   }
 };
+
+/**
+ * Funds Error
+ * The in-game request regarding funds has been denied
+ * @param res response object
+ * @param content response data
+ * @param message description
+ */
+export const customResponseInsufficientFunds = (
+  res: Response,
+  message = "Insufficient Funds",
+  errors: ErrorsResponse = []
+) => responseHandler(res, 400, undefined, message, errors);

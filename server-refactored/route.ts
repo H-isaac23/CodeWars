@@ -5,6 +5,7 @@ import {
   createAccountController,
   loginController,
   updateStarsController,
+  updateGoldController,
 } from "./controllers/accounts";
 
 const route = () => {
@@ -14,6 +15,7 @@ const route = () => {
   router.post("/create/account", createAccountController);
   router.post("/login", loginController);
   router.put("/update/star", updateStarsController);
+  router.put("/update/gold", updateGoldController);
 
   return router;
 };

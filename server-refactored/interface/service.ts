@@ -20,8 +20,8 @@ export interface UpdateAccountPasswordParameter extends BaseAccountRequest {
 }
 
 export interface UpdateAccountGoldParameter extends BaseAccountRequest {
-  didWin: boolean;
   gold: IAccount["gold"];
+  goldUpdateAmount: number;
 }
 
 export interface LoginParameter extends BaseAccountRequest {
