@@ -53,8 +53,24 @@ The server will be listening for calls in [http://localhost:3003](http://localho
 ### `npm run dev`
 
 Runs the server in development mode.\
-The server will be listening for calls in [http://localhost:3003](http://localhost:3003).
+The server will be listening for calls in [http://localhost:3000](http://localhost:3003).
 
 ### Test Accounts
 
 - Username: server-1-test Password: server-1-test
+
+## Contributing
+
+Follow these steps:
+
+1. Fork the repository from [here](https://github.com/H-isaac23/CodeWars).
+
+2. Clone your fork locally.
+
+3. Optional, but recommended: Create a new branch on the latest commit of the branch you want to contribute to.
+
+4. Commit to the new branch (or the branch you want to contribute to, if you decided not to make a new branch).
+
+5. Push to your fork.
+
+6. [Create a pull request](https://github.com/Kaichou-Project/kaichou-graduation/pulls) from the branch you committed to _in your fork_ to the branch you want to contribute to in the original repository. We don't have a format for pull request descriptions, but please include any details that would help a reviewer.
