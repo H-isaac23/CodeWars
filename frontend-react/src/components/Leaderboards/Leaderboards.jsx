@@ -11,7 +11,7 @@ export default function Leaderboards() {
 
   const getPlayers = async () => {
     const res = await axios.get(
-      `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts`
+      `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/account`
     );
     console.log(res.data);
     const players = res.data;
