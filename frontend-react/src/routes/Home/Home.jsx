@@ -6,6 +6,9 @@ import Match from "../../components/Match/Match";
 import LoadingPage from "../../components/LoadingPage/LoadingPage";
 import "./Home.css";
 import bg from "../../assets/img/4455.jpg";
+import bg1 from "../../assets/img/ancient_rome.jpg";
+import bg2 from "../../assets/img/bg2.jpg";
+import bg3 from "../../assets/img/bg3.jpg";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../../socket";
@@ -20,6 +23,10 @@ export default function Home() {
   const account = useConfigStore((state) => state.account);
   const isConnected = useConfigStore((state) => state.isConnected);
   console.log(account);
+
+  const backgroundImages = [
+    bg,bg1,bg2,bg3
+  ];
 
   const notify = () => toast("Socket forcefully disconnected.");
 
@@ -37,9 +44,11 @@ export default function Home() {
     console.log(socket.id);
   }
 
+  const randomBackgroundIndex = Math.floor(Math.random() * backgroundImages.length);
+
   return (
     <div className="container">
-      <img src={bg} alt="" />
+      <img src={backgroundImages[randomBackgroundIndex]} alt="" />
       <LoadingPage />
       <Match
         showFind={find}

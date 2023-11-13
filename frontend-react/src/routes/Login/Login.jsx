@@ -65,7 +65,7 @@ export default function Login() {
 
       try {
         const res = await axios.post(
-          `${import.meta.env.VITE_URL_PREFIX}:3003/api/login`,
+          `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/login`,
           data
         );
         if (res.status === 200) {
@@ -95,7 +95,7 @@ export default function Login() {
 
         try {
           const res = await axios.post(
-            `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts`,
+            `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/create/account`,
             data
           );
           if (res.status === 201) {

@@ -50,7 +50,6 @@ border-radius: 8px;
     text-align: center;
     font-weight: bolder;
     z-index: 10;
-    animation: fallp 5s forwards ease-in-out;
 }
 
 .game-title p{
@@ -83,9 +82,4 @@ border-radius: 8px;
 
 @keyframes loading {
     100%{opacity: 0; z-index: -20;}
-}
-
-@keyframes fallp {
-    0%{bottom: 4.3em; rotate: 0;}
-    100%{bottom: -1.2em; rotate: 0;}
 }
