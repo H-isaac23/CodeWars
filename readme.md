@@ -43,7 +43,7 @@ backend
 
 ## Available Scripts
 
-In the project directory of the backend, you can run:
+In the root directory of the project, the following commands are:
 
 ### `yarn dev`
 
