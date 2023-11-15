@@ -16,7 +16,7 @@ For styling there is css, so do not ever put any css inline unless absolutely re
 
 ### Backend
 
-The backend uses [Express.js](https://expressjs.com/) as server for hosting a REST API, which is all set up inside the `src/index.js`.
+The backend uses [Express.js](https://expressjs.com/) as server for hosting a REST API, which is all set up inside the `src/index.ts`.
 Backend also uses several other library:
 
 - [Mongoose](https://expressjs.com/) as ODM for Mongo DB
