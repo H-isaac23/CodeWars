@@ -18,7 +18,7 @@ export default function Leaderboards() {
     players.sort((a, b) => {
       return b.stars - a.stars;
     });
-    0(players);
+    setTopPlayers(players);
   };
 
   useEffect(() => {
