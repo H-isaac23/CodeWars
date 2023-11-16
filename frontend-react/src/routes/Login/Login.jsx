@@ -71,8 +71,8 @@ export default function Login() {
         if (res.status === 200) {
           console.log(res);
           const {
-            data: { username, email, stars },
-          } = res;
+            content: { username, email, stars },
+          } = res.data;
           window.localStorage.setItem("loggedUser", JSON.stringify(res.data));
           setAccount(username, email, stars);
           navigate("/home");
