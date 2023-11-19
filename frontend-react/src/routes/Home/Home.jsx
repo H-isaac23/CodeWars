@@ -31,6 +31,10 @@ export default function Home() {
   const notify = () => toast("Socket forcefully disconnected.");
 
   const [find, findMatch] = useState(false);
+  const [backgroundIndex, setBackgroundIndex] = useState(
+    Math.floor(Math.random() * backgroundImages.length)
+  );
+  const [loadingCount, isLoadingCount] = useState(0);
 
   useEffect(() => {
     if (account.username === "") {
@@ -38,18 +42,17 @@ export default function Home() {
     }
 
     socket.connect();
+    isLoadingCount(loadingCount + 1);
   }, []);
 
   if (socket.id) {
     console.log(socket.id);
   }
 
-  const randomBackgroundIndex = Math.floor(Math.random() * backgroundImages.length);
-
   return (
     <div className="container">
-      <img src={backgroundImages[randomBackgroundIndex]} alt="" />
-      <LoadingPage />
+      <img src={backgroundImages[backgroundIndex]} alt="" />
+      {isLoadingCount<=1 && <LoadingPage />}
       <Match
         showFind={find}
         findMatch={findMatch}
