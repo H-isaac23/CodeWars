@@ -44,7 +44,7 @@ export default function PVP() {
   const navigate = useNavigate();
   const account = useConfigStore((state) => state.account);
   const setAccount = useConfigStore((state) => state.setAccount);
-  const [disableBtn,setDisabledBtn] = useState(false);
+  const [disableBtn, setDisabledBtn] = useState(false);
 
   const [hprval, setHprval] = useState(100);
   const [hplval, setHplval] = useState(100);
@@ -148,19 +148,18 @@ export default function PVP() {
     socket.on("player_code_submit", (res) => {
       if (res.correct && socket.id === res.socketId) {
         setHprval(hprval - 25);
-        setrCount(rcount+1);
+        setrCount(rcount + 1);
         setQnum(res.question_index);
         console.log(hprval, qnum);
         showCorrect(!correct);
       } else if (res.correct && socket.id !== res.socketId) {
-        setrCount(rcount+1);
+        setrCount(rcount + 1);
         setHplval(hplval - 25);
         setQnum(res.question_index);
         console.log(hplval, qnum);
       }
       // For submit button
       setDisabledBtn(true);
-      
     });
 
     if (hplval <= 0) {
@@ -186,23 +185,24 @@ export default function PVP() {
       didWin: false,
     };
 
-    console.log({ stars });
-    const res = await axios.put(
-      `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts/star`,
-      data
-    );
-    window.localStorage.setItem("loggedUser", JSON.stringify(res.data.account));
+    // console.log({ stars });
+    // const res = await axios.put(
+    //   `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts/star`,
+    //   data
+    // );
+    // window.localStorage.setItem("loggedUser", JSON.stringify(res.data.account));
 
-    setAccount(
-      res.data.account.username,
-      res.data.account.email,
-      res.data.account.stars
-    );
+    // setAccount(
+    //   res.data.account.username,
+    //   res.data.account.email,
+    //   res.data.account.stars
+    // );
 
     showconfirm(!confirm);
     showSurrender(surrender);
     setPlayLoserSound(true);
-    socket.emit("surrender", { room_id, userId });
+    console.log({ room_id });
+    socket.emit("surrender", { roomId: room_id, userId });
     setTimeout(() => {
       setPlaySound(false);
     }, 3000);
@@ -246,8 +246,7 @@ export default function PVP() {
   const handleReset = () => {
     console.log("clear");
     setInput("");
-    console.log(input)
-
+    console.log(input);
   };
 
   // get the input then evaluate then display in the output container
@@ -332,7 +331,7 @@ export default function PVP() {
                 </div>
                 <div className="pvptop-center">
                   <div className="clock">
-                    <img src={vs}/>
+                    <img src={vs} />
                   </div>
                   <div className="round">
                     <h2>Round {rcount}</h2>
@@ -377,8 +376,7 @@ export default function PVP() {
             </div>
           </div>
           <div className="pvpbottom">
-            <div
-              className="bottom-left">
+            <div className="bottom-left">
               <div className="userinput">
                 <CodeMirror
                   value={questions[qnum].template}
@@ -395,7 +393,11 @@ export default function PVP() {
                   }}
                 />
                 <div className="buttons">
-                  <div className="btn submitbtn" onClick={handleClick} disabled={disableBtn ? true : false}>
+                  <div
+                    className="btn submitbtn"
+                    onClick={handleClick}
+                    disabled={disableBtn ? true : false}
+                  >
                     SUBMIT
                   </div>
                   {/* <div className="btn clearbtn" onClick={handleReset}>
@@ -486,41 +488,44 @@ export default function PVP() {
         )}
 
         {starPage && (
-            <div className="starpage" onClick={victory ? toggleReward : toggleStarProtection}>
-              <div className="starpage-content">
-                <div className="starpage-star">
-                  <div className={`${victory ? "stargain" : "starfall"}`}>
-                    <h2>&#9733;</h2>
-                  </div>
+          <div
+            className="starpage"
+            onClick={victory ? toggleReward : toggleStarProtection}
+          >
+            <div className="starpage-content">
+              <div className="starpage-star">
+                <div className={`${victory ? "stargain" : "starfall"}`}>
                   <h2>&#9733;</h2>
                 </div>
-                <div className="starcount">
-                  <h2 className="currentstar">{stars}</h2>
-                  <h2 className="updatedstar">
-                    {victory ? stars + 1 : stars - 1}{" "}
-                  </h2>
-                  <div
-                    className="addorminus"
-                    style={{ color: victory ? "yellow" : "red" }}
-                  >
-                    <h2>{victory ? "+1" : "-1"}</h2>
-                  </div>
+                <h2>&#9733;</h2>
+              </div>
+              <div className="starcount">
+                <h2 className="currentstar">{stars}</h2>
+                <h2 className="updatedstar">
+                  {victory ? stars + 1 : stars - 1}{" "}
+                </h2>
+                <div
+                  className="addorminus"
+                  style={{ color: victory ? "yellow" : "red" }}
+                >
+                  <h2>{victory ? "+1" : "-1"}</h2>
                 </div>
               </div>
-              <p>Click anywhere to continue...</p>
             </div>
+            <p>Click anywhere to continue...</p>
+          </div>
         )}
 
         {reward && (
           <Link to="/" ref={linkRef}>
             <div className="reward">
               <div className="reward-content">
-                  <h2>PVP REWARD</h2>
-                  <div className="rewardChest">
-                    <img src={rewardChest}/>
-                  </div>
-                  <h3>300 Gold</h3>
-                  <p>Click anywhere to continue...</p>
+                <h2>PVP REWARD</h2>
+                <div className="rewardChest">
+                  <img src={rewardChest} />
+                </div>
+                <h3>300 Gold</h3>
+                <p>Click anywhere to continue...</p>
               </div>
             </div>
           </Link>
@@ -530,18 +535,16 @@ export default function PVP() {
           <Link to="/" ref={linkRef}>
             <div className="star-protection">
               <div className="star-protection-content">
-                  <h2>STAR PROTECTION</h2>
-                  <div className="shield">
-                    <img src={shield}/>
-                  </div>
-                  <h4>You will not lose a star this time.</h4>
-                  <p>Click anywhere to continue...</p>
+                <h2>STAR PROTECTION</h2>
+                <div className="shield">
+                  <img src={shield} />
+                </div>
+                <h4>You will not lose a star this time.</h4>
+                <p>Click anywhere to continue...</p>
               </div>
             </div>
           </Link>
         )}
-
-
 
         {playlosersound && (
           <div>
