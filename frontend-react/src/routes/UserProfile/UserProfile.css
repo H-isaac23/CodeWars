@@ -119,3 +119,12 @@ body {
   margin-top: 0.5em;
   margin-bottom: 1.5em;
 }
+
+.userSettings, .userReturn{
+  position: absolute;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+} 

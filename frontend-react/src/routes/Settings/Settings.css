@@ -51,14 +51,15 @@
     rgba(223, 187, 137, 0.3) 47.71%
   );
   border-radius: 8px;
-  padding-top: 3em;
-
+  padding-top: 2em;
+  box-shadow: 9px 10px 4px 1px rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   position: relative;
   z-index: 3;
+  box-shadow: 3px 5px 5px 1px rgba(0, 0, 0, 0.25);
 }
 
 .Settings-box h1 {
@@ -127,3 +128,12 @@
   /* background: rgba(67, 59, 59, 0.5); */
   backdrop-filter: blur(5px);
 }
+
+.gameAbout, .gameContact{
+  position: absolute;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+} 

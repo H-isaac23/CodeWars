@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import "./Settings.css";
 import bg from "../../assets/img/4455.jpg";
 import { Link } from "react-router-dom";
+import Contact from "../ContactUs/Contact";
+import About from "../About/About";
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useConfigStore from "../../store/configStore";
 import AudioButton from "../../components/AudioButton/AudioButton";
 
-export default function settings({isTransparent}) {
+export default function settings({isTransparent, showSettings}) {
   const account = useConfigStore((state) => state.account);
   const navigate = useNavigate();
+  const [about, showAbout] = useState(false);
+  const [contact, showContact] = useState(false);
 
   useEffect(() => {
     if (account.username === "") {
@@ -18,11 +22,23 @@ export default function settings({isTransparent}) {
     }
   });
 
+  const toggleAbout = () => {
+    showAbout(true);
+  };
+
+  const toggleContact = () => {
+    showContact(true);
+  };
+
+  const toggleReturn = () => {
+    showReturn(true);
+  };
+
 
   return (
     <div className="container">
       {!isTransparent && <img src={bg} alt="bg"/>} 
-      <div  className={`Settings-box ${isTransparent ? "settings-pvp" : ""}`}>
+      <div className={`Settings-box ${isTransparent ? "settings-pvp" : ""}`}>
         <h1>Game</h1>
         <h1>
           <span>Settings</span>
@@ -40,17 +56,23 @@ export default function settings({isTransparent}) {
         </div>
         
         <div className="first-line">
-          <Link to="/about">
-          { !isTransparent && <button className="btn"> ABOUT </button> }
-          </Link>
-          <Link to="/contact">
-          { !isTransparent && <button className="btn"> CONTACT </button> }
-          </Link>
+          <div onClick={toggleAbout}>
+            { !isTransparent && <button className="btn"> ABOUT </button> }
+          </div>
+          <div onClick={toggleContact}>
+            { !isTransparent && <button className="btn"> CONTACT </button> }
+          </div>
         </div>
-        <Link to="/userProfile">
-          { !isTransparent && <button className="btn"> RETURN </button> }
-        </Link>
+          <div onClick={() => showSettings(false)}>
+            <button className="btn"> RETURN </button>
+          </div>
       </div>
+      {about && <div className="gameAbout">
+        <About showAbout={showAbout}/>
+      </div>}
+      {contact && <div className="gameContact">
+        <Contact showContact={showContact}/>
+      </div>}
     </div>
   );
 }

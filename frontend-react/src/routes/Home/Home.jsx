@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Leaderboards from "../../components/Leaderboards/Leaderboards";
 import Profile from "../../components/Profile/Profile";
+import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
+import UserProfile from "../UserProfile/UserProfile";
 import BattleCharacter from "../../components/BattleCharacter/BattleCharacter";
 import Match from "../../components/Match/Match";
 import LoadingPage from "../../components/LoadingPage/LoadingPage";
@@ -31,6 +33,7 @@ export default function Home() {
   const notify = () => toast("Socket forcefully disconnected.");
 
   const [find, findMatch] = useState(false);
+  const [profile, showProfile] = useState(false);
   const [backgroundIndex, setBackgroundIndex] = useState(
     Math.floor(Math.random() * backgroundImages.length)
   );
@@ -43,27 +46,33 @@ export default function Home() {
 
     socket.connect();
     isLoadingCount(loadingCount + 1);
-  }, []);
+  }, [account.username]);
 
   if (socket.id) {
     console.log(socket.id);
   }
 
+  const toggleProfile = () => { showProfile(true); };
   return (
     <div className="container">
       <img src={backgroundImages[backgroundIndex]} alt="" />
-      {isLoadingCount<=1 && <LoadingPage />}
+      {/* {isLoadingCount<=1 && <LoadingPage />} */}
       <Match
         showFind={find}
         findMatch={findMatch}
         onSocketDisconnect={notify}
       />
-      <Profile username={account.username} />
+      <div onClick={toggleProfile}>
+        <Profile username={account.username} />
+      </div>
       <div className="container-box">
         <BattleCharacter findMatch={findMatch} />
         <Leaderboards />
       </div>
       <ToastContainer />
+      {profile && <div className="userProfile">
+          <UserProfile showProfile={showProfile}/>
+        </div> }
     </div>
   );
 }

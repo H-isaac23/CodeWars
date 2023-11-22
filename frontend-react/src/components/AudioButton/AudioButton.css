@@ -54,25 +54,29 @@
   }
   
   
-  .toggle-button.off .toggle-icon {
+  .toggle-button.offMusic .toggle-icon {
     position: absolute;
     top: -1;
     left: -1px;
-    width: 2.7em;
-    height: 2.7em;
-    background-color: #fff;
+    width: 2.9em;
+    height: 2.9em;
+    background-color: #dc4c3d;
+    cursor: pointer;
+    border: 3px solid white;
     border-radius: 100%;
     transition: .5s ease-in-out;
     transform: translateX(0);
   }
   
-  .toggle-button.on .toggle-icon {
+  .toggle-button.onMusic .toggle-icon {
     position: absolute;
     top: -1;
     left: 19px;
     width: 2.9em;
     height: 2.9em;
-    background-color: #fff;
+    background-color: #dc4c3d;
+    cursor: pointer;
+    border: 3px solid white;
     border-radius: 100%;
     transition: .5s ease-in-out;
     transform: translateX(25px);
