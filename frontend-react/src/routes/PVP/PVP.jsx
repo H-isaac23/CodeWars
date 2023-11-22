@@ -375,6 +375,12 @@ export default function PVP() {
               </div>
             </div>
           </div>
+          <div className="attack-indicator">Submit</div>
+          <div className="buffs">
+              <div className="reflect-buff">R</div>
+              <div className="doubledmg-buff">X2</div>
+              <div className="heal-buff">H</div>
+          </div>
           <div className="pvpbottom">
             <div className="bottom-left">
               <div className="userinput">
