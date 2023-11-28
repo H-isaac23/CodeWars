@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import useConfigStore from "../../store/configStore";
 import AudioButton from "../../components/AudioButton/AudioButton";
 
-export default function settings({isTransparent, showSettings}) {
+export default function settings({showSettings}) {
   const account = useConfigStore((state) => state.account);
   const navigate = useNavigate();
   const [about, showAbout] = useState(false);
@@ -34,11 +34,10 @@ export default function settings({isTransparent, showSettings}) {
     showReturn(true);
   };
 
-
   return (
     <div className="container">
-      {!isTransparent && <img src={bg} alt="bg"/>} 
-      <div className={`Settings-box ${isTransparent ? "settings-pvp" : ""}`}>
+      <img src={bg} alt="bg"/>
+      <div className="Settings-box">
         <h1>Game</h1>
         <h1>
           <span>Settings</span>
@@ -57,10 +56,10 @@ export default function settings({isTransparent, showSettings}) {
         
         <div className="first-line">
           <div onClick={toggleAbout}>
-            { !isTransparent && <button className="btn"> ABOUT </button> }
+            <button className="btn"> ABOUT </button> 
           </div>
           <div onClick={toggleContact}>
-            { !isTransparent && <button className="btn"> CONTACT </button> }
+            <button className="btn"> CONTACT </button> 
           </div>
         </div>
           <div onClick={() => showSettings(false)}>

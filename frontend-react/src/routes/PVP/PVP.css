@@ -26,7 +26,6 @@ a{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .yourchar{
@@ -75,6 +74,8 @@ a{
   opacity: 0;
   animation: vs 2s 5s forwards;
 }
+
+
 
 .pvp-container {
   height: 95vh;
@@ -172,6 +173,25 @@ a{
   left: 68%;
 }
 
+.username1-buff-status{
+  height: 2em;
+  position: absolute;
+  top: 3em;
+  right: 0;
+  display: flex;
+  gap: .1em;
+  align-items: center;
+}
+
+.username1-buff-status .reflect-buff-icon,
+.username1-buff-status .doubledmg-buff-icon,
+.username1-buff-status .heal-buff-icon{
+  height: 100%;
+  width: 2em;
+  border-radius: 0;
+  border: 3px solid white;
+  font-size: 1.1rem;
+}
 
 .firstchar img,
 .secondchar img {
@@ -257,7 +277,7 @@ a{
   right: -18px;
 }
 
-.settings {
+.settings-button {
   position: absolute;
   right: -5.5em;
   top: -0.5em;
@@ -265,37 +285,49 @@ a{
   width: 3em;
   height: 3em;
   transition: 0.5s;
-  z-index: 50;
+  z-index: 100;
 }
 
-.settings:hover {
+
+.settings-button:hover {
   transform: scale(1.1);
 }
 
-.settings img {
+.settings-button img {
   height: 3em;
   width: 3em;
 }
 
-.attack-indicator{
+.attack-indicator {
   position: absolute;
   font-size: 1.5rem;
-  top: 3.5em;
-  left: 26.4em;
+  height: 1.8em;
+  width: 1.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: .3em;
+  left: 6em;
+}
+
+.attack-indicator img{
+  height: 100%;
+  width: 100%;
 }
 
 .buffs{
  height: 18em;
  width: 6em;
  position: absolute;
- top: 8em;
- left: 28em;
+ z-index: 4;
+ bottom: 0;
+ left: 0em;
  display: flex;
  flex-direction: column;
  align-items: center;
  justify-content: center;
  gap: 1em;
- 
+ cursor: pointer;
 }
 
 .reflect-buff,
@@ -312,7 +344,7 @@ a{
 }
 
 .reflect-buff{
-  background: black;
+  background: blue;
 }
 
 .doubledmg-buff{
@@ -321,6 +353,41 @@ a{
 
 .heal-buff{
   background: green;
+}
+
+.buffs .buff-disabled {
+  opacity: 0.5; 
+  pointer-events: none; 
+  cursor: not-allowed; 
+}
+
+
+.heal-effect,
+.reflect-effect,
+.damage-effect{
+  position: absolute;
+  top: 0;
+  left: -3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heal-effect{
+  transform: rotate(0deg);
+  width: 28em;
+  height: 48vh;
+}
+
+.reflect-effect{
+  transform: rotate(0deg);
+  height: 49vh;
+  width: 26em;
+}
+
+.damage-effect{
+  height: 49vh;
+  width: 51em;
 }
 
 
@@ -404,6 +471,7 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
+  outline-style: none;
 }
 
 .submitbtn:hover,
@@ -499,7 +567,6 @@ a{
   margin-bottom: 20em;
 }
 
-.surrender,
 .lose,
 .win {
   width: 100%;
@@ -521,94 +588,6 @@ a{
 .win {
   z-index: 101;
   /* display: none; */
-}
-
-.surrender-container {
-  width: 50%;
-  height: 55vh;
-  max-width: 400px;
-  background: linear-gradient(
-    179.97deg,
-    rgba(200, 103, 69, 0.5) 18.08%,
-    rgba(223, 187, 137, 0.6)
-  );
-  box-shadow: 9px 10px 4px 1px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  padding-top: 3em;
-  display: flex;
-
-  flex-direction: column;
-  position: relative;
-  z-index: 3;
-}
-
-.surr-star {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-  position: relative;
-}
-
-.surr-star h2 {
-  margin-top: 0.5em;
-  margin-right: 2em;
-}
-
-.star {
-  color: yellow;
-  font-size: 4rem;
-  position: absolute;
-  right: 1.2em;
-  top: -0.3em;
-}
-
-.surrender-top h1 {
-  font-weight: bolder;
-  font-size: 5rem;
-  position: absolute;
-  top: -1.6em;
-  right: 0.7em;
-  text-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.surrender-top span {
-  position: absolute;
-  top: 0.8em;
-  right: -0.65em;
-}
-
-.surrender-content {
-  margin-top: 4.5em;
-}
-
-.surrender-content h2 {
-  font-size: 1.75rem;
-}
-
-.surr-buttons {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.surr-buttons .btn {
-  text-align: center;
-  width: 40%;
-  padding: 0.4em 0;
-}
-
-.check {
-  font-size: 1.5rem;
-}
-
-.surr-buttons .btn span {
-  font-size: 1.5rem;
-  font-weight: bolder;
 }
 
 .lose,
@@ -774,6 +753,15 @@ a{
 .addorminus{
   position: relative;
   animation: appear 1s forwards;
+}
+
+.firstchar.attack{
+  animation: attack .5s linear infinite alternate;
+}
+
+@keyframes attack {
+  0%{left: 0em;}
+  100%{left: 28em;}
 }
 
 @keyframes matchfound {
