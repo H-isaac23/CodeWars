@@ -9,7 +9,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 
 const setupSocketServer = (server: HTTPServer): SocketIOServer => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unnecessary-type-assertion
   let currentRoomId = uuidv4() as string;
   const io = new SocketIOServer<
     ClientToServerEvents,
@@ -102,7 +102,7 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
         // possible that we need time delay to send the room id
         setTimeout(() => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-          currentRoomId = uuidv4() as string;
+          currentRoomId = uuidv4();
         }, 1000);
       }
       console.log(
