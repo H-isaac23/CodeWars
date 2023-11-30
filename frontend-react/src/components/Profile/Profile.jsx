@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 export default function Profile({ username }) {
   return (
-    <Link to="/userProfile">
       <div>
         <div className="t-profile"></div>
         <div className="profile">
@@ -18,6 +17,5 @@ export default function Profile({ username }) {
           </div>
         </div>
       </div>
-    </Link>
   );
 }

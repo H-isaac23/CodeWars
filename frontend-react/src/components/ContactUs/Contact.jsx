@@ -2,9 +2,8 @@ import React from "react";
 import "./Contact.css";
 import bg from "../../assets/img/4455.jpg";
 import contactLogo from "../../assets/img/contact-logo.png";
-import { Link } from "react-router-dom";
 
-export default function ContactUs() {
+export default function ContactUs({showContact}) {
   return (
     <div className="container">
       <img src={bg} alt="bg" />
@@ -29,11 +28,11 @@ export default function ContactUs() {
         ></textarea>
 
         <div className="button">
-          <Link to="/settings">
+          <div onClick={() => showContact(false)}>
             <button className="btn" id="ret">
               RETURN
             </button>
-          </Link>
+          </div>
           <button className="btn">SEND</button>
         </div>
       </div>

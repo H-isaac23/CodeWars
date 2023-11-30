@@ -16,7 +16,7 @@ export default function LoadingPage() {
         } else if (loadingProgress >= 50 && loadingProgress < 100) {
           setLoadingProgress((prevProgress) => prevProgress + 50);
         }
-      }, 1000);
+      }, 500);
   
       return () => clearInterval(interval);
     }, [loadingProgress]);
