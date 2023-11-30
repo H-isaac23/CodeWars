@@ -44,6 +44,7 @@ import Surrender from "../../components/PVPComponents/Surrender/Surrender";
 
 export default function PVP() {
   const navigate = useNavigate();
+  const optionCharacter = useConfigStore(state => state.optionCharacter);
   const [sett, setShowSettings] = useState(false);
   const [surrender, showSurrender] = useState(false);
   const [confirm, showConfirm] = useState(false);
@@ -64,7 +65,6 @@ export default function PVP() {
   const [healEffect, showHealEffect] = useState(false);
   const [damageEffect, showDamageEffect] = useState(false);
   const [reflectEffect, showReflectEffect] = useState(false);
-  const [doubleDmg,showDoubleDmg] = useState(false);
 
   const [reflectEffectIcon,showReflectEffectIcon] = useState(false);
   const [damageEffectIcon,showDamageEffectIcon] = useState(false);
@@ -296,10 +296,6 @@ export default function PVP() {
     }
   }
 
-  const toggleDoubleDamage = () => {
-    showDoubleDmg(!doubleDmg)
-  }
-
   // get the value inputted by user
   const handleInputChange = (value) => {
     setInput(value);
@@ -331,7 +327,7 @@ export default function PVP() {
     setTimeout(() => {
       userClickSubmit(false);
       setcharAttack(false);
-    }, 1000);
+    }, 480);
   };
 
   return (
@@ -400,7 +396,13 @@ export default function PVP() {
                     { healEffectIcon && <div className="heal-buff heal-buff-icon">R</div> }
                   </div>
                   <div className={`firstchar ${charAttack ? "attack" : ""}`}>
-                    {charAttack ? <img src={maleKick} alt="" /> : <img src={charMan} alt="" />}
+                  {/* <img src={optionCharacter ? maleKick : charMan} alt="" /> */}
+                  {charAttack ? (
+                    <img src={maleKick} />
+                  ) : (
+                    <img src={optionCharacter ? charMan : charWoman} alt="" />
+                  )}
+
                     {clickSubmit && <div className="attack-indicator">
                       <img src={swordCross} />
                     </div>}
@@ -459,7 +461,7 @@ export default function PVP() {
                     <h4>Test</h4>
                   </div>
                   <div className="secondchar">
-                    <img src={charWoman} alt="" />
+                  <img src={charWoman} alt="" />
                   </div>
                 </div>
                 <div className="settings-button">

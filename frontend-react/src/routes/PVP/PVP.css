@@ -756,12 +756,12 @@ a{
 }
 
 .firstchar.attack{
-  animation: attack .5s linear infinite alternate;
+  animation: attack .24s linear infinite alternate;
 }
 
 @keyframes attack {
   0%{left: 0em;}
-  100%{left: 28em;}
+  100%{left: 27em;}
 }
 
 @keyframes matchfound {
