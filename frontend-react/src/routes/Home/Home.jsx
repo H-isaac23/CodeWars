@@ -51,7 +51,9 @@ export default function Home() {
     console.log(socket.id);
   }
 
-  const toggleProfile = () => { showProfile(true); };
+  const toggleProfile = () => {
+    showProfile(true);
+  };
   return (
     <div className="container">
       <img src={bg2} alt="" />
@@ -69,9 +71,11 @@ export default function Home() {
         <Leaderboards />
       </div>
       <ToastContainer />
-      {profile && <div className="userProfile">
-          <UserProfile showProfile={showProfile}/>
-        </div> }
+      {profile && (
+        <div className="userProfile">
+          <UserProfile showProfile={showProfile} />
+        </div>
+      )}
     </div>
   );
 }

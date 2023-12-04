@@ -35,8 +35,11 @@ export default function Login() {
 
   useEffect(() => {
     const userLog = window.localStorage.getItem("loggedUser");
+    console.log(userLog);
     if (userLog) {
-      const { username, email, stars } = JSON.parse(userLog);
+      const {
+        content: { username, email, stars },
+      } = JSON.parse(userLog);
       setAccount(username, email, stars);
       navigate("/home");
     }

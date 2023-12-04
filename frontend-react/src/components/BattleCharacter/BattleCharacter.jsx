@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import mouseclick from "../../assets/audio/mouseclick.mp3";
 import { socket } from "../../socket";
 import { useNavigate } from "react-router-dom";
-import useConfigStore from "../../store/configStore"
+import useConfigStore from "../../store/configStore";
 
 export default function BattleCharacter({ findMatch }) {
   const [option, setOption] = useState(true);
@@ -14,9 +14,12 @@ export default function BattleCharacter({ findMatch }) {
   const navigate = useNavigate();
 
   const optionClicked = () => setOption(!option);
- 
-  const optionCharacter = useConfigStore(state => state.optionCharacter);
-  const optionCharacterClicked = useConfigStore(state => state.optionCharacterClicked);
+
+  const optionCharacter = useConfigStore((state) => state.optionCharacter);
+  const optionCharacterClicked = useConfigStore(
+    (state) => state.optionCharacterClicked
+  );
+  const account = useConfigStore((state) => state.account);
 
   const mouseClick = () => {
     setPlaySound(true);
@@ -26,7 +29,11 @@ export default function BattleCharacter({ findMatch }) {
   const onQueue = () => {
     findMatch(true);
     if (option) {
-      socket.emit("queue", true);
+      socket.emit("queue", {
+        findMatch: true,
+        username: account.username,
+        stars: account.stars,
+      });
     } else {
       navigate("/single-player");
     }
