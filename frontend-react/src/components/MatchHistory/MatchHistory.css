@@ -1,0 +1,153 @@
+
+
+.history-container{
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(8px);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+.history-close-button{
+    position: absolute;
+    right: 1.5em;
+    top: .5em;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.history-content{
+    width: 50%;
+    height: 70vh;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(221, 126, 71, 0.90) 75.33%, rgba(221, 112, 49, 0.16) 100%);
+    box-shadow: 9px 10px 4px 1px rgba(0, 0, 0, 0.25);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.history-title h1{
+    font-weight: bolder;
+    font-size: 4rem;
+    position: absolute;
+    top: -1.7em;
+    left: 2.7em;
+    text-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.history-title span{
+    position: absolute;
+    top: 0.8em;
+    right: -7em;
+    opacity: 1;
+    animation: none;
+}
+
+.history-box{
+    width: 90%;
+    height: 50vh;
+    margin-top: 2.5em;
+    padding: .5em 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    position: relative;
+    z-index: 9;
+    overflow-y: scroll;
+}
+
+.history-box::-webkit-scrollbar{
+    width: 15px;
+}
+.history-box::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 215, 0);
+    
+}
+.history-box::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+.history-status{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: .5em;
+    margin-bottom: 2em;
+}
+
+.history-victory{
+    width: 8em;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.history-victory img{
+    height: 6em;
+    width: 11em;
+}
+
+.history-result{
+    width: 90%;
+    height: 6.5em;
+    display: flex;
+    justify-content: center;
+    padding: 0 1em;
+    gap: 1em;
+    align-items: center;
+    background-color: rgb(219, 173, 129);
+    box-shadow: 9px 10px 4px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+.player-history{
+    width: 15em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-history p{
+    margin: .5em 0 0 0;
+    font-size: 1.2rem;
+}
+
+.player-history img{
+    width: 3em;
+    height: 3em;
+    border: 5px solid white;
+    position: static;
+    z-index: 999;
+    border-radius: 50%;
+}
+
+.player-history:last-child img{
+    transform: rotateY(180deg);
+}
+
+.history-vs{
+    height: 5em;
+    width: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.history-vs img{
+    height: 4em;
+    width: 4em;
+    position: static;
+    z-index: 7;
+}

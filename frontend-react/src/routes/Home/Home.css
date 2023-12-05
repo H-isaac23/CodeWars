@@ -48,3 +48,17 @@ img{
     height: 100vh;
 }
 
+.one{
+    position: absolute;
+    z-index: 4;
+    height: 2em;
+    width: 10em;
+    top: 8em;
+    left: 0;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgb(220, 76, 61);
+}
