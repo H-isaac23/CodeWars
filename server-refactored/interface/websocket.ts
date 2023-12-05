@@ -14,18 +14,24 @@ export interface ServerToClientEvents {
   join_match: ({
     currentRoomId,
     id,
+    username,
   }: {
     currentRoomId: string;
     id: string;
+    username: Array<IAccount["username"] | undefined>;
   }) => Promise<void>;
 }
 
 export interface ClientToServerEvents {
-  queue: (
-    findMatch: boolean,
-    username: IAccount["username"],
-    stars: IAccount["stars"]
-  ) => void;
+  queue: ({
+    findMatch,
+    username,
+    stars,
+  }: {
+    findMatch: boolean;
+    username: IAccount["username"];
+    stars: IAccount["stars"];
+  }) => void;
   surrender: ({
     roomId,
     userId,
@@ -42,4 +48,10 @@ export interface InterServerEvents {
 export interface SocketData {
   name: string;
   age: number;
+}
+
+export interface QueuePlayer {
+  socketId: string;
+  username: IAccount["username"];
+  stars: IAccount["stars"];
 }
