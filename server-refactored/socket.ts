@@ -100,7 +100,7 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
       playersOnQueue.sort((p1, p2) => p1.stars - p2.stars);
 
       let i = 0;
-      while (i < playersOnQueue.length - 2 && playersOnQueue.length >= 2) {
+      while (i <= playersOnQueue.length - 2 && playersOnQueue.length >= 2) {
         // should only work in "queueRoom"
         const s1 = io.sockets.sockets.get(socket_ids[i]) as Socket<
           ClientToServerEvents,
@@ -146,7 +146,8 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           currentRoomId = uuidv4();
         }, 1000);
-        i += 1;
+        // i += 1;
+        i = 0;
       }
     }
     console.log(

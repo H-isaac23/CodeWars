@@ -40,10 +40,10 @@ export default function BattleCharacter({ findMatch }) {
   };
 
   useEffect(() => {
-    socket.on("join_match", ({ currentRoomId, id }) => {
+    socket.on("join_match", ({ currentRoomId, id, username }) => {
       console.log(currentRoomId);
       navigate(`/pvp/${currentRoomId}`, {
-        state: id,
+        state: { username, id },
       });
     });
   }, []);

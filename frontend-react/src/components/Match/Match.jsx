@@ -4,11 +4,18 @@ import "./Match.css";
 import glass from "../../assets/img/manifyglass.png";
 import { socket } from "../../socket";
 import { FaSearch } from "react-icons/fa";
+import useConfigStore from "../../store/configStore";
 
 export default function Match({ showFind, findMatch, onSocketDisconnect }) {
+  const account = useConfigStore((state) => state.account);
+
   const onCancel = () => {
     findMatch(false);
-    socket.emit("queue", false);
+    socket.emit("queue", {
+      findMatch: false,
+      username: account.username,
+      stars: account.stars,
+    });
   };
 
   useEffect(() => {

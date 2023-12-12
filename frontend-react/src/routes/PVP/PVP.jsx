@@ -13,7 +13,7 @@ import bg2 from "../../assets/img/bg3.jpg";
 // import heal from "../../assets/img/heal_buff.gif";
 // import doubleDamage from "../../assets/img/double_dmg.gif";
 // import reflect from "../../assets/img/reflect.gif";
-import maleKick from "../..//assets/img/final_male_anim_KICK.gif"
+import maleKick from "../..//assets/img/final_male_anim_KICK.gif";
 import swordCross from "../../assets/img/sword_cross.png";
 
 import doubleDamage from "../../assets/img/double_damage_transparent.gif";
@@ -44,7 +44,7 @@ import Surrender from "../../components/PVPComponents/Surrender/Surrender";
 
 export default function PVP() {
   const navigate = useNavigate();
-  const optionCharacter = useConfigStore(state => state.optionCharacter);
+  const optionCharacter = useConfigStore((state) => state.optionCharacter);
   const [sett, setShowSettings] = useState(false);
   const [surrender, showSurrender] = useState(false);
   const [confirm, showConfirm] = useState(false);
@@ -66,19 +66,17 @@ export default function PVP() {
   const [damageEffect, showDamageEffect] = useState(false);
   const [reflectEffect, showReflectEffect] = useState(false);
 
-  const [reflectEffectIcon,showReflectEffectIcon] = useState(false);
-  const [damageEffectIcon,showDamageEffectIcon] = useState(false);
-  const [healEffectIcon,showHealEffectIcon] = useState(false);
+  const [reflectEffectIcon, showReflectEffectIcon] = useState(false);
+  const [damageEffectIcon, showDamageEffectIcon] = useState(false);
+  const [healEffectIcon, showHealEffectIcon] = useState(false);
 
   const [healBuffClicked, setHealBuffClicked] = useState(false);
   const [damageBuffClicked, setDamageBuffClicked] = useState(false);
   const [reflectBuffClicked, setReflectBuffClicked] = useState(false);
-  
+
   const [charAttack, setcharAttack] = useState(false);
 
-  const backgroundImages = [
-    bg,bg2
-  ];
+  const backgroundImages = [bg, bg2];
   const [backgroundIndex, setBackgroundIndex] = useState(
     Math.floor(Math.random() * backgroundImages.length)
   );
@@ -93,7 +91,7 @@ export default function PVP() {
   // const rand = Math.floor(Math.random() * questions.length);
   const [qnum, setQnum] = useState(0);
   const location = useLocation();
-  const userId = location.state;
+  const userId = location.state.id;
   const room_id = useParams(":matchid").matchid;
   useEffect(() => {
     socket.on("match_result", async (data) => {
@@ -184,11 +182,11 @@ export default function PVP() {
   useEffect(() => {
     socket.on("player_code_submit", (res) => {
       if (res.correct && socket.id === res.socketId) {
-          setHprval(hprval - 25);
-          setrCount(rcount + 1);
-          setQnum(res.question_index);
-          console.log(hprval, qnum);
-          showCorrect(!correct);
+        setHprval(hprval - 25);
+        setrCount(rcount + 1);
+        setQnum(res.question_index);
+        console.log(hprval, qnum);
+        showCorrect(!correct);
       } else if (res.correct && socket.id !== res.socketId) {
         setrCount(rcount + 1);
         setHplval(hplval - 25);
@@ -208,7 +206,7 @@ export default function PVP() {
   const toggleSettings = () => {
     setShowSettings(!sett);
   };
-  
+
   // display the surrender UI
   const toggleSurrender = () => {
     showSurrender(true);
@@ -222,11 +220,11 @@ export default function PVP() {
         stars,
         didWin: false,
       };
-  
-      setPlayLoserSound(true);  
+
+      setPlayLoserSound(true);
       console.log({ room_id });
       socket.emit("surrender", { roomId: room_id, userId });
-  
+
       setTimeout(() => {
         setPlaySound(false);
       }, 3000);
@@ -272,7 +270,7 @@ export default function PVP() {
       }, 3000);
       setHealBuffClicked(true);
     }
-  }
+  };
 
   const toggleDamage = () => {
     if (!damageBuffClicked) {
@@ -283,7 +281,7 @@ export default function PVP() {
       }, 3000);
       setDamageBuffClicked(true);
     }
-  }
+  };
 
   const toggleReflect = () => {
     if (!reflectBuffClicked) {
@@ -294,7 +292,7 @@ export default function PVP() {
       }, 3000);
       setReflectBuffClicked(true);
     }
-  }
+  };
 
   // get the value inputted by user
   const handleInputChange = (value) => {
@@ -351,15 +349,19 @@ export default function PVP() {
         </div>
       </div> */}
       <div className="container container-pvp">
-        <img src={backgroundImages[backgroundIndex]} alt="" className="pvp-bg" />
+        <img
+          src={backgroundImages[backgroundIndex]}
+          alt=""
+          className="pvp-bg"
+        />
         <div className="pvp-container">
           <div className="pvp-container-content">
             <div className="pvp-container-left">
               <div className="pvp-left-content">
-                <div className="pvp-left-content">  
+                <div className="pvp-left-content">
                   <div className="question">
                     <p>
-                    <strong>Q:</strong> {questions[qnum].question}
+                      <strong>Q:</strong> {questions[qnum].question}
                     </p>
                   </div>
                 </div>
@@ -391,39 +393,70 @@ export default function PVP() {
                     <h4>{username}</h4>
                   </div>
                   <div className="username1-buff-status">
-                    { reflectEffectIcon && <div className="reflect-buff reflect-buff-icon">S</div> }
-                    { damageEffectIcon && <div className="doubledmg-buff doubledmg-buff-icon">X2</div> }
-                    { healEffectIcon && <div className="heal-buff heal-buff-icon">R</div> }
+                    {reflectEffectIcon && (
+                      <div className="reflect-buff reflect-buff-icon">S</div>
+                    )}
+                    {damageEffectIcon && (
+                      <div className="doubledmg-buff doubledmg-buff-icon">
+                        X2
+                      </div>
+                    )}
+                    {healEffectIcon && (
+                      <div className="heal-buff heal-buff-icon">R</div>
+                    )}
                   </div>
                   <div className={`firstchar ${charAttack ? "attack" : ""}`}>
-                  {/* <img src={optionCharacter ? maleKick : charMan} alt="" /> */}
-                  {charAttack ? (
-                    <img src={maleKick} />
-                  ) : (
-                    <img src={optionCharacter ? charMan : charWoman} alt="" />
-                  )}
+                    {/* <img src={optionCharacter ? maleKick : charMan} alt="" /> */}
+                    {charAttack ? (
+                      <img src={maleKick} />
+                    ) : (
+                      <img src={optionCharacter ? charMan : charWoman} alt="" />
+                    )}
 
-                    {clickSubmit && <div className="attack-indicator">
-                      <img src={swordCross} />
-                    </div>}
-                      {healEffect && <div className="heal-effect">
-                      <img src={heal} />
-                    </div>}
-                      {damageEffect && <div className="damage-effect">
-                      <img src={doubleDamage} />
-                    </div>}
-                      {reflectEffect && <div className="reflect-effect">
-                      <img src={shield1} />
-                    </div>}
+                    {clickSubmit && (
+                      <div className="attack-indicator">
+                        <img src={swordCross} />
+                      </div>
+                    )}
+                    {healEffect && (
+                      <div className="heal-effect">
+                        <img src={heal} />
+                      </div>
+                    )}
+                    {damageEffect && (
+                      <div className="damage-effect">
+                        <img src={doubleDamage} />
+                      </div>
+                    )}
+                    {reflectEffect && (
+                      <div className="reflect-effect">
+                        <img src={shield1} />
+                      </div>
+                    )}
                   </div>
                   <div className="buffs">
-                    <div className={`reflect-buff ${reflectBuffClicked ? "buff-disabled" : ""}`} onClick={toggleReflect}>
+                    <div
+                      className={`reflect-buff ${
+                        reflectBuffClicked ? "buff-disabled" : ""
+                      }`}
+                      onClick={toggleReflect}
+                    >
                       S
                     </div>
-                    <div className={`doubledmg-buff ${damageBuffClicked ? "buff-disabled" : ""}`} onClick={toggleDamage}>
+                    <div
+                      className={`doubledmg-buff ${
+                        damageBuffClicked ? "buff-disabled" : ""
+                      }`}
+                      onClick={toggleDamage}
+                    >
                       X2
                     </div>
-                    <div className={`heal-buff ${healBuffClicked ? "buff-disabled" : ""}`} onClick={toggleHeal}>
+                    <div
+                      className={`heal-buff ${
+                        healBuffClicked ? "buff-disabled" : ""
+                      }`}
+                      onClick={toggleHeal}
+                    >
                       R
                     </div>
                   </div>
@@ -461,7 +494,7 @@ export default function PVP() {
                     <h4>Test</h4>
                   </div>
                   <div className="secondchar">
-                  <img src={charWoman} alt="" />
+                    <img src={charWoman} alt="" />
                   </div>
                 </div>
                 <div className="settings-button">
@@ -530,7 +563,7 @@ export default function PVP() {
           </div>
         </div>
         {surrender && (
-         <Surrender showSurrender={showSurrender} showConfirm={showConfirm}/>
+          <Surrender showSurrender={showSurrender} showConfirm={showConfirm} />
         )}
         {confirm && (
           <div className="lose" onClick={toggleStarPage}>
