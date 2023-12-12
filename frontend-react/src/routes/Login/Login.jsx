@@ -76,6 +76,7 @@ export default function Login() {
           const {
             content: { username, email, stars },
           } = res.data;
+          // may gold na kasama sa res.data.content, isama mo lang ideconstruct
           window.localStorage.setItem("loggedUser", JSON.stringify(res.data));
           setAccount(username, email, stars);
           navigate("/home");
