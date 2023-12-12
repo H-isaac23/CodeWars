@@ -1,4 +1,5 @@
 import { IAccount } from "../models/account";
+import { IMatch } from "../models/match";
 
 export interface BaseAccountRequest {
   username: IAccount["username"];
@@ -30,4 +31,10 @@ export interface LoginParameter extends BaseAccountRequest {
 
 export interface SendEmailNotifParameter {
   email: IAccount["email"];
+}
+
+export interface CreateNewMatchParameter {
+  player1: IMatch["player1"];
+  player2: IMatch["player2"];
+  win: IMatch["win"];
 }

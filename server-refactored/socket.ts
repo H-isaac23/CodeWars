@@ -91,47 +91,53 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
   });
 
   const periodicMatching = async () => {
-    console.log(playersOnQueue);
+    // console.log(playersOnQueue);
     const sockets = await io.in("queueRoom").fetchSockets();
-    const socket_ids = sockets.map((s) => s.id);
+    // const socket_ids = sockets.map((s) => s.id);
 
     if (sockets.length >= 2) {
       // TODO: SHOULD SORT THE ARRAY FIRST
       playersOnQueue.sort((p1, p2) => p1.stars - p2.stars);
+      console.log(playersOnQueue);
 
       let i = 0;
       while (i <= playersOnQueue.length - 2 && playersOnQueue.length >= 2) {
-        // should only work in "queueRoom"
-        const s1 = io.sockets.sockets.get(socket_ids[i]) as Socket<
-          ClientToServerEvents,
-          ServerToClientEvents,
-          InterServerEvents,
-          SocketData
-        >;
-        const s2 = io.sockets.sockets.get(socket_ids[i + 1]) as Socket<
-          ClientToServerEvents,
-          ServerToClientEvents,
-          InterServerEvents,
-          SocketData
-        >;
-
         // TODO: COMPARE STARS, IF NOT WITHIN BRACKET, INCREMENT BY 1, ELSE DO MATCH
+        if (
+          Math.abs(playersOnQueue[i].stars - playersOnQueue[i + 1].stars) > 25
+        ) {
+          i += 1;
+          continue;
+        }
 
-        const username1 = playersOnQueue.find(
-          (player) => player.socketId === socket_ids[i]
-        )?.username;
-        const username2 = playersOnQueue.find(
-          (player) => player.socketId === socket_ids[i + 1]
-        )?.username;
+        const player_one = playersOnQueue[i];
+        const player_two = playersOnQueue[i + 1];
+
+        // should only work in "queueRoom"
+        const s1 = io.sockets.sockets.get(player_one.socketId) as Socket<
+          ClientToServerEvents,
+          ServerToClientEvents,
+          InterServerEvents,
+          SocketData
+        >;
+        const s2 = io.sockets.sockets.get(player_two.socketId) as Socket<
+          ClientToServerEvents,
+          ServerToClientEvents,
+          InterServerEvents,
+          SocketData
+        >;
+
+        const username1 = player_one.username;
+        const username2 = player_two.username;
 
         s1.emit("join_match", {
           currentRoomId,
-          id: socket_ids[0],
+          id: player_one.socketId,
           username: [username1, username2],
         });
         s2.emit("join_match", {
           currentRoomId,
-          id: socket_ids[1],
+          id: player_two.socketId,
           username: [username1, username2],
         });
 
@@ -145,7 +151,7 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
         setTimeout(() => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           currentRoomId = uuidv4();
-        }, 1000);
+        }, 300);
         // i += 1;
         i = 0;
       }
