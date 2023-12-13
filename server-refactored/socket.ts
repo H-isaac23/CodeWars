@@ -8,6 +8,7 @@ import {
   QueuePlayer,
 } from "./interface/websocket";
 import { v4 as uuidv4 } from "uuid";
+import { runCode } from "./pythonInterpreter";
 
 const setupSocketServer = (server: HTTPServer): SocketIOServer => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unnecessary-type-assertion
@@ -31,8 +32,51 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
     socket.on("disconnect", () => {
       console.log("user disconnected");
     });
+    socket.on(
+      "match_submit",
+      async ({ username, roomId, code, socketId, questionDetails, buffs }) => {
+        const total = questionDetails.testCases.length;
+        let correct = 0;
+        const runCodePromises = questionDetails.testCases.map(
+          async (testCase) => {
+            const toRun = code + "\n" + testCase.exe;
+            const res = await runCode(toRun);
+            console.log({ res, answer: testCase.answer });
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+            if (res === testCase.answer || res.trim() === "True") {
+              correct += 1;
+            }
+          }
+        );
+        await Promise.all(runCodePromises);
+
+        console.log({ correct });
+        if (total === correct) {
+          const index = Math.floor(Math.random() * 40);
+
+          io.to(roomId).emit("player_code_submit", {
+            correct: true,
+            socketId,
+            questionIndex: index,
+            playerUsername: username,
+            buffs,
+          });
+
+          console.log(index);
+        } else {
+          io.to(roomId).emit("player_code_submit", {
+            correct: false,
+            socketId,
+            questionIndex: -1,
+            playerUsername: username,
+            buffs,
+          });
+        }
+      }
+    );
 
     socket.on("surrender", async ({ roomId, userId }) => {
+      console.log("there should be things here");
       console.log({ roomId, userId });
 
       const sockets = await io.in(roomId).fetchSockets();
@@ -103,10 +147,16 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
       let i = 0;
       while (i <= playersOnQueue.length - 2 && playersOnQueue.length >= 2) {
         // TODO: COMPARE STARS, IF NOT WITHIN BRACKET, INCREMENT BY 1, ELSE DO MATCH
+        console.log({ i });
+        console.log(playersOnQueue[i].stars - playersOnQueue[i + 1].stars);
+        if (i > playersOnQueue.length - 2) {
+          break;
+        }
         if (
           Math.abs(playersOnQueue[i].stars - playersOnQueue[i + 1].stars) > 25
         ) {
           i += 1;
+          console.log({ i }, "after incrementing");
           continue;
         }
 
