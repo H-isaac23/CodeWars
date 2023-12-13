@@ -214,7 +214,7 @@ export default function PVP() {
 
   //Triggers when user clicks the confirm or check button
   useEffect(() => {
-    if (showConfirm(confirm)) {
+    if (confirm) {
       const data = {
         username,
         stars,
@@ -229,7 +229,7 @@ export default function PVP() {
         setPlaySound(false);
       }, 3000);
     }
-  }, [confirm, username, stars, room_id, userId, socket]);
+  }, [confirm]);
 
   const toggleLose = () => {
     showconfirm(!confirm);
@@ -255,7 +255,7 @@ export default function PVP() {
     showStarProtection(!starProtection);
     showStarPage(false);
     showVictory(false);
-    showconfirm(false);
+    showConfirm(false);
     showReward(false);
     showSurrender(false);
   };
