@@ -223,16 +223,13 @@ export default function PVP() {
 
       setPlayLoserSound(true);
       console.log({ room_id });
+      socket.emit("surrender", { roomId: room_id, userId });
 
       setTimeout(() => {
         setPlaySound(false);
       }, 3000);
     }
   }, [confirm, username, stars, room_id, userId, socket]);
-
-  useEffect(() => {
-    socket.emit("surrender", { roomId: room_id, userId });
-  }, []);
 
   const toggleLose = () => {
     showconfirm(!confirm);
