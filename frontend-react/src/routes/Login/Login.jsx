@@ -74,11 +74,11 @@ export default function Login() {
         if (res.status === 200) {
           console.log(res);
           const {
-            content: { username, email, stars },
+            content: { username, email, stars, gold },
           } = res.data;
           // may gold na kasama sa res.data.content, isama mo lang ideconstruct
           window.localStorage.setItem("loggedUser", JSON.stringify(res.data));
-          setAccount(username, email, stars);
+          setAccount(username, email, stars, gold);
           navigate("/home");
         }
       } catch (error) {
