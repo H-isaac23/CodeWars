@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useConfigStore from "../../store/configStore";
 import AudioButton from "../../components/AudioButton/AudioButton";
+import SoundButton from "../../components/SoundButton/SoundButton";
 
 export default function settings({showSettings}) {
   const account = useConfigStore((state) => state.account);
@@ -48,10 +49,7 @@ export default function settings({showSettings}) {
         </div>
         <div className="audio">
           <p>SOUND</p>
-          <div className="vol">
-            <div className="vol-oval">ON</div>
-            <div className="vol-circle"></div>
-          </div>
+          <SoundButton/>
         </div>
         
         <div className="first-line">

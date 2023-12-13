@@ -3,6 +3,7 @@ import { create } from "zustand";
 const useConfigStore = create((set) => ({
   account: { username: "", email: "", stars: 0, gold: 0 },
   isPlaying: false,
+  isSoundPlaying: false,
   isConnected: false,
   optionCharacter: false,
   setAccount: (username, email, stars, gold) =>
@@ -11,6 +12,7 @@ const useConfigStore = create((set) => ({
     }),
   removeAccount: () => set({ account: { username: "", email: "" } }),
   togglePlaying: () => set((state) => ({ isPlaying: !state.isPlaying })),
+  toggleSoundPlaying: () => set((state) => ({ isSoundPlaying: !state.isSoundPlaying })),
   optionCharacterClicked: () => set((state) => ({ optionCharacter: !state.optionCharacter })),
   
   setIsConnected: () => set({ isConnected: true }),

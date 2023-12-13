@@ -6,28 +6,35 @@ import useConfigStore from "../../store/configStore";
 import AudioButton from "../../components/AudioButton/AudioButton";
 import Settings from "../../components/Settings/Settings";
 import "./PVP.css";
+
 import bg from "../../assets/img/4455.jpg";
-// import bg2 from "../../assets/img/bg2.jpg";
 import bg2 from "../../assets/img/bg3.jpg";
 import bg_bottom from "../../assets/img/bg-brown.jpg";
-// import heal from "../../assets/img/heal_buff.gif";
-// import doubleDamage from "../../assets/img/double_dmg.gif";
-// import reflect from "../../assets/img/reflect.gif";
-import maleKick from "../..//assets/img/final_male_anim_KICK.gif";
-import swordCross from "../../assets/img/sword_cross.png";
 
 import doubleDamage from "../../assets/img/double_damage_transparent.gif";
 import heal from "../../assets/img/heal_transparent.gif";
 import shield1 from "../../assets/img/shield_transparent.gif";
 
-import clock from "../../assets/img/clock.png";
 import charMan from "../../assets/img/final_male_anim_IDLE.gif";
 import charWoman from "../../assets/img/final_female_anim_IDLE(fixed frames).gif";
+import maleKick from "../..//assets/img/final_male_anim_KICK.gif";
+
 import setting from "../../assets/img/settingbtn.png";
 import xbtn from "../../assets/img/x.png";
+import vs from "../../assets/img/vs.png";
+import clock from "../../assets/img/clock.png";
+import swordCross from "../../assets/img/sword_cross.png";
+import shield_icon from "../../assets/img/protection.png";
+import sword_icon from "../../assets/img/sword.png";
+import heal_icon from "../../assets/img/heal.png";
+
 import lose from "../../assets/audio/lose.mp3";
 import win from "../../assets/audio/win.mp3";
-import vs from "../../assets/img/vs.png";
+import kick from "../../assets/audio/kick.mp3";
+import shieldSound from "../../assets/audio/shield.mp3";
+import healSound from "../../assets/audio/heal.mp3";
+import damageSound from "../../assets/audio/sword.mp3";
+
 import rewardChest from "../../assets/img/reward_box.png";
 import shield from "../../assets/img/star_protection.png";
 
@@ -48,7 +55,6 @@ export default function PVP() {
   const [sett, setShowSettings] = useState(false);
   const [surrender, showSurrender] = useState(false);
   const [confirm, showConfirm] = useState(false);
-  const [playlosersound, setPlayLoserSound] = useState(false);
   const [input, setInput] = useState("");
   const [rcount, setrCount] = useState(1);
   const [victory, showVictory] = useState(false);
@@ -61,6 +67,12 @@ export default function PVP() {
   const setAccount = useConfigStore((state) => state.setAccount);
   const [disableBtn, setDisabledBtn] = useState(false);
   const [clickSubmit, userClickSubmit] = useState(false);
+
+  const [playlosersound, setPlayLoserSound] = useState(false);
+  const [kickSound, setKickSound] = useState(false);
+  const [protectionSound, setProtectionSound] = useState(false);
+  const [regenSound, setRegenSound] = useState(false);
+  const [doubleDamageSound, setDoubleDamageSound] = useState(false);
 
   const [healEffect, showHealEffect] = useState(false);
   const [damageEffect, showDamageEffect] = useState(false);
@@ -264,10 +276,12 @@ export default function PVP() {
   const toggleHeal = () => {
     if (!healBuffClicked) {
       showHealEffect(true);
+      setRegenSound(true);
       showHealEffectIcon(true);
       setTimeout(() => {
       showHealEffect(false);
       showHealEffectIcon(false);
+      setRegenSound(false);
     }, 3000);
     setHealBuffClicked(true);
     }
@@ -277,9 +291,11 @@ export default function PVP() {
   const toggleDamage = () => {
     if (!damageBuffClicked) {
       showDamageEffect(true);
+      setDoubleDamageSound(true);
       showDamageEffectIcon(true);
       setTimeout(() => {
         showDamageEffect(false);
+        setDoubleDamageSound(false)
       }, 3000);
       setDamageBuffClicked(true);
     }
@@ -288,8 +304,10 @@ export default function PVP() {
   const toggleReflect = () => {
     if (!reflectBuffClicked) {
       showReflectEffect(true);
+      setProtectionSound(true)
       showReflectEffectIcon(true);
       setTimeout(() => {
+        setProtectionSound(false);
         showReflectEffect(false);
       }, 3000);
       setReflectBuffClicked(true);
@@ -313,6 +331,7 @@ export default function PVP() {
     userClickSubmit(true);
     setDisabledBtn(false);
     setcharAttack(true);
+    setKickSound(true);
     setCorrectStatus(!correctStatus);
     const code = input;
     const playerDetails = {
@@ -327,6 +346,7 @@ export default function PVP() {
     setTimeout(() => {
       userClickSubmit(false);
       setcharAttack(false);
+      setKickSound(false);
     }, 480);
   };
 
@@ -402,15 +422,19 @@ export default function PVP() {
                   </div>
                   <div className="username1-buff-status">
                     {reflectEffectIcon && (
-                      <div className="reflect-buff reflect-buff-icon">S</div>
+                      <div className="reflect-buff reflect-buff-icon">
+                        <img src={shield_icon} />
+                      </div>
                     )}
                     {damageEffectIcon && (
                       <div className="doubledmg-buff doubledmg-buff-icon">
-                        X2
+                        <img src={sword_icon} />
                       </div>
                     )}
                     {healEffectIcon && (
-                      <div className="heal-buff heal-buff-icon">R</div>
+                      <div className="heal-buff heal-buff-icon">
+                        <img src={heal_icon} />
+                      </div>
                     )}
                   </div>
                   <div className={`firstchar ${charAttack ? "attack" : ""}`}>
@@ -449,7 +473,7 @@ export default function PVP() {
                       }`}
                       onClick={toggleReflect}
                     >
-                      S
+                      <img src={shield_icon} />
                     </div>
                     <div
                       className={`doubledmg-buff ${
@@ -457,15 +481,15 @@ export default function PVP() {
                       }`}
                       onClick={toggleDamage}
                     >
-                      X2
+                      <img src={sword_icon} />
                     </div>
                     <div
                       className={`heal-buff ${
-                        healBuffClicked || hplval === 100 ? "buff-disabled" : ""
+                        healBuffClicked ? "buff-disabled" : ""
                       }`}
                       onClick={toggleHeal}
                     >
-                      R
+                       <img src={heal_icon} />
                     </div>
                   </div>
                 </div>
@@ -503,15 +527,19 @@ export default function PVP() {
                   </div>
                   <div className="username2-buff-status">
                     {reflectEffectIcon && (
-                      <div className="reflect-buff reflect-buff-icon reflect-buff-icon-opponent">S</div>
+                      <div className="reflect-buff reflect-buff-icon reflect-buff-icon-opponent">
+                        <img src={shield_icon} />
+                      </div>
                     )}
                     {damageEffectIcon && (
                       <div className="doubledmg-buff doubledmg-buff-icon doubledmg-buff-icon-opponent">
-                        X2
+                        <img src={sword_icon} />
                       </div>
                     )}
                     {healEffectIcon && (
-                      <div className="heal-buff heal-buff-icon heal-buff-icon-opponent">R</div>
+                      <div className="heal-buff heal-buff-icon heal-buff-icon-opponent">
+                        <img src={heal_icon} />
+                      </div>
                     )}
                   </div>
                   <div className={`secondchar ${charAttack ? "attack" : ""}`}>
@@ -706,6 +734,38 @@ export default function PVP() {
         {victory && (
           <div>
             <audio autoPlay src={win} type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        )}
+
+        {kickSound && (
+          <div>
+            <audio autoPlay src={kick} type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        )}
+
+        {regenSound && (
+          <div>
+            <audio autoPlay src={healSound} type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        )}
+
+        {protectionSound && (
+          <div>
+            <audio autoPlay src={shieldSound} type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        )}
+
+        {doubleDamageSound && (
+          <div>
+            <audio autoPlay src={damageSound} type="audio/mpeg">
               Your browser does not support the audio element.
             </audio>
           </div>
