@@ -9,7 +9,7 @@ import "./PVP.css";
 import bg from "../../assets/img/4455.jpg";
 // import bg2 from "../../assets/img/bg2.jpg";
 import bg2 from "../../assets/img/bg3.jpg";
-
+import bg_bottom from "../../assets/img/bg-brown.jpg";
 // import heal from "../../assets/img/heal_buff.gif";
 // import doubleDamage from "../../assets/img/double_dmg.gif";
 // import reflect from "../../assets/img/reflect.gif";
@@ -138,7 +138,7 @@ export default function PVP() {
         setAccount(
           res.data.account.username,
           res.data.account.email,
-          res.data.account.stars
+          res.data.account.stars,
         );
 
         console.log({ stars });
@@ -163,7 +163,8 @@ export default function PVP() {
         setAccount(
           res.data.account.username,
           res.data.account.email,
-          res.data.account.stars
+          res.data.account.stars,
+          res.data.account.gold
         );
 
         console.log({ stars });
@@ -265,12 +266,13 @@ export default function PVP() {
       showHealEffect(true);
       showHealEffectIcon(true);
       setTimeout(() => {
-        showHealEffect(false);
-        showHealEffectIcon(false);
-      }, 3000);
-      setHealBuffClicked(true);
+      showHealEffect(false);
+      showHealEffectIcon(false);
+    }, 3000);
+    setHealBuffClicked(true);
     }
   };
+
 
   const toggleDamage = () => {
     if (!damageBuffClicked) {
@@ -354,6 +356,12 @@ export default function PVP() {
           alt=""
           className="pvp-bg"
         />
+        {/* This one below is just my thing to solve the bg  */}
+        {backgroundImages[backgroundIndex] == bg2 && 
+          <div className="bg-bottom">
+            <img src={bg_bottom} />
+          </div>
+        }
         <div className="pvp-container">
           <div className="pvp-container-content">
             <div className="pvp-container-left">
@@ -453,7 +461,7 @@ export default function PVP() {
                     </div>
                     <div
                       className={`heal-buff ${
-                        healBuffClicked ? "buff-disabled" : ""
+                        healBuffClicked || hplval === 100 ? "buff-disabled" : ""
                       }`}
                       onClick={toggleHeal}
                     >
@@ -493,8 +501,47 @@ export default function PVP() {
                   <div className="username username2">
                     <h4>Test</h4>
                   </div>
-                  <div className="secondchar">
-                    <img src={charWoman} alt="" />
+                  <div className="username2-buff-status">
+                    {reflectEffectIcon && (
+                      <div className="reflect-buff reflect-buff-icon reflect-buff-icon-opponent">S</div>
+                    )}
+                    {damageEffectIcon && (
+                      <div className="doubledmg-buff doubledmg-buff-icon doubledmg-buff-icon-opponent">
+                        X2
+                      </div>
+                    )}
+                    {healEffectIcon && (
+                      <div className="heal-buff heal-buff-icon heal-buff-icon-opponent">R</div>
+                    )}
+                  </div>
+                  <div className={`secondchar ${charAttack ? "attack" : ""}`}>
+                    {/* <img src={optionCharacter ? maleKick : charMan} alt="" /> */}
+                    {charAttack ? (
+                      <img src={maleKick} />
+                    ) : (
+                      <img src={optionCharacter ? charMan : charWoman} alt="" />
+                    )}
+
+                    {clickSubmit && (
+                      <div className="attack-indicator attack-indicator-opponent">
+                        <img src={swordCross} />
+                      </div>
+                    )}
+                    {healEffect && (
+                      <div className="heal-effect heal-effect-opponent">
+                        <img src={heal} />
+                      </div>
+                    )}
+                    {damageEffect && (
+                      <div className="damage-effect damage-effect-opponent">
+                        <img src={doubleDamage} />
+                      </div>
+                    )}
+                    {reflectEffect && (
+                      <div className="reflect-effect">
+                        <img src={shield1} />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="settings-button">

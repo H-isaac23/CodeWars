@@ -173,7 +173,8 @@ a{
   left: 68%;
 }
 
-.username1-buff-status{
+.username1-buff-status,
+.username2-buff-status{
   height: 2em;
   position: absolute;
   top: 3em;
@@ -183,15 +184,25 @@ a{
   align-items: center;
 }
 
+.username2-buff-status{
+  left: 0;
+}
+
 .username1-buff-status .reflect-buff-icon,
 .username1-buff-status .doubledmg-buff-icon,
-.username1-buff-status .heal-buff-icon{
+.username1-buff-status .heal-buff-icon,
+.username2-buff-status .reflect-buff-icon,
+.username2-buff-status .doubledmg-buff-icon,
+.username2-buff-status .heal-buff-icon
+{
   height: 100%;
   width: 2em;
   border-radius: 0;
   border: 3px solid white;
   font-size: 1.1rem;
 }
+
+
 
 .firstchar img,
 .secondchar img {
@@ -390,6 +401,11 @@ a{
   width: 51em;
 }
 
+.damage-effect-opponent{
+  position: absolute;
+  left: -28.5em;
+}
+
 
 
 .pvpbottom {
@@ -566,6 +582,17 @@ a{
   height: 115vh;
   margin-bottom: 20em;
 }
+
+.bg-bottom{
+  position: absolute;
+  height: 8em;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  
+}
+
+
 
 .lose,
 .win {

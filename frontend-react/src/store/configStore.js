@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
 const useConfigStore = create((set) => ({
-  account: { username: "", email: "", stars: 0 },
+  account: { username: "", email: "", stars: 0, gold: 0 },
   isPlaying: false,
   isConnected: false,
   optionCharacter: false,
-  setAccount: (username, email, stars) =>
+  setAccount: (username, email, stars, gold) =>
     set({
-      account: { username, email, stars },
+      account: { username, email, stars, gold },
     }),
   removeAccount: () => set({ account: { username: "", email: "" } }),
   togglePlaying: () => set((state) => ({ isPlaying: !state.isPlaying })),
