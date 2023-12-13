@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-//thsi is
 import useConfigStore from "../../store/configStore";
 import AudioButton from "../../components/AudioButton/AudioButton";
 import Settings from "../../components/Settings/Settings";
@@ -45,7 +44,7 @@ import Console from "../../components/Console/Console";
 import { motion, useMotionValue } from "framer-motion";
 import { socket } from "../../socket";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import questions from "../../50-easy questions.json";
+import questions from "../../25-medium-questions.json";
 import axios from "axios";
 import Surrender from "../../components/PVPComponents/Surrender/Surrender";
 
@@ -85,6 +84,10 @@ export default function PVP() {
   const [healBuffClicked, setHealBuffClicked] = useState(false);
   const [damageBuffClicked, setDamageBuffClicked] = useState(false);
   const [reflectBuffClicked, setReflectBuffClicked] = useState(false);
+
+  const [countHealUsed, setCountHealUsed] = useState(0);
+  const [countDamageUsed, setCountDamageUsed] = useState(0);
+  const [countReflectUsed, setCountReflectUsed] = useState(0);
 
   const [charAttack, setcharAttack] = useState(false);
 
@@ -197,13 +200,13 @@ export default function PVP() {
       if (res.correct && socket.id === res.socketId) {
         setHprval(hprval - 25);
         setrCount(rcount + 1);
-        setQnum(res.question_index);
+        setQnum(res.questionIndex);
         console.log(hprval, qnum);
         showCorrect(!correct);
       } else if (res.correct && socket.id !== res.socketId) {
         setrCount(rcount + 1);
         setHplval(hplval - 25);
-        setQnum(res.question_index);
+        setQnum(res.questionIndex);
         console.log(hplval, qnum);
       }
       // For submit button
@@ -214,6 +217,12 @@ export default function PVP() {
       socket.emit("player_lose", { room_id, socketId: socket.id });
     }
   }, [hprval, hplval]);
+
+  function extractExpr2(str) {
+    const regex = /==\s*(.*?)(?=\s*\)$)/;
+    const match = str.match(regex);
+    return match ? match[1].trim() : null;
+  }
 
   // display the settings UI
   const toggleSettings = () => {
@@ -278,6 +287,7 @@ export default function PVP() {
       showHealEffect(true);
       setRegenSound(true);
       showHealEffectIcon(true);
+      setCountHealUsed((c) => c + 1);
       setTimeout(() => {
         showHealEffect(false);
         showHealEffectIcon(false);
@@ -292,6 +302,7 @@ export default function PVP() {
       showDamageEffect(true);
       setDoubleDamageSound(true);
       showDamageEffectIcon(true);
+      setCountDamageUsed((c) => c + 1);
       setTimeout(() => {
         showDamageEffect(false);
         setDoubleDamageSound(false);
@@ -305,6 +316,7 @@ export default function PVP() {
       showReflectEffect(true);
       setProtectionSound(true);
       showReflectEffectIcon(true);
+      setCountReflectUsed((c) => c + 1);
       setTimeout(() => {
         setProtectionSound(false);
         showReflectEffect(false);
@@ -336,12 +348,23 @@ export default function PVP() {
     const playerDetails = {
       userId,
     };
+    const buffs = [];
+    if (countDamageUsed < 1 && damageBuffClicked) {
+      buffs.push("damage");
+    }
+    if (countReflectUsed < 1 && reflectBuffClicked) {
+      buffs.push("damage");
+    }
+    if (countHealUsed < 1 && healBuffClicked) {
+      buffs.push("damage");
+    }
     socket.emit("match_submit", {
-      room_id,
+      username,
+      roomId: room_id,
       code,
       socketId: socket.id,
       questionDetails: questions[qnum],
-      username,
+      buffs,
     });
     setTimeout(() => {
       userClickSubmit(false);
@@ -618,9 +641,15 @@ export default function PVP() {
                 <div className="display-output">
                   <div className="test-case">
                     <h3>TEST CASES:</h3>
-                    <p>Case 1: {questions[qnum].testCases[0].exe}</p>
-                    <p>Case 2: {questions[qnum].testCases[1].exe}</p>
-                    <p>Case 3: {questions[qnum].testCases[2].exe}</p>
+                    <p>
+                      Case 1: {extractExpr2(questions[qnum].testCases[0].exe)}
+                    </p>
+                    <p>
+                      Case 2: {extractExpr2(questions[qnum].testCases[1].exe)}
+                    </p>
+                    <p>
+                      Case 3: {extractExpr2(questions[qnum].testCases[2].exe)}
+                    </p>
                   </div>
                   <div className="output-test">
                     <h3>OUTPUT:</h3>
