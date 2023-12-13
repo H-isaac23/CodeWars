@@ -173,7 +173,8 @@ a{
   left: 68%;
 }
 
-.username1-buff-status{
+.username1-buff-status,
+.username2-buff-status{
   height: 2em;
   position: absolute;
   top: 3em;
@@ -183,15 +184,24 @@ a{
   align-items: center;
 }
 
+.username2-buff-status{
+  left: 0;
+}
+
 .username1-buff-status .reflect-buff-icon,
 .username1-buff-status .doubledmg-buff-icon,
-.username1-buff-status .heal-buff-icon{
-  height: 100%;
+.username1-buff-status .heal-buff-icon,
+.username2-buff-status .reflect-buff-icon,
+.username2-buff-status .doubledmg-buff-icon,
+.username2-buff-status .heal-buff-icon
+{
   width: 2em;
+  height: 2em;
   border-radius: 0;
   border: 3px solid white;
   font-size: 1.1rem;
 }
+
 
 .firstchar img,
 .secondchar img {
@@ -335,7 +345,7 @@ a{
 .heal-buff{
   height: 5em;
   border-radius: 50%;
-  border: 8px solid white;
+  border: 6px solid white;
   width: 80%;
   display: flex;
   align-items: center;
@@ -344,11 +354,27 @@ a{
 }
 
 .reflect-buff{
-  background: blue;
+  background-color: blue;
+  position: relative;
+}
+
+.reflect-buff img,
+.doubledmg-buff img,
+.heal-buff img{
+  height: 1.6em;
+  width: 1.6em;
+  position: absolute;
+  z-index: 2;
+}
+
+.doubledmg-buff img{
+  height: 1.4em;
+  width: 1.4em;
 }
 
 .doubledmg-buff{
   background: red;
+
 }
 
 .heal-buff{
@@ -388,6 +414,11 @@ a{
 .damage-effect{
   height: 49vh;
   width: 51em;
+}
+
+.damage-effect-opponent{
+  position: absolute;
+  left: -28.5em;
 }
 
 
@@ -566,6 +597,17 @@ a{
   height: 115vh;
   margin-bottom: 20em;
 }
+
+.bg-bottom{
+  position: absolute;
+  height: 8em;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  
+}
+
+
 
 .lose,
 .win {
