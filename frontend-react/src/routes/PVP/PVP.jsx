@@ -45,7 +45,7 @@ import Console from "../../components/Console/Console";
 import { motion, useMotionValue } from "framer-motion";
 import { socket } from "../../socket";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import questions from "../../questions.json";
+import questions from "../../50-easy questions.json";
 import axios from "axios";
 import Surrender from "../../components/PVPComponents/Surrender/Surrender";
 
@@ -150,7 +150,7 @@ export default function PVP() {
         setAccount(
           res.data.account.username,
           res.data.account.email,
-          res.data.account.stars,
+          res.data.account.stars
         );
 
         console.log({ stars });
@@ -279,14 +279,13 @@ export default function PVP() {
       setRegenSound(true);
       showHealEffectIcon(true);
       setTimeout(() => {
-      showHealEffect(false);
-      showHealEffectIcon(false);
-      setRegenSound(false);
-    }, 3000);
-    setHealBuffClicked(true);
+        showHealEffect(false);
+        showHealEffectIcon(false);
+        setRegenSound(false);
+      }, 3000);
+      setHealBuffClicked(true);
     }
   };
-
 
   const toggleDamage = () => {
     if (!damageBuffClicked) {
@@ -295,7 +294,7 @@ export default function PVP() {
       showDamageEffectIcon(true);
       setTimeout(() => {
         showDamageEffect(false);
-        setDoubleDamageSound(false)
+        setDoubleDamageSound(false);
       }, 3000);
       setDamageBuffClicked(true);
     }
@@ -304,7 +303,7 @@ export default function PVP() {
   const toggleReflect = () => {
     if (!reflectBuffClicked) {
       showReflectEffect(true);
-      setProtectionSound(true)
+      setProtectionSound(true);
       showReflectEffectIcon(true);
       setTimeout(() => {
         setProtectionSound(false);
@@ -342,6 +341,7 @@ export default function PVP() {
       code,
       socketId: socket.id,
       questionDetails: questions[qnum],
+      username,
     });
     setTimeout(() => {
       userClickSubmit(false);
@@ -377,11 +377,11 @@ export default function PVP() {
           className="pvp-bg"
         />
         {/* This one below is just my thing to solve the bg  */}
-        {backgroundImages[backgroundIndex] == bg2 && 
+        {backgroundImages[backgroundIndex] == bg2 && (
           <div className="bg-bottom">
             <img src={bg_bottom} />
           </div>
-        }
+        )}
         <div className="pvp-container">
           <div className="pvp-container-content">
             <div className="pvp-container-left">
@@ -489,7 +489,7 @@ export default function PVP() {
                       }`}
                       onClick={toggleHeal}
                     >
-                       <img src={heal_icon} />
+                      <img src={heal_icon} />
                     </div>
                   </div>
                 </div>
