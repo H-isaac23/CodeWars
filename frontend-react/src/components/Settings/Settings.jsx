@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Settings.css";
-import bg from "../../assets/img/4455.jpg";
+import bg from "../../assets/img/bg2.jpg";
 import { Link } from "react-router-dom";
 import Contact from "../ContactUs/Contact";
 import About from "../About/About";

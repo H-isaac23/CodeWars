@@ -1,6 +1,6 @@
 import React from "react";
 import "./UserProfile.css";
-import bg from "../../assets/img/4455.jpg";
+import bg from "../../assets/img/bg2.jpg";
 import Settings from "../Settings/Settings";
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../../socket";
 import useConfigStore from "../../store/configStore";
+import MatchHistory from "../../components/MatchHistory/MatchHistory";
 
 export default function UserProfile({showProfile}) {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export default function UserProfile({showProfile}) {
   const toggle = useConfigStore((state) => state.togglePlaying);
   const isPlaying = useConfigStore((state) => state.isPlaying);
   const [settings, showSettings] = useState(false);
+  const [matchHistory, showMatchHistory] = useState(false);
   
   useEffect(() => {
     if (account.username === "") {
@@ -36,6 +38,8 @@ export default function UserProfile({showProfile}) {
   const toggleSettings = () => {
     showSettings(true);
   };
+
+  const toggleMatchHistory = () => { showMatchHistory(true); };
 
   return (
     <div className="profile-container">
@@ -71,10 +75,18 @@ export default function UserProfile({showProfile}) {
             </button>
           </Link>
         </div>
-        <div onClick={() => showProfile(false)}>
-          <button className="btn"> RETURN </button>
+        <div className="first-line fbottom">
+          <div onClick={toggleMatchHistory}>
+            <button className="btn">
+              HISTORY
+            </button>
+          </div>
+          <div onClick={() => showProfile(false)}>
+            <button className="btn"> RETURN </button>
+          </div>
         </div>
-      </div>
+        </div>
+      {matchHistory && <MatchHistory showMatchHistory={showMatchHistory}/> }
       {settings && <div className="userSettings">
         <Settings showSettings={showSettings}/>
       </div>}
