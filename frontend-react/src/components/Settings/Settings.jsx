@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Settings.css";
-import bg from "../../assets/img/4455.jpg";
+import bg from "../../assets/img/bg2.jpg";
 import { Link } from "react-router-dom";
 import Contact from "../ContactUs/Contact";
 import About from "../About/About";
@@ -60,9 +60,14 @@ export default function settings({showSettings}) {
             <button className="btn"> CONTACT </button> 
           </div>
         </div>
+        <div className="first-line">
+          <div>
+          <a href="https://docs.google.com/forms/d/1ZtbvEnBt0QsdCUOYbxrrQyFTgRnEJ6wMFuU0C0GHHOI/edit" target="_blank"><button className="btn"> RATING</button></a>
+          </div>
           <div onClick={() => showSettings(false)}>
             <button className="btn"> RETURN </button>
           </div>
+        </div>
       </div>
       {about && <div className="gameAbout">
         <About showAbout={showAbout}/>

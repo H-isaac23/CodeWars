@@ -456,7 +456,11 @@ a{
 }
 
 .codemirror {
-  color: white;
+  color: black;
+}
+
+.ͼ1.cm-focused{
+  outline: none;
 }
 
 .cm-editor {
@@ -602,6 +606,7 @@ a{
   position: absolute;
   height: 8em;
   width: 100%;
+  z-index: -2;
   bottom: 0;
   left: 0;
   
@@ -801,9 +806,18 @@ a{
   animation: attack .24s linear infinite alternate;
 }
 
+.secondchar.attack{
+  animation: attack1 .24s linear infinite alternate;
+}
+
 @keyframes attack {
   0%{left: 0em;}
   100%{left: 27em;}
+}
+
+@keyframes attack1 {
+  0%{right: 0em;}
+  100%{right: 27em;}
 }
 
 @keyframes matchfound {

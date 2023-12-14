@@ -1,6 +1,6 @@
 import React from "react";
 import "./Contact.css";
-import bg from "../../assets/img/4455.jpg";
+import bg from "../../assets/img/bg2.jpg";
 import contactLogo from "../../assets/img/contact-logo.png";
 
 export default function ContactUs({showContact}) {

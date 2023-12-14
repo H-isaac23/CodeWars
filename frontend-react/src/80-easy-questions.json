@@ -1,0 +1,1296 @@
+[
+  {
+    "question": "Multiply two numbers between 1 and 15 to get a product of 30.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print((2*15) == mulTwo(2, 15))",
+        "answer": "30"
+      },
+      {
+        "exe": "print((3*10) == mulTwo(3, 10))",
+        "answer": "30"
+      },
+      {
+        "exe": "print((6*5) == mulTwo(6, 5))",
+        "answer": "30"
+      }
+    ]
+  },
+
+  {
+    "question": "What two numbers, when multiplied, give a product of 45 in the range of 1 to 45?",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print((5*9) == mulTwo(5, 9))",
+        "answer": "45"
+      },
+      {
+        "exe": "print((1*45) == mulTwo(1, 45))",
+        "answer": "45"
+      },
+      {
+        "exe": "print((3*15) == mulTwo(3, 15))",
+        "answer": "45"
+      }
+    ]
+  },
+  {
+    "question": "Find two numbers between 1 and 16 whose multiplication results in 16.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print((4*4) == mulTwo(4, 4))",
+        "answer": "16"
+      },
+      {
+        "exe": "print((2*8) == mulTwo(2, 8))",
+        "answer": "16"
+      },
+      {
+        "exe": "print((1*16) == mulTwo(1, 16))",
+        "answer": "16"
+      }
+    ]
+  },
+  {
+    "question": "In the range of 1 to 10, subtract two numbers with a result of 5.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(8-3 == subTwo(8, 3))",
+        "answer": "5"
+      },
+      {
+        "exe": "print(9-4 == subTwo(9, 4))",
+        "answer": "5"
+      },
+      {
+        "exe": "print(7-2 == subTwo(7, 2))",
+        "answer": "5"
+      }
+    ]
+  },
+  {
+    "question": "Subtract a number between 1 and 10 to get a result of 2.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(4-2 == subTwo(4, 2))",
+        "answer": "2"
+      },
+      {
+        "exe": "print(5-3 == subTwo(5, 3))",
+        "answer": "2"
+      },
+      {
+        "exe": "print(8-6 == subTwo(8, 6))",
+        "answer": "2"
+      }
+    ]
+  },
+  {
+    "question": "Subtract  a number between 1 and 10 to achieve a result of 7.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(10-3 == subTwo(10, 3))",
+        "answer": "7"
+      },
+      {
+        "exe": "print(9-2 == subTwo(9, 2))",
+        "answer": "7"
+      },
+      {
+        "exe": "print(8-1 == subTwo(8, 1))",
+        "answer": "7"
+      }
+    ]
+  },
+  {
+    "question": "Multiply two numbers in the range of 1 to 12, resulting in a product of 24.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print((3*8) == mulTwo(3, 8))",
+        "answer": "24"
+      },
+      {
+        "exe": "print((4*6) == mulTwo(4, 6))",
+        "answer": "24"
+      },
+      {
+        "exe": "print((2*12) == mulTwo(2, 12))",
+        "answer": "24"
+      }
+    ]
+  },
+  {
+    "question": "Subtract  a number between 1 and 10 to get a result of 6.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(9-3 == subTwo(9, 3))",
+        "answer": "6"
+      },
+      {
+        "exe": "print(8-2 == subTwo(8, 2))",
+        "answer": "6"
+      },
+      {
+        "exe": "print(7-1 == subTwo(7, 1))",
+        "answer": "6"
+      }
+    ]
+  },
+  {
+    "question": "What two numbers, when multiplied, yield a product of 14 in the range of 1 to 14?",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(2*7 == mulTwo(2, 7))",
+        "answer": "14"
+      },
+      {
+        "exe": "print(1*14 == mulTwo(1, 14))",
+        "answer": "14"
+      },
+      {
+        "exe": "print(4*3.5 == mulTwo(4, 3.5))",
+        "answer": "14"
+      }
+    ]
+  },
+  {
+    "question": "Multiply two numbers between 1 and 10 to get a product of 35.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(5*7 == mulTwo(5, 7))",
+        "answer": "35"
+      },
+      {
+        "exe": "print(7*5 == mulTwo(7, 5))",
+        "answer": "35"
+      },
+      {
+        "exe": "print(14*2.5 == mulTwo(14, 2.5))",
+        "answer": "35"
+      }
+    ]
+  },
+  {
+    "question": "Subtract a number between 1 and 10 to obtain a result of 3.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(8-5 == subTwo(8, 5))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(7-4 == subTwo(7, 4))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(10-3 == subTwo(10, 3))",
+        "answer": "3"
+      }
+    ]
+  },
+  {
+    "question": "Find two numbers in the range of 1 to 10 whose multiplication equals 18.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(2*9 == mulTwo(2, 9))",
+        "answer": "18"
+      },
+      {
+        "exe": "print(3*6 == mulTwo(3, 6))",
+        "answer": "18"
+      },
+      {
+        "exe": "print(6*3 == mulTwo(6, 3))",
+        "answer": "18"
+      }
+    ]
+  },
+  {
+    "question": "Multiply two numbers to get a product of 28, within the range of 1 to 15.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(2*14 == mulTwo(2, 14))",
+        "answer": "28"
+      },
+      {
+        "exe": "print(4*7 == mulTwo(4, 7))",
+        "answer": "28"
+      },
+      {
+        "exe": "print(14*2 == mulTwo(14, 2))",
+        "answer": "28"
+      }
+    ]
+  },
+  {
+    "question": "Subtract  from a number between 1 and 20 to get a result of 14.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(15-1 == subTwo(15, 1))",
+        "answer": "14"
+      },
+      {
+        "exe": "print(18-4 == subTwo(18, 4))",
+        "answer": "14"
+      },
+      {
+        "exe": "print(20-6 == subTwo(20, 6))",
+        "answer": "14"
+      }
+    ]
+  },
+  {
+    "question": "What two numbers, when multiplied, result in a product of 42 in the range of 1 to 20?",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(6*7 == mulTwo(6, 7))",
+        "answer": "42"
+      },
+      {
+        "exe": "print(3*14 == mulTwo(3, 14))",
+        "answer": "42"
+      },
+      {
+        "exe": "print(7*6 == mulTwo(7, 6))",
+        "answer": "42"
+      }
+    ]
+  },
+  {
+    "question": "Multiply two numbers between 1 and 15 to achieve a product of 15.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(3*5 == mulTwo(3, 5))",
+        "answer": "15"
+      },
+      {
+        "exe": "print(1*15 == mulTwo(1, 15))",
+        "answer": "15"
+      },
+      {
+        "exe": "print(5*3 == mulTwo(5, 3))",
+        "answer": "15"
+      }
+    ]
+  },
+  {
+    "question": "Subtract a number in the range of 1 to 30, resulting in a value of 22.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(30-8 == subTwo(30, 8))",
+        "answer": "22"
+      },
+      {
+        "exe": "print(25-3 == subTwo(25, 3))",
+        "answer": "22"
+      },
+      {
+        "exe": "print(23-1 == subTwo(23, 1))",
+        "answer": "22"
+      }
+    ]
+  },
+  {
+    "question": "Find two numbers whose multiplication equals 36 within the range of 1 to 20.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(4*9 == mulTwo(4, 9))",
+        "answer": "36"
+      },
+      {
+        "exe": "print(6*6 == mulTwo(6, 6))",
+        "answer": "36"
+      },
+      {
+        "exe": "print(3*12 == mulTwo(3, 12))",
+        "answer": "36"
+      }
+    ]
+  },
+
+  {
+    "question": "Subtract  a number between 1 and 5 to get a result of 1.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(2-1 == subTwo(2, 1))",
+        "answer": "1"
+      },
+      {
+        "exe": "print(3-2 == subTwo(3, 2))",
+        "answer": "1"
+      },
+      {
+        "exe": "print(4-3 == subTwo(4, 3))",
+        "answer": "1"
+      }
+    ]
+  },
+  {
+    "question": "Multiply two numbers to get a product of 21 in the range of 1 to 10.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(3*7 == mulTwo(3, 7))",
+        "answer": "21"
+      },
+      {
+        "exe": "print(6*3.5 == mulTwo(6, 3.5))",
+        "answer": "21"
+      },
+      {
+        "exe": "print(7*3 == mulTwo(7, 3))",
+        "answer": "21"
+      }
+    ]
+  },
+  {
+    "question": " What two numbers, when multiplied, give a product of 40 in the range of 1 to 20?",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(5*8 == mulTwo(5, 8))",
+        "answer": "40"
+      },
+      {
+        "exe": "print(4*10 == mulTwo(4, 10))",
+        "answer": "40"
+      },
+      {
+        "exe": "print(20*2 == mulTwo(20, 2))",
+        "answer": "40"
+      }
+    ]
+  },
+  {
+    "question": "Subtract  a number between 20 and 30 to obtain a result of 25.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(30-5 == subTwo(30, 5))",
+        "answer": "25"
+      },
+      {
+        "exe": "print(28-3 == subTwo(28, 3))",
+        "answer": "25"
+      },
+      {
+        "exe": "print(27-2 == subTwo(27, 2))",
+        "answer": "25"
+      }
+    ]
+  },
+  {
+    "question": "Multiply two numbers within the range of 1 to 10 to get a product of 12.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(3*4 == mulTwo(3, 4))",
+        "answer": "12"
+      },
+      {
+        "exe": "print(2*6 == mulTwo(2, 6))",
+        "answer": "12"
+      },
+      {
+        "exe": "print(4*3 == mulTwo(4, 3))",
+        "answer": "12"
+      }
+    ]
+  },
+  {
+    "question": "Subtract  a number between 40 and 50 to achieve a result of 43.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(50-7 == subTwo(50, 7))",
+        "answer": "43"
+      },
+      {
+        "exe": "print(48-5 == subTwo(48, 5))",
+        "answer": "43"
+      },
+      {
+        "exe": "print(45-2 == subTwo(45, 2))",
+        "answer": "43"
+      }
+    ]
+  },
+  {
+    "question": "Find two numbers, when multiplied, equal to 63 in the range of 1 to 21.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(7*9 == mulTwo(7, 9))",
+        "answer": "63"
+      },
+      {
+        "exe": "print(3*21 == mulTwo(3, 21))",
+        "answer": "63"
+      },
+      {
+        "exe": "print(9*7 == mulTwo(9, 7))",
+        "answer": "63"
+      }
+    ]
+  },
+  {
+    "question": "Multiply two numbers to get a product of 32 within the range of 1 to 16.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(4*8 == mulTwo(4, 8))",
+        "answer": "32"
+      },
+      {
+        "exe": "print(8*4 == mulTwo(8, 4))",
+        "answer": "32"
+      },
+      {
+        "exe": "print(16*2 == mulTwo(16, 2))",
+        "answer": "32"
+      }
+    ]
+  },
+  {
+    "question": "Subtract  a number between 85 and 90 to get a result of 82.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(90-8 == subTwo(90, 8))",
+        "answer": "82"
+      },
+      {
+        "exe": "print(88-6 == subTwo(88, 6))",
+        "answer": "82"
+      },
+      {
+        "exe": "print(87-5 == subTwo(87, 5))",
+        "answer": "82"
+      }
+    ]
+  },
+  {
+    "question": "Multiply two numbers to get a product of 32 within the range of 1 to 25.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(5*10 == mulTwo(5, 10))",
+        "answer": "50"
+      },
+      {
+        "exe": "print(10*5 == mulTwo(10, 5))",
+        "answer": "50"
+      },
+      {
+        "exe": "print(25*2 == mulTwo(25, 2))",
+        "answer": "50"
+      }
+    ]
+  },
+  {
+    "question": "Subtract a number within the range of 35 to 40, resulting in a value of 34.",
+    "template": "def subTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(39-5 == subTwo(39, 5))",
+        "answer": "34"
+      },
+      {
+        "exe": "print(38-4 == subTwo(38, 4))",
+        "answer": "34"
+      },
+      {
+        "exe": "print(37-3 == subTwo(37, 3))",
+        "answer": "34"
+      }
+    ]
+  },
+  {
+    "question": "Multiply two numbers between 1 and 10 to achieve a product of 9.",
+    "template": "def mulTwo(a, b):",
+
+    "testCases": [
+      {
+        "exe": "print(3*3 == mulTwo(3, 3))",
+        "answer": "9"
+      },
+      {
+        "exe": "print(1*9 == mulTwo(1, 9))",
+        "answer": "9"
+      },
+      {
+        "exe": "print(2*4.5 == mulTwo(2, 4.5))",
+        "answer": "9"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 4  using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(2 ** 2 == square(2))",
+        "answer": "4"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 16 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(4 ** 2 == square(4))",
+        "answer": "16"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 100 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(10 ** 2 == square(10))",
+        "answer": "100"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 64 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(8 ** 2 == square(8))",
+        "answer": "64"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 49 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(7 ** 2 == square(7))",
+        "answer": "49"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 81 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(9 ** 2 == square(9))",
+        "answer": "81"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 144 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(12 ** 2 == sqaure(12))",
+        "answer": "144"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 225 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(15 ** 2 == square(15))",
+        "answer": "225"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 324 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(18 ** 2 == sqaure(18))",
+        "answer": "324"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 289 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(17 ** 2 == square(17))",
+        "answer": "289"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 361 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(17 ** 2 == square(19))",
+        "answer": "361"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 400 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(20 ** 2 == square(20))",
+        "answer": "400"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 900 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(30 ** 2 ==square(30))",
+        "answer": "900"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 441 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(21 ** 2 ==square(21))",
+        "answer": "411"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 576 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(24 ** 2 == square(24))",
+        "answer": "576"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 841 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(29 ** 2 == sqaure(29))",
+        "answer": "841"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 1024 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(32 ** 2 == square(32))",
+        "answer": "1024"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 961 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(31 ** 2 == sqaure(31))",
+        "answer": "961"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 529 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(23 ** 2 == square(23))",
+        "answer": "529"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 676 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(26 ** 2 == sqaure(26))",
+        "answer": "676"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 1600 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(40 ** 2 == square(40))",
+        "answer": "1600"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 1444 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(38 ** 2 == square(38))",
+        "answer": "1444"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 169 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(13 ** 2 == square(13))",
+        "answer": "169"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 1521 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(39 ** 2 == sqaure(39))",
+        "answer": "1521"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that have a result of 1156 using squared of a number",
+    "template": "def square(a):",
+    "testCases": [
+      {
+        "exe": "print(34 ** 2 == square(34))",
+        "answer": "1156"
+      }
+    ]
+  },
+  {
+    "question": "Add two numbers between 1 and 10.",
+    "template": "def addTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(3+5 == addTwo(3, 5))",
+        "answer": "8"
+      },
+      {
+        "exe": "print(2+8 == addTwo(2, 8))",
+        "answer": "10"
+      },
+      {
+        "exe": "print(1+9 == addTwo(1, 9))",
+        "answer": "10"
+      }
+    ]
+  },
+
+  {
+    "question": "Add 3, 5, and 7.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print(3+5+7 == addThree(3, 5, 7))",
+        "answer": "15"
+      }
+    ]
+  },
+  {
+    "question": "Add 8, 2, and 5.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print(8+2+5 == addThree(8, 2, 5))",
+        "answer": "15"
+      }
+    ]
+  },
+  {
+    "question": "Add 10, 4, and 6.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print(10+4+6 == addThree(10, 4, 6))",
+        "answer": "20"
+      }
+    ]
+  },
+  {
+    "question": "Add 15, 3, and 2.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print(15+3+2 == addThree(15, 3, 2))",
+        "answer": "20"
+      }
+    ]
+  },
+  {
+    "question": "Add 7, 6, and 9.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print(7+6+9 == addThree(7, 6, 9))",
+        "answer": "22"
+      }
+    ]
+  },
+  {
+    "question": "Add 12, 5, and 3.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print(12+5+3 == addThree(12, 5, 3))",
+        "answer": "20"
+      }
+    ]
+  },
+  {
+    "question": "Add 4, 7, and 9.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print((4+7+9) == addThree(4, 7, 9))",
+        "answer": "20"
+      }
+    ]
+  },
+  {
+    "question": "Add 5, 8, and 3.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print((5+8+3) == addThree(5, 8, 3))",
+        "answer": "16"
+      }
+    ]
+  },
+  {
+    "question": "Add 9, 4, and 6.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print((9+4+6) == addThree(9, 4, 6))",
+        "answer": "19"
+      }
+    ]
+  },
+  {
+    "question": "Add 2, 6, and 8.",
+    "template": "def addThree(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print((2+6+8) == addThree(2, 6, 8))",
+        "answer": "16"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 10.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print((8/4) == divTwo(8, 4))",
+        "answer": "2"
+      },
+      {
+        "exe": "print((9/3) == divTwo(9, 3))",
+        "answer": "3"
+      },
+      {
+        "exe": "print((10/2) == divTwo(10, 2))",
+        "answer": "5"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 15.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(12/3 == divTwo(12, 3))",
+        "answer": "4"
+      },
+      {
+        "exe": "print(15/5b== divTwo(15, 5))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(10/2 == divTwo(10, 2))",
+        "answer": "5"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 8.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(8/4 == divTwo(8, 4))",
+        "answer": "2"
+      },
+      {
+        "exe": "print(6/2 == divTwo(6, 2))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(7/1 == divTwo(7, 1))",
+        "answer": "7"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 12.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(12/3 == divTwo(12, 3))",
+        "answer": "4"
+      },
+      {
+        "exe": "print(10/2 == divTwo(10, 2))",
+        "answer": "5"
+      },
+      {
+        "exe": "print(9/1 == divTwo(9, 1))",
+        "answer": "9"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 14.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(14}/2 == divTwo(14, 2))",
+        "answer": "7"
+      },
+      {
+        "exe": "print(12/3 == divTwo(12, 3))",
+        "answer": "4"
+      },
+      {
+        "exe": "print(10/2 == divTwo(10, 2))",
+        "answer": "5"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 6.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(6/2 == divTwo(6, 2))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(4/2 == divTwo(4, 2))",
+        "answer": "2"
+      },
+      {
+        "exe": "print(5/1 == divTwo(5, 1))",
+        "answer": "5"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 9.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(8/2 == divTwo(8, 2))",
+        "answer": "4"
+      },
+      {
+        "exe": "print(9/3 == divTwo(9, 3))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(6/1 == divTwo(6, 1))",
+        "answer": "6"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 7.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(6/2 == divTwo(6, 2))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(7/1 == divTwo(7, 1))",
+        "answer": "7"
+      },
+      {
+        "exe": "print(4/2 == divTwo(4, 2))",
+        "answer": "2"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 10.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(9/3 == divTwo(9, 3))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(10/2 == divTwo(10, 2))",
+        "answer": "5"
+      },
+      {
+        "exe": "print(8/4 == divTwo(8, 4))",
+        "answer": "2"
+      }
+    ]
+  },
+  {
+    "question": "Divide two numbers between 1 and 15.",
+    "template": "def divTwo(a, b):",
+    "testCases": [
+      {
+        "exe": "print(15/3 == divTwo(15, 3))",
+        "answer": "5"
+      },
+      {
+        "exe": "print(12/2 == divTwo(12, 2))",
+        "answer": "6"
+      },
+      {
+        "exe": "print(14/7 == divTwo(14, 7))",
+        "answer": "2"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that finds the maximum of three numbers.",
+    "template": "def find_maximum(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print(max(12, 6, 3) == find_maximum(12, 6, 3))",
+        "answer": "12"
+      },
+      {
+        "exe": "print(max(20, 10, 5) == find_maximum(20, 10, 5))",
+        "answer": "20"
+      },
+      {
+        "exe": "print(max(5, 15, 10) == find_maximum(5, 15, 10))",
+        "answer": "15"
+      }
+    ]
+  },
+
+  {
+    "question": "Write a function that finds the maximum of five numbers.",
+    "template": "def find_maximum(a, b, c, d, e):",
+    "testCases": [
+      {
+        "exe": "print(max(8, 12, 15, 2, 4) == find_maximum(8, 12, 15, 2, 4))",
+        "answer": "15"
+      },
+      {
+        "exe": "print(max(30, 25, 20, 11, 10) == find_maximum(30, 25, 20, 11, 10))",
+        "answer": "30"
+      },
+      {
+        "exe": "print(max(7, 9, 6, 5, 1) == find_maximum(7, 9, 6, 5, 1))",
+        "answer": "9"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that finds the maximum of two numbers.",
+    "template": "def find_maximum_two(a, b):",
+    "testCases": [
+      {
+        "exe": "print(max(12, 6) == find_maximum_two(12, 6))",
+        "answer": "12"
+      },
+      {
+        "exe": "print(max(20, 10) == find_maximum_two((20, 10))",
+        "answer": "20"
+      },
+      {
+        "exe": "print(max(5, 15) == find_maximum_two((5, 15))",
+        "answer": "15"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that finds the minimum of three numbers.",
+    "template": "def find_minimum_three(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print(min(12, 6, 3) == def find_minimum_three(12, 6, 3))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(min(20, 10, 5) == def find_minimum_three(20, 10, 5))",
+        "answer": "5"
+      },
+      {
+        "exe": "print(min(5, 15, 10) == def find_minimum_three(5, 15, 10))",
+        "answer": "5"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that finds the maximum of four numbers.",
+    "template": "def find_maximum_four:",
+    "testCases": [
+      {
+        "exe": "print(max(12, 6, 3, 18) == find_maximum_four(12, 6, 3, 18))",
+        "answer": "18"
+      },
+      {
+        "exe": "print(max(20, 10, 5, 15) == find_maximum_four(20, 10, 5, 15))",
+        "answer": "20"
+      },
+      {
+        "exe": "print(max(5, 15, 10, 8) == find_maximum_four(5, 15, 10, 8))",
+        "answer": "15"
+      }
+    ]
+  },
+
+  {
+    "question": "Write a function that finds the minimum of two numbers.",
+    "template": "def find_minimum_two(a, b):",
+    "testCases": [
+      {
+        "exe": "print(min(12, 6) == find_minimum_two(12, 6))",
+        "answer": "6"
+      },
+      {
+        "exe": "print(min(20, 10) == find_minimum_two(20, 10))",
+        "answer": "10"
+      },
+      {
+        "exe": "print(min(5, 15) == find_minimum_two(5, 15))",
+        "answer": "5"
+      }
+    ]
+  },
+
+  {
+    "question": "Write a function that finds the minimum of four numbers.",
+    "template": "def find_minimum_four:",
+    "testCases": [
+      {
+        "exe": "print(find_minimum_four(12, 6, 3, 18) == min(12, 6, 3, 18))",
+        "answer": "3"
+      },
+      {
+        "exe": "print(find_minimum_four(20, 10, 5, 15) == min(20, 10, 5, 15))",
+        "answer": "5"
+      },
+      {
+        "exe": "print(find_minimum_four(5, 15, 10, 8) == min(5, 15, 10, 8))",
+        "answer": "5"
+      }
+    ]
+  },
+
+  {
+    "question": "Write a function that finds the minimum of three numbers.",
+    "template": "def find_minimum_three(a, b, c):",
+    "testCases": [
+      {
+        "exe": "print(find_minimum_three(18, 12, 9) == min(18, 12, 9))",
+        "answer": "9"
+      },
+      {
+        "exe": "print(find_minimum_three(5, 10, 15) == min(5, 10, 15))",
+        "answer": "5"
+      },
+      {
+        "exe": "print(find_minimum_three(25, 30, 20) == min(25, 30, 20))",
+        "answer": "20"
+      }
+    ]
+  },
+
+  {
+    "question": "Write a function that divides a number by another number and adds the result to the dividend.",
+    "template": "def divide_and_add(dividend, divisor):",
+    "testCases": [
+      {
+        "exe": "print((20 / 5) + 20 == divide_and_add(20, 5))",
+        "answer": "24"
+      },
+      {
+        "exe": "print((15 / 3) + 15 == divide_and_add(15, 3))",
+        "answer": "20"
+      },
+      {
+        "exe": "print((30 / 6) + 30 == divide_and_add(30, 6))",
+        "answer": "35"
+      }
+    ]
+  },
+  {
+    "question": "Write a function that computes the sum of five numbers.",
+    "template": "def compute_sum(a, b, c, d, e):",
+    "testCases": [
+      {
+        "exe": "print(sum(1, 2, 3, 4, 5) == compute_sum(1, 2, 3, 4, 5))",
+        "answer": "15"
+      },
+      {
+        "exe": "print(sum(5, 10, 15, 20, 25) == compute_sum(5, 10, 15, 20, 25) )",
+        "answer": "75"
+      },
+      {
+        "exe": "print(sum(2, 4, 6, 8, 10) == compute_sum(2, 4, 6, 8, 10) )",
+        "answer": "30"
+      }
+    ]
+  }
+]

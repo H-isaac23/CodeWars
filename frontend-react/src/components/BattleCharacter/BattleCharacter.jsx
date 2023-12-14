@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import charMan from "../../assets/img/final_male_anim_IDLE.gif";
-import charWoman from "../../assets/img/final_female_anim_IDLE(fixed frames).gif";
+import charMan2 from "../../assets/img/anim_male_2_idle.gif"
 import "./BattleCharacter.css";
 import { Link } from "react-router-dom";
 import mouseclick from "../../assets/audio/mouseclick.mp3";
@@ -63,7 +63,7 @@ export default function BattleCharacter({ findMatch }) {
           </div>
         </div>
         <div className="battle-mode-img">
-          <img src={optionCharacter ? charMan : charWoman} alt="" />
+          <img src={optionCharacter ? charMan : charMan2} alt="" />
         </div>
         <div onClick={optionCharacterClicked} className="arrow arrow-character">
           <div className="triangle t-right" onClick={mouseClick}>

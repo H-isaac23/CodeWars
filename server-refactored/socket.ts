@@ -112,6 +112,12 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
         await socket.leave("queueRoom");
       }
     });
+
+    socket.on("player_lose", ({ room_id, socketId }) => {
+      console.log("hello bits");
+      console.log(socketId);
+      io.to(room_id).emit("match_end", { loser: socketId });
+    });
   });
 
   io.of("/").adapter.on("leave-room", (room, id) => {
