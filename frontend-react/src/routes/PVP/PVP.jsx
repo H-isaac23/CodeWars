@@ -15,7 +15,9 @@ import heal from "../../assets/img/heal_transparent.gif";
 import shield1 from "../../assets/img/shield_transparent.gif";
 
 import charMan from "../../assets/img/final_male_anim_IDLE.gif";
-import charWoman from "../../assets/img/final_female_anim_IDLE(fixed frames).gif";
+import charMan2 from "../../assets/img/anim_male_2_idle.gif"
+import charWoman from "../../assets/img/final_female_anim_IDLE(fixed frames).gif"
+import malePunch from "../../assets/img/anim_male_2_punch.gif"
 import maleKick from "../..//assets/img/final_male_anim_KICK.gif";
 
 import setting from "../../assets/img/settingbtn.png";
@@ -33,6 +35,7 @@ import kick from "../../assets/audio/kick.mp3";
 import shieldSound from "../../assets/audio/shield.mp3";
 import healSound from "../../assets/audio/heal.mp3";
 import damageSound from "../../assets/audio/sword.mp3";
+import fight from "../../assets/audio/fight.mp3"
 
 import rewardChest from "../../assets/img/reward_box.png";
 import shield from "../../assets/img/star_protection.png";
@@ -65,7 +68,9 @@ export default function PVP() {
   const account = useConfigStore((state) => state.account);
   const setAccount = useConfigStore((state) => state.setAccount);
   const [disableBtn, setDisabledBtn] = useState(false);
+
   const [clickSubmit, userClickSubmit] = useState(false);
+  const [clickOpponentSubmit, opponentClickSubmit] = useState(false);
 
   const [playlosersound, setPlayLoserSound] = useState(false);
   const [kickSound, setKickSound] = useState(false);
@@ -90,6 +95,7 @@ export default function PVP() {
   const [countReflectUsed, setCountReflectUsed] = useState(0);
 
   const [charAttack, setcharAttack] = useState(false);
+  const [opponentAttack, setOpponentAttack] = useState(false);
 
   const backgroundImages = [bg, bg2];
   const [backgroundIndex, setBackgroundIndex] = useState(
@@ -203,21 +209,45 @@ export default function PVP() {
 
   useEffect(() => {
     socket.on("player_code_submit", (res) => {
+      // what the heck
+      if (socket.id === res.socketId) {
+        opponentClickSubmit(false);
+        userClickSubmit(true);
+        setTimeout(() => {
+          userClickSubmit(false);
+        }, 480);
+      } else {
+        userClickSubmit(false);
+        opponentClickSubmit(true);
+        setTimeout(() => {
+          opponentClickSubmit(false);
+        }, 480);
+      }
+
       if (res.correct && socket.id === res.socketId) {
         setHprval(hprval - 25);
+        
+        setcharAttack(true);
+        setKickSound(true);
+        
+        setTimeout(() => {
+          setcharAttack(false);
+          setKickSound(false);
+        }, 480);
 
+        showDamageEffectIcon(false);
+        
         if (
           res.buffs.includes("heal") &&
           res.playerUsername === account.username
         ) {
           setHplval(100);
         }
-        console.log("no its not ", !(res.playerUsername === account.username));
+
         if (
           res.buffs.includes("damage") &&
           !(res.playerUsername === account.username)
         ) {
-          console.log("damage received");
           setHprval(hprval - 50);
         }
 
@@ -233,6 +263,14 @@ export default function PVP() {
         console.log(hprval, qnum);
         showCorrect(!correct);
       } else if (res.correct && socket.id !== res.socketId) {
+        setOpponentAttack(true)
+        setKickSound(true);
+        
+        setTimeout(() => {
+          setOpponentAttack(false);
+          setKickSound(false);
+        }, 480);
+
         setHplval(hplval - 25);
         if (
           res.buffs.includes("heal") &&
@@ -240,18 +278,10 @@ export default function PVP() {
         ) {
           setHprval(100);
         }
-        console.log(
-          "hello ",
-          res.buffs.includes("damage"),
-          "hi ",
-          res.playerUsername !== account.username
-        );
         if (
           res.buffs.includes("damage") &&
           !(res.playerUsername !== account.username)
         ) {
-          console.log("pumasok");
-          console.log(hplval);
           setHplval(hplval - 50);
         }
         if (
@@ -394,10 +424,9 @@ export default function PVP() {
 
   // get the input then evaluate then display in the output container
   const handleClick = () => {
-    userClickSubmit(true);
     setDisabledBtn(false);
-    setcharAttack(true);
-    setKickSound(true);
+    // setcharAttack(true);
+    // setKickSound(true);
     setCorrectStatus(!correctStatus);
     const code = input;
     const playerDetails = {
@@ -422,11 +451,6 @@ export default function PVP() {
       questionDetails: questions[qnum],
       buffs,
     });
-    setTimeout(() => {
-      userClickSubmit(false);
-      setcharAttack(false);
-      setKickSound(false);
-    }, 480);
   };
 
   return (
@@ -519,9 +543,9 @@ export default function PVP() {
                   <div className={`firstchar ${charAttack ? "attack" : ""}`}>
                     {/* <img src={optionCharacter ? maleKick : charMan} alt="" /> */}
                     {charAttack ? (
-                      <img src={maleKick} />
+                      <img src={optionCharacter ? maleKick : malePunch} />
                     ) : (
-                      <img src={optionCharacter ? charMan : charWoman} alt="" />
+                      <img src={optionCharacter ? charMan : charMan2} alt="" />
                     )}
 
                     {clickSubmit && (
@@ -605,7 +629,7 @@ export default function PVP() {
                     <h4>Test</h4>
                   </div>
                   <div className="username2-buff-status">
-                    {reflectEffectIcon && (
+                    {/* {reflectEffectIcon && (
                       <div className="reflect-buff reflect-buff-icon reflect-buff-icon-opponent">
                         <img src={shield_icon} />
                       </div>
@@ -619,22 +643,23 @@ export default function PVP() {
                       <div className="heal-buff heal-buff-icon heal-buff-icon-opponent">
                         <img src={heal_icon} />
                       </div>
-                    )}
+                    )} */}
                   </div>
-                  <div className={`secondchar ${charAttack ? "attack" : ""}`}>
+                  <div className={`secondchar ${opponentAttack ? "attack" : ""}`}>
                     {/* <img src={optionCharacter ? maleKick : charMan} alt="" /> */}
-                    {charAttack ? (
-                      <img src={maleKick} />
+                    {opponentAttack ? (
+                      <img src={malePunch} />
                     ) : (
-                      <img src={optionCharacter ? charMan : charWoman} alt="" />
+                      <img src={charMan2} alt="" />
                     )}
+                    {/* <img src={optionCharacter ? charMan : charMan2} alt="" /> */}
 
-                    {clickSubmit && (
+                    {clickOpponentSubmit && (
                       <div className="attack-indicator attack-indicator-opponent">
                         <img src={swordCross} />
                       </div>
                     )}
-                    {healEffect && (
+                    {/* {healEffect && (
                       <div className="heal-effect heal-effect-opponent">
                         <img src={heal} />
                       </div>
@@ -648,7 +673,7 @@ export default function PVP() {
                       <div className="reflect-effect">
                         <img src={shield1} />
                       </div>
-                    )}
+                    )} */}
                   </div>
                 </div>
                 <div className="settings-button">
