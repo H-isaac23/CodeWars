@@ -40,6 +40,12 @@ export interface ServerToClientEvents {
     playerUsername: IAccount["username"];
     buffs: Array<Buffs>;
   }) => Promise<void>;
+  match_end: ({
+    loser
+  }: {
+    loser:string;
+  }) => void
+  
 }
 
 export interface ClientToServerEvents {
@@ -78,6 +84,13 @@ export interface ClientToServerEvents {
     };
     buffs: Array<Buffs>;
   }) => Promise<void>;
+  player_lose: ({
+    room_id,
+    socketId
+  }: {
+    room_id: string;
+    socketId: string;
+  }) => void
 }
 
 export interface InterServerEvents {

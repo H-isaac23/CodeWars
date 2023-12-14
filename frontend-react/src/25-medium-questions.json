@@ -333,7 +333,7 @@
   },
 
   {
-    "question": "Create a function that converts kilometers to miles.",
+    "question": "Create a function that converts kilometers to miles. 1m = 1.60934 km",
     "template": "def kilometers_to_miles(kilometers):",
     "testCases": [
       {
