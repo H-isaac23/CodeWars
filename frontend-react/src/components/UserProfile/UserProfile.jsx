@@ -69,18 +69,18 @@ export default function UserProfile({showProfile}) {
           <div onClick={toggleSettings}>
             <button className="btn">SETTINGS</button>
           </div>
-          <Link to="/">
-            <button className="btn" onClick={onLogout}>
-              LOGOUT
-            </button>
-          </Link>
-        </div>
-        <div className="first-line fbottom">
           <div onClick={toggleMatchHistory}>
             <button className="btn">
               HISTORY
             </button>
           </div>
+        </div>
+        <div className="first-line fbottom">
+          <Link to="/">
+            <button className="btn" onClick={onLogout}>
+              LOGOUT
+            </button>
+          </Link>
           <div onClick={() => showProfile(false)}>
             <button className="btn"> RETURN </button>
           </div>
