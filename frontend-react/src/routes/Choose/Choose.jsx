@@ -46,7 +46,7 @@ export default function Choose() {
         style={{ position: 'absolute', top: 0, left: 0, zIndex: -1 }}
       />
     </div>
-    <div className="relative z-100 w-1/4 h-72 px-5 shadow-2xl bg-gradient-to-b from-custom-gradient rounded-md">
+    <div className="relative z-100 w-1/4 h-72 px-5 shadow-2xl bg-custom-gradient rounded-md">
       <div className="relative ">
         <h2 className="-mt-10 text-5xl font-times">Question </h2>
         <h2 className="absolute right-5 text-5xl font-times">Category</h2>

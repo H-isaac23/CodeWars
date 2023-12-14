@@ -1,10 +1,13 @@
 import React, { useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
+import imgBg from "../../assets/img/bg.png"
 import data from "../../questions.json";
 import easyQ from "../../25-medium-questions.json";
 import mediumQ from "../../25-medium-questions.json";
 import hardQ from "../../25-medium-questions.json";
 import axios from 'axios'
+import "../../../output.css"
+
 import { ToastContainer, toast } from "react-toastify";
 
 
@@ -39,7 +42,7 @@ const Modal = ({text, onClick, visible, setVisible, end=false}) =>{
   }
   return (
     <div className="absolute top-0 w-full h-full flex justify-center items-center backdrop-blur-lg z-100" style={{display: visible? "":"none" }}>
-      <div className="w-1/4 h-1/4 rounded-lg bg-gradient-to-b from-active-gradient p-3 relative flex flex-col justify-evenly items-center shadow-xl">
+      <div className="w-1/4 h-1/4 rounded-lg active-gradient p-3 relative flex flex-col justify-evenly items-center shadow-xl">
           <div className="modal_text text-2xl font-times">
             <p >{correct? newText:text}</p>
           </div>
@@ -234,7 +237,7 @@ export default function SinglePlayer() {
 
             <div className="bg-inactive-color mt-2 rounded-lg p-3 h-[13em]">
              <h3 className="text-2xl font-times">INPUTS</h3>
-             <div className="bg-active-color h-[80%] rounded-lg p-2 text-xl font-times">
+             <div className="bg-active-color h-[80%] rounded-lg p-2 text-xl font-times  overflow">
                 <p>{inputs[0]}</p>
                 <p>{inputs[1]}</p>
                 <p>{inputs[2]}</p>
