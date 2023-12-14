@@ -120,6 +120,10 @@ body {
   margin-bottom: 1.5em;
 }
 
+.first-line{
+  margin: 1em;
+}
+
 .userSettings, .userReturn{
   position: absolute;
   z-index: 90;
