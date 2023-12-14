@@ -15,9 +15,9 @@ import heal from "../../assets/img/heal_transparent.gif";
 import shield1 from "../../assets/img/shield_transparent.gif";
 
 import charMan from "../../assets/img/final_male_anim_IDLE.gif";
-import charMan2 from "../../assets/img/anim_male_2_idle.gif"
-import charWoman from "../../assets/img/final_female_anim_IDLE(fixed frames).gif"
-import malePunch from "../../assets/img/anim_male_2_punch.gif"
+import charMan2 from "../../assets/img/anim_male_2_idle.gif";
+import charWoman from "../../assets/img/final_female_anim_IDLE(fixed frames).gif";
+import malePunch from "../../assets/img/anim_male_2_punch.gif";
 import maleKick from "../..//assets/img/final_male_anim_KICK.gif";
 
 import setting from "../../assets/img/settingbtn.png";
@@ -35,7 +35,7 @@ import kick from "../../assets/audio/kick.mp3";
 import shieldSound from "../../assets/audio/shield.mp3";
 import healSound from "../../assets/audio/heal.mp3";
 import damageSound from "../../assets/audio/sword.mp3";
-import fight from "../../assets/audio/fight.mp3"
+import fight from "../../assets/audio/fight.mp3";
 
 import rewardChest from "../../assets/img/reward_box.png";
 import shield from "../../assets/img/star_protection.png";
@@ -228,17 +228,17 @@ export default function PVP() {
 
       if (res.correct && socket.id === res.socketId) {
         setHprval(hprval - 25);
-        
+
         setcharAttack(true);
         setKickSound(true);
-        
+
         setTimeout(() => {
           setcharAttack(false);
           setKickSound(false);
         }, 480);
 
         showDamageEffectIcon(false);
-        
+
         if (
           res.buffs.includes("heal") &&
           res.playerUsername === account.username
@@ -248,7 +248,7 @@ export default function PVP() {
 
         if (
           res.buffs.includes("damage") &&
-          !(res.playerUsername === account.username)
+          res.playerUsername === account.username
         ) {
           setHprval(hprval - 50);
         }
@@ -265,9 +265,9 @@ export default function PVP() {
         console.log(hprval, qnum);
         showCorrect(!correct);
       } else if (res.correct && socket.id !== res.socketId) {
-        setOpponentAttack(true)
+        setOpponentAttack(true);
         setKickSound(true);
-        
+
         setTimeout(() => {
           setOpponentAttack(false);
           setKickSound(false);
@@ -276,13 +276,13 @@ export default function PVP() {
         setHplval(hplval - 25);
         if (
           res.buffs.includes("heal") &&
-          !(res.playerUsername !== account.username)
+          res.playerUsername !== account.username
         ) {
           setHprval(100);
         }
         if (
           res.buffs.includes("damage") &&
-          !(res.playerUsername !== account.username)
+          res.playerUsername !== account.username
         ) {
           setHplval(hplval - 50);
         }
@@ -463,7 +463,7 @@ export default function PVP() {
 
   return (
     <>
-    {/* Temp remove the settings - Jay */}
+      {/* Temp remove the settings - Jay */}
       {/* {sett && <Settings showSettings={setShowSettings} />} */}
       {/* <div className="pvpmatchfound">
         <div className="yourchar">
@@ -654,7 +654,9 @@ export default function PVP() {
                       </div>
                     )} */}
                   </div>
-                  <div className={`secondchar ${opponentAttack ? "attack" : ""}`}>
+                  <div
+                    className={`secondchar ${opponentAttack ? "attack" : ""}`}
+                  >
                     {/* <img src={optionCharacter ? maleKick : charMan} alt="" /> */}
                     {opponentAttack ? (
                       <img src={malePunch} />
