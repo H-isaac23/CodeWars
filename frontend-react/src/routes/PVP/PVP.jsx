@@ -135,25 +135,30 @@ export default function PVP() {
     });
 
     socket.on("match_end", async (data) => {
+      console.log(data.loser);
+      console.log(socket.id);
       if (data.loser === socket.id) {
         const data = {
           username,
           stars,
+          hasStarProtection: false,
           didWin: false,
         };
         const res = await axios.put(
-          `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts/star`,
+          `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/update/star`,
           data
         );
         window.localStorage.setItem(
           "loggedUser",
-          JSON.stringify(res.data.account)
+          JSON.stringify({ content: res.data.content })
         );
 
+        console.log(res);
+
         setAccount(
-          res.data.account.username,
-          res.data.account.email,
-          res.data.account.stars
+          res.data.content.username,
+          res.data.content.email,
+          res.data.content.stars
         );
 
         console.log({ stars });
@@ -164,22 +169,23 @@ export default function PVP() {
         const data = {
           username,
           stars,
+          hasStarProtection: false,
           didWin: true,
         };
         const res = await axios.put(
-          `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts/star`,
+          `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/update/star`,
           data
         );
         window.localStorage.setItem(
           "loggedUser",
-          JSON.stringify(res.data.account)
+          JSON.stringify({ content: res.data.content })
         );
 
         setAccount(
-          res.data.account.username,
-          res.data.account.email,
-          res.data.account.stars,
-          res.data.account.gold
+          res.data.content.username,
+          res.data.content.email,
+          res.data.content.stars,
+          res.data.content.gold
         );
 
         console.log({ stars });
@@ -200,38 +206,58 @@ export default function PVP() {
       if (res.correct && socket.id === res.socketId) {
         setHprval(hprval - 25);
 
-        if (res.buffs.includes("heal") && res.playerUsername === account.username){
+        if (
+          res.buffs.includes("heal") &&
+          res.playerUsername === account.username
+        ) {
           setHplval(100);
         }
         console.log("no its not ", !(res.playerUsername === account.username));
-        if (res.buffs.includes("damage") && !(res.playerUsername === account.username)){
-  
+        if (
+          res.buffs.includes("damage") &&
+          !(res.playerUsername === account.username)
+        ) {
           console.log("damage received");
-          setHprval(hprval - 50) ;
-  
-        } 
+          setHprval(hprval - 50);
+        }
 
-        if (res.buffs.includes("reflect") && !(res.playerUsername !== account.username)){
-          setHprval(hprval + 25) ;
+        if (
+          res.buffs.includes("reflect") &&
+          !(res.playerUsername !== account.username)
+        ) {
+          setHprval(hprval + 25);
         }
 
         setrCount(rcount + 1);
         setQnum(res.questionIndex);
         console.log(hprval, qnum);
         showCorrect(!correct);
-
       } else if (res.correct && socket.id !== res.socketId) {
         setHplval(hplval - 25);
-        if (res.buffs.includes("heal") && !(res.playerUsername !== account.username)){
+        if (
+          res.buffs.includes("heal") &&
+          !(res.playerUsername !== account.username)
+        ) {
           setHprval(100);
         }
-        console.log("hello ", res.buffs.includes("damage"), "hi ", res.playerUsername !== account.username)
-        if (res.buffs.includes("damage") && !(res.playerUsername !== account.username)){
-          console.log("pumasok")
+        console.log(
+          "hello ",
+          res.buffs.includes("damage"),
+          "hi ",
+          res.playerUsername !== account.username
+        );
+        if (
+          res.buffs.includes("damage") &&
+          !(res.playerUsername !== account.username)
+        ) {
+          console.log("pumasok");
           console.log(hplval);
-          setHplval(hplval - 50) ;
-        } 
-        if (res.buffs.includes("reflect") && !(res.playerUsername !== account.username)){
+          setHplval(hplval - 50);
+        }
+        if (
+          res.buffs.includes("reflect") &&
+          !(res.playerUsername !== account.username)
+        ) {
           setHplval(hplval + 25);
         }
         setrCount(rcount + 1);
@@ -283,7 +309,7 @@ export default function PVP() {
   }, [confirm]);
 
   const toggleLose = () => {
-    showconfirm(!confirm);
+    showConfirm(!confirm);
     setPlayLoserSound(true);
     setTimeout(() => {
       setPlaySound(false);
@@ -387,7 +413,7 @@ export default function PVP() {
     if (countHealUsed <= 1 && healBuffClicked) {
       buffs.push("heal");
     }
-    console.log({buffs});
+    console.log({ buffs });
     socket.emit("match_submit", {
       username,
       roomId: room_id,

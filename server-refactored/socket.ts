@@ -114,6 +114,8 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
     });
 
     socket.on("player_lose", ({ room_id, socketId }) => {
+      console.log("hello bits");
+      console.log(socketId);
       io.to(room_id).emit("match_end", { loser: socketId });
     });
   });
