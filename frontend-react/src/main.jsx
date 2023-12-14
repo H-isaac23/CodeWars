@@ -11,6 +11,7 @@ import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
 import RequestPass from "./routes/RequestPass/RequestPass";
 import UpdatePass from "./routes/UpdatePass/UpdatePass";
 import About from "./components/About/About";
+import Choose from "./routes/Choose/Choose";
 import PVP from "./routes/PVP/PVP";
 import { useEffect } from "react";
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: "/about",
     element: <About />,
+  },
+  {
+    path: "/choose",
+    element: <Choose />,
   },
 ]);
 
