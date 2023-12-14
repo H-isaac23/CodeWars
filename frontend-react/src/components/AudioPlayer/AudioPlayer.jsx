@@ -3,6 +3,7 @@ import backgroundMusic from "../../assets/audio/music.mp3";
 
 export default function AudioPlayer({ isPlaying }) {
   const audioRef = useRef(null);
+  console.log({isPlaying})
 
   useEffect(() => {
     if (audioRef.current) {

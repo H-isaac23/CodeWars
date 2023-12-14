@@ -1,0 +1,458 @@
+[
+    {
+        "question": "Implement a function to calculate the total cost of items in a shopping cart, including tax.",
+        "template": "def calculate_total_cost(item_price, tax_rate):",
+        "testCases": [
+            {
+                "exe": "assert 10.99 * (1 + 0.08) == calculate_total_cost(10.99, 0.08)",
+                "answer": "11.86"
+            },
+            {
+                "exe": "assert 15 * (1 + 0.08) == calculate_total_cost(15, 0.08)",
+                "answer": "16.2"
+            },
+            {
+                "exe": "assert 80 * (1 + 0.08) == calculate_total_cost(80, 0.08)",
+                "answer": "86"
+            }
+        ]
+    },
+    
+    {
+        "question": "Write a function that converts a given amount of money from USD to EUR.",
+        "template": "def convert_currency(amount, exchange_rate):",
+        "testCases": [
+            {
+                "exe": "assert 100 * 0.85 == convert_currency(100, 0.85)",
+                "answer": "85"
+            },
+            {
+                "exe": "assert 20 * 0.85 == convert_currency(20, 0.85)",
+                "answer": "17"
+            },
+            {
+                "exe": "assert 30 * 0.85 == convert_currency(30, 0.85)",
+                "answer": "25.5"
+            }
+        ]
+    },
+
+    {
+        "question": "Create a function to determine the optimal tip amount based on a restaurant bill.",
+        "template": "def calculate_tip(bill_amount, tip_percentage):",
+        "testCases": [
+            {
+                "exe": "assert 100 * (3 / 100) == calculate_tip(100, 3)",
+                "answer": "3"
+            },
+            {
+                "exe": "assert 100 * (6 / 100) == calculate_tip(100, 6)",
+                "answer": "6"
+            },
+            {
+                "exe": "assert 100 * (10 / 100) == calculate_tip(100, 10)",
+                "answer": "10"
+            }
+        ]
+    },
+
+    {
+        "question": "Implement a function to calculate the remaining battery percentage on a device.",
+        "template": "def calculate_remaining_battery_percentage(current_level, total_capacity):",
+        "testCases": [
+            {
+                "exe": "assert (1500 / 3000) * 100 == calculate_remaining_battery_percentage(1500, 3000)",
+                "answer": "50"
+            },
+            {
+                "exe": "assert (1000 / 3000) * 100 == calculate_remaining_battery_percentage(1000, 3000)",
+                "answer": "33.33"
+            },
+            {
+                "exe": "assert (500 / 3000) * 100 == calculate_remaining_battery_percentage(500, 3000)",
+                "answer": "16.66"
+            }
+        ]
+    },
+
+    {
+        "question": "Write a function to calculate the time it takes to reach a destination based on current speed (kilometers per hour) and distance in kilometers.",
+        "template": "def calculate_time_to_destination(distance, speed):",
+        "testCases": [
+            {
+                "exe": "assert 50 / 72 == calculate_time_to_destination(50, 72)",
+                "answer": "0.694 "
+            },
+            {
+                "exe": "assert 150 / 60 == calculate_time_to_destination(150, 60)",
+                "answer": "2.5 "
+            },
+            {
+                "exe": "assert 70 / 50 == calculate_time_to_destination(70, 50)",
+                "answer": "1.4 "
+            }
+        ]
+    }, 
+
+    {
+        "question": "Implement a function to calculate the optimal screen brightness based on ambient light conditions. ",
+        "template": "def calculate_optimal_brightness(ambient_light_level, min_brightness, max_brightness):",
+        "testCases": [
+            {
+                "exe": "assert 0 + (100 - 0) * 0.7 == calculate_optimal_brightness(0.7, 0, 100)",
+                "answer": "70"
+            },
+            {
+                "exe": "assert 0 + (100 - 0) * 0.8 == calculate_optimal_brightness(0.8, 0, 100)",
+                "answer": "80"
+            },
+            {
+                "exe": "assert 0 + (100 - 0) * 0.5 == calculate_optimal_brightness(0.5, 0, 100)",
+                "answer": "50"
+            }
+        ]
+    },
+    
+    {
+        "question": "Implement a function to convert between liters to gallons",
+        "template": "def liters_to_gallons(liters):",
+        "testCases": [
+            {
+                "exe": "assert 3 / 3.78541 == liters_to_gallons(3)",
+                "answer": "0.792"
+            },
+            {
+                "exe": "assert 10 / 3.78541 == liters_to_gallons(10)",
+                "answer": "2.64"
+            },
+            {
+                "exe": "assert 5 / 3.78541 == liters_to_gallons(5)",
+                "answer": "1.32"
+            }
+        ]
+    },
+
+    {
+        "question": "Implement a function to convert between gallons to liters",
+        "template": "def gallons_to_liters(gallons):",
+        "testCases": [
+            {
+                "exe": "assert 10 * 3.78541 == gallons_to_liters(10)",
+                "answer": "37.85"
+            },
+            {
+                "exe": "assert 20 * 3.78541 == gallons_to_liters(20)",
+                "answer": "75.70"
+            },
+            {
+                "exe": "assert 30 * 3.78541 == gallons_to_liters(30)",
+                "answer": "113.56"
+            }
+        ]
+    },
+
+    {
+        "question": "Write a function that converts acres to square meters.",
+        "template": "def acres_to_square_meters(acres):",
+        "testCases": [
+            {
+                "exe": "assert 5 * 4046.86 == acres_to_square_meters(5)",
+                "answer": "20234.3"
+            },
+            {
+                "exe": "assert 15 * 4046.86 == acres_to_square_meters(15)",
+                "answer": "60702.9"
+            },
+            {
+                "exe": "assert 25 * 4046.86 == acres_to_square_meters(25)",
+                "answer": "101171.5"
+            }
+        ]
+    },
+
+    {
+        "question": "Create a function to convert ounces to grams.",
+        "template": "def ounces_to_grams(ounces):",
+        "testCases": [
+            {
+                "exe": "assert 20 * 28.3495 ==  ounces_to_grams(20)",
+                "answer": "406.99"
+            },
+            {
+                "exe": "assert 10 * 28.3495 ==  ounces_to_grams(10)",
+                "answer": "203.495"
+            },
+            {
+                "exe": "assert 50 * 28.3495 ==  ounces_to_grams(50)",
+                "answer": "1017.475"
+            }
+        ]
+    },
+    
+    {
+        "question": "Implement a function to convert between gigabytes and terabytes.",
+        "template": "def gigabytes_to_terabytes(gigabytes):",
+        "testCases": [
+            {
+                "exe": "assert 3000 / 1024 == gigabytes_to_terabytes(3000)",
+                "answer": "2.9"
+            },
+            {
+                "exe": "assert 5000 / 1024 == gigabytes_to_terabytes(5000)",
+                "answer": "4.88"
+            },
+            {
+                "exe": "assert 500 / 1024 == gigabytes_to_terabytes(500)",
+                "answer": "0.488"
+            }
+        ]
+    },
+
+    {
+        "question": "Write a function that converts square miles to square kilometers.",
+        "template": "def square_miles_to_square_kilometers(square_miles):",
+        "testCases": [
+            {
+                "exe": "assert 4 * 2.58999 == square_miles_to_square_kilometers(4)",
+                "answer": "10.35996"
+            },
+            {
+                "exe": "assert 14 * 2.58999 == square_miles_to_square_kilometers(14)",
+                "answer": "36.25986"
+            },
+            {
+                "exe": "assert 10 * 2.58999 == square_miles_to_square_kilometers(10)",
+                "answer": "25.8999"
+            }
+        ]
+    },
+
+    {
+        "question": "Implement a function to convert between Celsius and Kelvin temperatures.",
+        "template": "def celsius_to_kelvin(celsius):",
+        "testCases": [
+            {
+                "exe": "assert 30 + 273.15 == celsius_to_kelvin(30)",
+                "answer": "303.15"
+            },
+            {
+                "exe": "assert 37 + 273.15 == celsius_to_kelvin(37)",
+                "answer": "310.15"
+            },
+            {
+                "exe": "assert 35 + 273.15 == celsius_to_kelvin(35)",
+                "answer": "308.15"
+            }
+        ]
+    },
+
+    {
+        "question": "Implement a function to convert from Australian dollars to Japanese yen .",
+        "template": "def aud_to_jpy(aud_amount, exchange_rate):",
+        "testCases": [
+            {
+                "exe": "assert 50 * 80 == aud_to_jpy(50, 80)",
+                "answer": "4000"
+            },
+            {
+                "exe": "assert 500 * 80 == aud_to_jpy(500, 80)",
+                "answer": "40000"
+            },
+            {
+                "exe": "assert 100 * 80 == aud_to_jpy(100, 80)",
+                "answer": "800"
+            }
+        ]
+    },
+
+    {
+        "question": "Implement a function to convert from Canadian dollars to British pounds.",
+        "template": "def cad_to_gbp(cad_amount, exchange_rate):",
+        "testCases": [
+            {
+                "exe": "assert 100 * 0.58 == cad_to_gbp(100, 0.58)",
+                "answer": "58.0"
+            },
+            {
+                "exe": "assert 1000 * 0.58 == cad_to_gbp(1000, 0.58)",
+                "answer": "580"
+            },
+            {
+                "exe": "assert 500 * 0.58 == cad_to_gbp(500, 0.58)",
+                "answer": "490"
+            }
+        ]
+    },
+
+    {
+        "question": "Implement a function to convert between Danish krone to Norwegian krone.",
+        "template": "ddef dkk_to_nok(dkk_amount, exchange_rate):",
+        "testCases": [
+            {
+                "exe": "assert 100 * 1.34 == dkk_to_nok(100, 1.34)",
+                "answer": "134"
+            },
+            {
+                "exe": "assert 200 * 1.34 == dkk_to_nok(200, 1.34)",
+                "answer": "268"
+            },
+            {
+                "exe": "assert 300 * 1.34 == dkk_to_nok(300, 1.34)",
+                "answer": "402"
+            }
+        ]
+    },
+
+    {
+        "question": "Write a function that converts Fahrenheit temperatures to Rankine.",
+        "template": "def fahrenheit_to_rankine(fahrenheit):",
+        "testCases": [
+            {
+                "exe": "assert 10 + 459.67 == fahrenheit_to_rankine(10)",
+                "answer": "469.67"
+            },
+            {
+                "exe": "assert 40 + 459.67 == fahrenheit_to_rankine(40)",
+                "answer": "509.67S"
+            },
+            {
+                "exe": "assert 30 + 459.67 == fahrenheit_to_rankine(30)",
+                "answer": "489.67"
+            }
+        ]
+    },
+
+    {
+        "question": "Write a function to concatenate two lists.",
+        "template": "def concatenate_lists(list1, list2):",
+        "testCases": [
+            {
+                "exe": "assert [1, 2, 3] + [4, 5, 6] == concatenate_lists([1, 2, 3], [4, 5, 6] )",
+                "answer": "[1, 2, 3, 4, 5, 6]"
+            },
+            {
+                "exe": "assert [10, 20, 30] + [40, 50, 60] == concatenate_lists([10, 20, 30], [40, 50, 60] )",
+                "answer": "[10, 20, 30, 40, 50, 60]"
+            },
+            {
+                "exe": "assert [11, 12, 13] + [14, 15, 16] == concatenate_lists([11, 12, 13], [14, 15, 16] )",
+                "answer": "[11, 12, 13, 14, 15, 16]"
+            }
+        ]
+    },
+
+    {
+        "question": "Write a function to sort a list of strings in alphabetical order.",
+        "template": "def sort_strings_alphabetically(string_list):",
+        "testCases": [
+            {
+                "exe": "assert sorted(['apple', 'orange', 'banana', 'grape']) == sort_strings_alphabetically(['apple', 'orange', 'banana', 'grape'])",
+                "answer": "['apple', 'banana', 'grape', 'orange']"
+            },
+            {
+                "exe": "assert sorted(['bad', 'good', 'saint', 'sad']) == sort_strings_alphabetically(['bad', 'good', 'saint', 'sad'])",
+                "answer": "['bad', 'good', 'sad', 'saint']"
+            },
+            {
+                "exe": "assert sorted(['happy', 'me', 'lucky', 'you']) == sort_strings_alphabetically(['happy', 'me', 'lucky', 'you'])",
+                "answer": "['happy', 'lucky', 'me', 'you']"
+            }
+        ]
+    },
+
+    {
+        "question": "Implement a function to calculate the perimeter of a triangle.",
+        "template": "def triangle_perimeter(side_a, side_b, side_c):",
+        "testCases": [
+            {
+                "exe": "assert 1 + 2 + 3 == triangle_perimeter(1, 2, 3)",
+                "answer": "5"
+            },
+            {
+                "exe": "assert 3 + 4 + 3 == triangle_perimeter(3, 4, 3)",
+                "answer": "10"
+            },
+            {
+                "exe": "assert 5 + 5 + 5 == triangle_perimeter(5, 5, 5)",
+                "answer": "15"
+            }
+        ]
+    },
+
+    {
+        "question": "Write a function to calculate the area of a trapezoid.",
+        "template": "def trapezoid_area(base1, base2, height):",
+        "testCases": [
+            {
+                "exe": "assert 0.5 * (8 + 8) * 6 == trapezoid_area(8, 8, 6)",
+                "answer": "48"
+            },
+            {
+                "exe": "assert 0.5 * (5 + 6) * 9 == trapezoid_area(5, 6, 9)",
+                "answer": "49.5"
+            },
+            {
+                "exe": "assert 0.5 * (2 + 5) * 3 == trapezoid_area(2, 5, 3)",
+                "answer": "10.5"
+            }
+        ]
+    },
+
+    {
+        "question": "Implement a function to calculate the surface area of a cube.",
+        "template": "def cube_surface_area(side_length):",
+        "testCases": [
+            {
+                "exe": "assert 6 * 5**2 == cube_surface_area(5)",
+                "answer": "150"
+            },
+            {
+                "exe": "assert 6 * 4**2 == cube_surface_area(4)",
+                "answer": "96"
+            },
+            {
+                "exe": "assert 6 * 3**2 == cube_surface_area(3)",
+                "answer": "54"
+            }
+        ]
+    },
+
+    {
+        "question": "Write a function to calculate the area of a parallelogram.",
+        "template": "def parallelogram_area(base, height):",
+        "testCases": [
+            {
+                "exe": "assert 5 * 10 == parallelogram_area(5, 10)",
+                "answer": "50"
+            },
+            {
+                "exe": "assert 4 * 8 == parallelogram_area(4, 8)",
+                "answer": "32"
+            },
+            {
+                "exe": "assert 10 * 20 == parallelogram_area(10, 20)",
+                "answer": "200"
+            }
+        ]
+    },
+
+    {
+        "question": "Create a function that converts from  decimal to whole num.",
+        "template": "def decimal_to_whole_number(decimal):",
+        "testCases": [
+            {
+                "exe": "assert int(7.8) == decimal_to_whole_number(7.8)",
+                "answer": "7"
+            },
+            {
+                "exe": "assert int(100.567) == decimal_to_whole_number(100.567)",
+                "answer": "100"
+            },
+            {
+                "exe": "assert int(10.52131267) == decimal_to_whole_number(10.52131267)",
+                "answer": "10"
+            }
+        ]
+    }
+    
+]

@@ -1,0 +1,678 @@
+
+[
+{
+"question": "Create a function that takes the age in years and returns the age in months.",
+"template": "def ageInMonths(age):",
+"testCases": [
+{
+"exe": "assert (50 * 12) == ageInMonths(50)",
+"answer": 600
+},
+
+{
+"exe": "assert (24 * 12) == ageInMonths(24)",
+"answer": 288
+},
+{
+"exe": "assert (30 * 12) == ageInMonths(30)",
+"answer": 360
+}
+]
+},
+
+{
+"question": "Create a function that takes the age in months and returns the age in years.",
+"template": "def ageInYears(age):",
+"testCases": [
+{
+"exe": "assert (450 / 12) == ageInYears(450)",
+"answer": 37.5
+},
+
+{
+"exe": "assert (100 / 12) == ageInYears(100)",
+"answer": 8.3
+},
+{
+"exe": "assert (750 / 12) == ageInYears(750)",
+"answer": 62.9
+}
+]
+},
+
+{
+"question": "Create a function that converts temperature from Celsius to Fahrenheit.",
+"template": "def celsius_to_fahrenheit(celsius):",
+"testCases": [
+{
+"exe": "assert (45 * 9/5) + 32 == celsius_to_fahrenheit(45)",
+"answer": 113.0
+},
+
+{
+"exe": "assert (100 * 9/5) + 32 == celsius_to_fahrenheit(100)",
+"answer": 212.0
+},
+{
+"exe": "assert (20 * 9/5) + 32 == celsius_to_fahrenheit(20)",
+"answer": 68.0
+}
+]
+},
+
+{
+"question": "Write a function that concatenates two strings and returns the result.",
+"template": "def concatenate_strings(str1, str2):",
+"testCases": [
+{
+"exe": "assert 'hello' + 'world' == concatenate_strings('hello,', ' world')",
+"answer": " 'hello, world'"
+},
+
+{
+"exe": "assert 'hi' + 'world' == concatenate_strings('hi,', ' world')",
+"answer": " 'hi, world'"
+},
+{
+"exe": "assert 'my' + 'world' == concatenate_strings('my,', ' world')",
+"answer": " 'my, world'"
+}
+]
+},
+
+{
+"question": "Python: How to check if a number is odd or even?",
+"template": "def oddEven(number):",
+"testCases": [
+{
+"exe": "assert 'Even' if 4 % 2 == 0 else 'Odd' == oddEven(4)",
+"answer": "Even"
+},
+{
+"exe": "assert 'Even' if 7 % 2 == 0 else 'Odd' == oddEven(7)",
+"answer": "Odd"
+},
+{
+    "exe": "assert 'Even' if 2 % 2 == 0 else 'Odd' == oddEven(2)",
+"answer": "Even"
+}
+]
+},
+
+{
+"question": "Create a function that checks if a given year is a leap year.",
+"template": "def is_leap_year(year):",
+"testCases": [
+{
+"exe": "assert 'True' if (2000 % 4 == 0 and 2000 % 100 != 0) or (2000 % 400 == 0) else 'False' == is_leap_year(2000)",
+"answer": "True"
+},
+{
+"exe": "assert 'True' if (1900 % 4 == 0 and 1900 % 100 != 0) or (1900 % 400 == 0) else 'False' == is_leap_year(1900)",
+"answer": "False"
+},
+{
+    "exe": "assert 'True' if (2024 % 4 == 0 and 2024 % 100 != 0) or (2024 % 400 == 0) else 'False' == is_leap_year(2024)",
+"answer": "True"
+}
+]
+},
+
+{
+"question": "Write a function that returns the average of the four numbers",
+"template": "def calculate_average(a, b, c, d):",
+"testCases": [
+{
+"exe": "assert (1+2+3+4)/4 == calculate_average(1, 2, 3, 4)",
+"answer": "2.5"
+},
+{
+"exe": "assert (7+8+9+10)/4 == calculate_average(7, 8, 9, 10)",
+"answer": "8.5"
+},
+{
+"exe": "assert (10+5+15+20)/4 == calculate_average(10, 5, 15, 20)",
+"answer": "12.5"
+}
+]
+},
+
+{
+"question": "Write a function that returns the average of the two numbers",
+"template": "def calculate_average(a, b):",
+"testCases": [
+{
+"exe": "assert (1+2)/2 == calculate_average(1, 2)",
+"answer": "1.5"
+},
+{
+"exe": "assert (7+8)/2 == calculate_average(7, 8)",
+"answer": "7.5"
+},
+{
+"exe": "assert (10+5)/2 == calculate_average(10, 5)",
+"answer": "7.5"
+}
+]
+},
+
+{
+"question": "Write a function that returns the average of the eight numbers",
+"template": "def calculate_average(a, b, c, d, e, f, g, h):",
+"testCases": [
+{
+"exe": "assert (1+2+3+4+5+6+7+8)/8 == calculate_average(1, 2, 3, 4, 5, 6, 7, 8)",
+"answer": "4.5"
+},
+{
+"exe": "assert (5+10+15+20+25+30+35+40)/8 == calculate_average(5, 10, 15, 20, 25, 30, 35, 40)",
+"answer": "22.5"
+},
+{
+"exe": "assert (7+8+9+10+11+12+13+14)/8 == calculate_average(7, 8, 9, 10, 11, 12, 13, 14)",
+"answer": "10.5"
+}
+]
+},
+
+{
+"question": "Write a function that returns the average of the seven numbers",
+"template": "def calculate_average(a, b, c, d, e, f, g):",
+"testCases": [
+{
+"exe": "assert (1+2+3+4+5+6+7)/7 == calculate_average(1, 2, 3, 4, 5, 6, 7)",
+"answer": "4"
+},
+{
+"exe": "assert (5+10+15+20+25+30+35)/7 == calculate_average(5, 10, 15, 20, 25, 30, 35)",
+"answer": "20"
+},
+{
+"exe": "assert (7+8+9+10+11+12+13)/7 == calculate_average(7, 8, 9, 10, 11, 12, 13)",
+"answer": "10"
+}
+]
+},
+
+{
+"question": "Write a function that returns the average of the six numbers",
+"template": "def calculate_average(a, b, c, d, e, f):",
+"testCases": [
+{
+"exe": "assert (1+2+3+4+5+6)/6 == calculate_average(1, 2, 3, 4, 5, 6)",
+"answer": "3.5"
+},
+{
+"exe": "assert (5+10+15+20+25+30)/6 == calculate_average(5, 10, 15, 20, 25, 30)",
+"answer": "17.5"
+},
+{
+"exe": "assert (7+8+9+10+11+12)/6 == calculate_average(7, 8, 9, 10, 11, 12)",
+"answer": "9.5"
+}
+]
+},
+
+{
+"question": "Write a function that returns the average of the five numbers",
+"template": "def calculate_average(a, b, c, d, e):",
+"testCases": [
+{
+"exe": "assert (1+2+3+4+5)/5 == calculate_average(1, 2, 3, 4, 5)",
+"answer": "3"
+},
+{
+"exe": "assert (5+10+15+20+25)/5 == calculate_average(5, 10, 15, 20, 25)",
+"answer": "15"
+},
+{
+"exe": "assert (7+8+9+10+11)/5 == calculate_average(7, 8, 9, 10, 11)",
+"answer": "9"
+}
+]
+},
+
+{
+"question": "Create a function that converts hours to minutes.",
+"template": "def hours_to_minutes(hours):",
+"testCases": [
+{
+"exe": "assert (10 * 60) == hours_to_minutes(10)",
+"answer": "600"
+},
+
+{
+"exe": "assert (20 * 60) == hours_to_minutes(20)",
+"answer": "1200"
+},
+{
+"exe": "assert (24 * 60) == hours_to_minutes(24)",
+"answer": "1440"
+}
+]
+},
+
+{
+"question": "Create a function that converts hours to days.",
+"template": "def hours_to_days(hours):",
+"testCases": [
+{
+"exe": "assert (48 / 24) == hours_to_days(48)",
+"answer": "2"
+},
+
+{
+"exe": "assert (64 * 60) == hours_to_days(64)",
+"answer": "2.66"
+},
+{
+"exe": "assert (24 * 60) == hours_to_days(24)",
+"answer": "1"
+}
+]
+},
+
+{
+"question": "Create a function that converts days to hours.",
+"template": "def days_to_hours(days):",
+"testCases": [
+{
+"exe": "assert (3 * 24) == days_to_hours(3)",
+"answer": "72"
+},
+
+{
+"exe": "assert (8 * 24) == days_to_hours(8)",
+"answer": "192"
+},
+{
+"exe": "assert (48 * 24) == days_to_hours(48)",
+"answer": "1152"
+}
+]
+},
+
+{
+"question": "Create a function that converts days to minutes.",
+"template": "def days_to_minutes(days):",
+"testCases": [
+{
+"exe": "assert (3 * 24 * 60) == days_to_minutes(3)",
+"answer": "4320"
+},
+
+{
+"exe": "assert (8 * 24 * 60) == days_to_minutes(8)",
+"answer": "11520"
+},
+{
+"exe": "assert (48 * 24 * 60) == days_to_minutes(48)",
+"answer": "69120"
+}
+]
+},
+
+{
+"question": "Write a function that converts a given weight in pounds to kilograms.",
+"template": "def pounds_to_kilograms(pounds):",
+"testCases": [
+{
+"exe": "assert (5 * 0.453592) == pounds_to_kilograms(5)",
+"answer": "2.26796"
+},
+
+{
+"exe": "assert (10 * 0.453592) == pounds_to_kilograms(10)",
+"answer": "4.53592"
+},
+{
+"exe": "assert (15 * 0.453592) == pounds_to_kilograms(15)",
+"answer": "6.80388"
+}
+]
+},
+
+{
+"question": "Write a function that converts a given weight in kilograms to pounds.",
+"template": "def kilograms_to_pounds(kilograms):",
+"testCases": [
+{
+"exe": "assert (2.26796 / 0.453592) == kilograms_to_pounds(2.26796)",
+"answer": "5"
+},
+
+{
+"exe": "assert (4.53592 / 0.453592) == kilograms_to_pounds(4.53592)",
+"answer": "10"
+},
+{
+"exe": "assert (6.80388 / 0.453592) == kilograms_to_pounds(6.80388)",
+"answer": "15"
+}
+]
+},
+
+{
+"question": "Create a function that converts miles to kilometers.",
+"template": "def miles_to_kilometers(miles):",
+"testCases": [
+{
+"exe": "assert (2 * 1.60934) == miles_to_kilometers(2)",
+"answer": "3.21868"
+},
+
+{
+"exe": "assert (4 * 1.60934) == miles_to_kilometers(4)",
+"answer": "6.43736"
+},
+{
+"exe": "assert (6 * 1.60934) == miles_to_kilometers(6)",
+"answer": "9.65604"
+}
+]
+},
+
+{
+"question": "Create a function that converts kilometers to miles.",
+"template": "def kilometers_to_miles(kilometers):",
+"testCases": [
+{
+"exe": "assert (3.21868 / 1.60934) == kilometers_to_miles(3.21868)",
+"answer": "2"
+},
+
+{
+"exe": "assert (6.43736 / 1.60934) == kilometers_to_miles(6.43736)",
+"answer": "4"
+},
+{
+"exe": "assert (9.65604 / 1.60934) == kilometers_to_miles(9.65604)",
+"answer": "6"
+}
+]
+},
+
+{
+"question": "Create a function that converts minutes to days.",
+"template": "def minutes_to_days(minutes):",
+"testCases": [
+{
+"exe": "assert (4320 / (24 * 60)) == minutes_to_days(4320)",
+"answer": "3"
+},
+
+{
+"exe": "assert (11520 / (24 * 60)) == minutes_to_days(11520)",
+"answer": "8"
+},
+{
+"exe": "assert (69120 / (24 * 60)) == minutes_to_days(69120)",
+"answer": "48"
+}
+]
+},
+
+{
+"question": "Create a function that converts minutes to hours.",
+"template": "def minutes_to_hours(minutes):",
+"testCases": [
+{
+"exe": "assert (600 / 60) == minutes_to_hours(600)",
+"answer": "10"
+},
+
+{
+"exe": "assert (1200 / 60) == minutes_to_hours(1200)",
+"answer": "20"
+},
+{
+"exe": "assert (1440 / 60) == minutes_to_hours(1440)",
+"answer": "24"
+}
+]
+},
+
+{
+"question": "Write a function that calculates the perimeter of a rectangle given its length and width.",
+"template": "def calculate_rectangle_perimeter(length, width):",
+"testCases": [
+{
+"exe": "assert (2 * (6 + 10)) == calculate_rectangle_perimeter(6, 10)",
+"answer": "32"
+},
+
+{
+"exe": "assert (2 * (8 + 15)) == calculate_rectangle_perimeter(8, 15)",
+"answer": "46"
+},
+{
+"exe": "assert (2 * (12 + 4)) == calculate_rectangle_perimeter(12, 4)",
+"answer": "32"
+}
+]
+},
+
+{
+"question": "Write a function that converts a given number of days into weeks.",
+"template": "def days_to_weeks(days):",
+"testCases": [
+{
+"exe": "assert (7 / 7) == days_to_weeks(7)",
+"answer": "1"
+},
+
+{
+"exe": "assert (14 / 7) == days_to_weeks(14)",
+"answer": "2"
+},
+{
+"exe": "assert (21 / 7) == days_to_weeks(21)",
+"answer": "3"
+}
+]
+},
+
+{
+"question": "Write a function that calculates the volume of a sphere given its radius",
+"template": "def calculate_sphere_volume(radius):",
+"testCases": [
+{
+"exe": "assert ((4/3) * 3.141592653589793 * 6**3) == calculate_sphere_volume(6)",
+"answer": " 904.7786842338603"
+},
+{
+"exe": "assert ((4/3) * 3.141592653589793 * 3**3) == calculate_sphere_volume(3)",
+"answer": "113.09733552923254"
+},
+{
+"exe": "assert ((4/3) * 3.141592653589793 * 10**3) == calculate_sphere_volume(10)",
+"answer": "4188.790204786391"
+}
+]
+},
+
+    {
+    "question": "Write a function that calculates the BMI (Body Mass Index) given a person's weight in kilograms and height in cm.",
+    "template": "def calculate_bmi(weight, height):",
+    "testCases": [
+        {
+            "exe": "assert 65/(170**2)  == calculate_bmi(65, 170)",
+            "answer": "22.5"
+        },
+        {
+            "exe": "assert 71/(156**2) == calculate_bmi(71, 156)",
+            "answer": " 29.2"
+        },
+        {
+            "exe": "assert 45/(169**2) == calculate_bmi(45, 169)",
+            "answer": "15.8"
+        }
+    ]
+},
+{
+    "question": "Write a function to compute the BMI (Body Mass Index) based on weight in pounds and height in feet.",
+    "template": "def calculate_bmi(weight, height):",
+    "testCases": [
+        {
+            "exe": "assert 198/(66 ** 2) * 703 ==  calculate_bmi(198, 66)",
+            "answer": "32.0"
+        },
+        {
+            "exe":  "assert 163/(64 ** 2) * 703 ==  calculate_bmi(163, 64)",
+            "answer": "28.0"
+        },
+        {
+            "exe":  "assert 105/(59 ** 2) * 703 ==  calculate_bmi(105, 59)",
+            "answer": "21.2"
+        }
+    ]
+},
+{
+    "question": "Write a function to calculate the 50th term of an arithmetic sequence.",
+    "template": "def calculate_50th_term(first_term, common_difference, n):",
+    "testCases": [
+        {
+            "exe": "assert 2 + (50 - 1) * 2 == calculate_50th_term(2, 2, 50)",
+            "answer": "100"
+        },
+        {
+            "exe": "assert 5 + (50 - 1) * 5 == calculate_50th_term(5, 10, 15)",
+            "answer": "250"
+        },
+        {
+            "exe": "assert 7 + (50 - 1) * -7 == calculate_50th_term(7, 0, -7)",
+            "answer": "-336"
+        }
+    ]
+},
+
+{
+    "question": "Write a function that calculates the BMI (Body Mass Index) given a person's weight in kilograms and height in meters.",
+    "template": "def calculate_bmi(weight, height):",
+    "testCases": [
+        {
+            "exe": "assert 75/(1.7**2) == calculate_bmi(75, 1.7)",
+            "answer": "25.9"
+        },
+        {
+            "exe": "assert 95/(1.6**2) == calculate_bmi(95, 1.6)",
+            "answer": "37.1"
+        },
+        {
+            "exe": "assert 69/(1.6**2) == calculate_bmi(69, 1.6)",
+            "answer": "26.9"
+        }
+    ]
+},
+
+{
+    "question": "Write a function that determines whether a triangle has a right angle given its two angles in degrees.",
+    "template": "def right_angle(angle1, angle2):",
+    "testCases": [
+        {
+            "exe": "assert 40+50 == 90 == right_angle(40, 50)",
+            "answer": "True"
+        },
+        {
+            "exe": "assert 45+50 == 90 == right_angle(45, 50)",
+            "answer": "False"
+        },
+        {
+            "exe": "assert 69+21 == 90 == right_angle(69, 21)",
+            "answer": "True"
+        }
+    ]
+},
+{
+    "question": "Write a function that checks if a given number has a factorial greater than 5.",
+    "template": "def has_factorial_greater_than_five(number):",
+    "testCases": [
+        {
+            "exe": "assert math.factorial(10) == has_factorial_greater_than_five(10)",
+            "answer": "True"
+        },
+        {
+            "exe": "assert math.factorial(1) == has_factorial_greater_than_five(1)",
+            "answer": "False"
+        },
+        {
+            "exe": "assert math.factorial(17) == has_factorial_greater_than_five(17)",
+            "answer": "True"
+        }
+    ]
+},
+
+{
+    "question": "Write a function that checks if the number is odd or even",
+    "template": "def Odd_Even(n):",
+    "testCases": [
+        {
+            "exe": "assert  number % 2 == 0 == Odd_Even(2)",
+            "answer": "Even"
+        },
+        {
+            "exe": "assert  number % 2 == 0 == Odd_Even(3)",
+            "answer": "Odd"
+        },
+        {
+            "exe": "assert  number % 2 == 0 == Odd_Even(5)",
+            "answer": "Odd"
+        }
+    ]
+},
+
+{
+    "question": "Write a function that calculates the arithmetic mean (average) of a list of numbers.",
+    "template": "def calculate_mean(numbers):",
+    "testCases": [
+        {
+            "exe": "assert mean([4, 8, 12, 6, 10]) == calculate_mean([4, 8, 12, 6, 10])",
+            "answer": 8.0
+        },
+        {   
+            "exe": "assert mean([1, 2, 3, 4, 5]) == calculate_mean([1, 2, 3, 4, 5])",
+            "answer": 3.0
+        },
+        {   
+            "exe": "assert mean([15, 20, 25, 30]) == calculate_mean([15, 20, 25, 30])",
+            "answer": 22.5
+        }
+    ]
+},
+{
+    "question": "Write a function that checks if a given string is a palindrome (reads the same backward as forward).",
+    "template": "def is_palindrome(s):",
+    "testCases": [
+        {
+            "exe": "assert radar[::-1] == is_palindrome('radar')",
+            "answer": "True"
+        },
+        {
+            "exe": "assert hello[::-1] == is_palindrome('hello')",
+            "answer": "False"
+        },
+        {
+            "exe": "assert level[::-1] == is_palindrome('level')",
+            "answer": "True"
+        }
+    ]
+},
+{
+    "question": "Write a function that counts the length of a string).",
+    "template": "def countString(string):",
+    "testCases": [
+        {
+            "exe": "assert len('hi') ==  countString('hi')",
+            "answer": 2
+        },
+        {
+            "exe": "assert len('hello') ==  countString('hello')",
+            "answer": 5
+        },
+        {
+            "exe": "assert len('jay love czarlette') ==  countString('jay love czarlette')",
+            "answer": 18
+        }
+    ]
+}
+]

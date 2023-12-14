@@ -7,7 +7,6 @@ import Settings from "./components/Settings/Settings";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ContactUs from "./components/ContactUs/Contact";
 import SinglePlayer from "./routes/SinglePlayer/SinglePlayer";
-import AudioPlayer from "./components/AudioPlayer/AudioPlayer";
 import RequestPass from "./routes/RequestPass/RequestPass";
 import UpdatePass from "./routes/UpdatePass/UpdatePass";
 import About from "./components/About/About";
@@ -70,7 +69,6 @@ const App = () => {
   }, []);
   return (
     <div>
-      <AudioPlayer isPlaying={isPlaying} />
       <RouterProvider router={router} />
     </div>
   );
