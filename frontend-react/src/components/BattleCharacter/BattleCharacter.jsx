@@ -6,15 +6,20 @@ import { Link } from "react-router-dom";
 import mouseclick from "../../assets/audio/mouseclick.mp3";
 import { socket } from "../../socket";
 import { useNavigate } from "react-router-dom";
+import useConfigStore from "../../store/configStore";
 
 export default function BattleCharacter({ findMatch }) {
   const [option, setOption] = useState(true);
-  const [optionCharacter, setOptionCharacter] = useState(true);
   const [playSound, setPlaySound] = useState(false);
   const navigate = useNavigate();
 
-  const optionClicked = () => setOption(option == false);
-  const optionCharacterClicked = () => setOptionCharacter(!optionCharacter);
+  const optionClicked = () => setOption(!option);
+
+  const optionCharacter = useConfigStore((state) => state.optionCharacter);
+  const optionCharacterClicked = useConfigStore(
+    (state) => state.optionCharacterClicked
+  );
+  const account = useConfigStore((state) => state.account);
 
   const mouseClick = () => {
     setPlaySound(true);
@@ -24,16 +29,21 @@ export default function BattleCharacter({ findMatch }) {
   const onQueue = () => {
     findMatch(true);
     if (option) {
-      socket.emit("queue", true);
+      socket.emit("queue", {
+        findMatch: true,
+        username: account.username,
+        stars: account.stars,
+      });
     } else {
       navigate("/single-player");
     }
   };
 
   useEffect(() => {
-    socket.on("join-match", ({ room_id, id }) => {
-      navigate(`/pvp/${room_id}`, {
-        state: id,
+    socket.on("join_match", ({ currentRoomId, id, username }) => {
+      console.log(currentRoomId);
+      navigate(`/pvp/${currentRoomId}`, {
+        state: { username, id },
       });
     });
   }, []);

@@ -11,10 +11,10 @@ export default function Leaderboards() {
 
   const getPlayers = async () => {
     const res = await axios.get(
-      `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts`
+      `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/account`
     );
     console.log(res.data);
-    const players = res.data;
+    const players = res.data.content;
     players.sort((a, b) => {
       return b.stars - a.stars;
     });
@@ -43,11 +43,13 @@ export default function Leaderboards() {
               </div>
               <div className="text">
                 <h3>2ND</h3>
-                <h2>{topPlayers[1].username}</h2>
+                <h2>
+                  {topPlayers[1] !== undefined ? topPlayers[1].username : "N/A"}
+                </h2>
               </div>
               <div className="lboardstar">
                 <p className="lstar"> &#9733;</p>
-                <p>{topPlayers[1].stars}</p>
+                <p>{topPlayers[1] !== undefined ? topPlayers[1].stars : "0"}</p>
               </div>
             </div>
             <div className="gold">
@@ -56,11 +58,13 @@ export default function Leaderboards() {
               </div>
               <div className="text">
                 <h3>1ST</h3>
-                <h2>{topPlayers[0].username}</h2>
+                <h2>
+                  {topPlayers[0] !== undefined ? topPlayers[0].username : "N/A"}
+                </h2>
               </div>
               <div className="lboardstar">
                 <p className="lstar"> &#9733;</p>
-                <p>{topPlayers[0].stars}</p>
+                <p>{topPlayers[0] !== undefined ? topPlayers[0].stars : "0"}</p>
               </div>
             </div>
             <div className="bronze">
@@ -69,41 +73,55 @@ export default function Leaderboards() {
               </div>
               <div className="text">
                 <h3>3RD</h3>
-                <h2>{topPlayers[2].username}</h2>
+                <h2>
+                  {topPlayers[2] !== undefined ? topPlayers[2].username : "N/A"}
+                </h2>
               </div>
               <div className="lboardstar">
                 <p className="lstar"> &#9733;</p>
-                <p>{topPlayers[2].stars}</p>
+                <p>{topPlayers[2] !== undefined ? topPlayers[2].stars : "0"}</p>
               </div>
             </div>
           </div>
           <div className="other-place">
             <div className="other-place-content">
-              <p>4. {topPlayers[3].username}</p>
+              <p>
+                4.{" "}
+                {topPlayers[3] !== undefined ? topPlayers[3].username : "N/A"}
+              </p>
               <div className="lboardstar">
                 <p className="lstar"> &#9733;</p>
-                <p>{topPlayers[3].stars}</p>
+                <p>{topPlayers[3] !== undefined ? topPlayers[3].stars : "0"}</p>
               </div>
             </div>
             <div className="other-place-content">
-              <p>5. {topPlayers[4].username}</p>
+              <p>
+                5.{" "}
+                {topPlayers[4] !== undefined ? topPlayers[4].username : "N/A"}
+              </p>
               <div className="lboardstar">
                 <p className="lstar"> &#9733;</p>
-                <p>{topPlayers[4].stars}</p>
+                <p>{topPlayers[4] !== undefined ? topPlayers[4].stars : "0"}</p>
               </div>
             </div>
             <div className="other-place-content">
-              <p>6. {topPlayers[5].username}</p>
+              <p>
+                6.{" "}
+                {topPlayers[5] !== undefined ? topPlayers[5].username : "N/A"}
+              </p>
               <div className="lboardstar">
                 <p className="lstar"> &#9733;</p>
-                <p>{topPlayers[5].stars}</p>
+                <p>{topPlayers[5] !== undefined ? topPlayers[5].stars : "0"}</p>
               </div>
             </div>
             <div className="other-place-content">
-              <p>7. {topPlayers[6].username}</p>
+              <p>
+                7.{" "}
+                {topPlayers[6] !== undefined ? topPlayers[6].username : "N/A"}
+              </p>
               <div className="lboardstar">
                 <p className="lstar"> &#9733;</p>
-                <p>{topPlayers[6].stars}</p>
+                <p>{topPlayers[6] !== undefined ? topPlayers[6].stars : "0"}</p>
               </div>
             </div>
           </div>

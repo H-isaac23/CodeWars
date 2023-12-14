@@ -35,8 +35,11 @@ export default function Login() {
 
   useEffect(() => {
     const userLog = window.localStorage.getItem("loggedUser");
+    console.log(userLog);
     if (userLog) {
-      const { username, email, stars } = JSON.parse(userLog);
+      const {
+        content: { username, email, stars },
+      } = JSON.parse(userLog);
       setAccount(username, email, stars);
       navigate("/home");
     }
@@ -65,16 +68,17 @@ export default function Login() {
 
       try {
         const res = await axios.post(
-          `${import.meta.env.VITE_URL_PREFIX}:3003/api/login`,
+          `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/login`,
           data
         );
         if (res.status === 200) {
           console.log(res);
           const {
-            data: { username, email, stars },
-          } = res;
+            content: { username, email, stars, gold },
+          } = res.data;
+          // may gold na kasama sa res.data.content, isama mo lang ideconstruct
           window.localStorage.setItem("loggedUser", JSON.stringify(res.data));
-          setAccount(username, email, stars);
+          setAccount(username, email, stars, gold);
           navigate("/home");
         }
       } catch (error) {
@@ -95,7 +99,7 @@ export default function Login() {
 
         try {
           const res = await axios.post(
-            `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts`,
+            `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/create/account`,
             data
           );
           if (res.status === 201) {

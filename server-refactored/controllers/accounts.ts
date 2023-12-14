@@ -4,6 +4,7 @@ import {
   createAccount,
   getUniqueAccount,
   updateAccountStars,
+  updateAccountGold,
 } from "../services/accounts";
 import {
   responseInternalServerError,
@@ -11,13 +12,15 @@ import {
   responseBadRequest,
   responseCreated,
   responseUnauthorized,
+  customResponseInsufficientFunds,
 } from "../utils/response";
-import { isString } from "../utils/validate";
+import { isString, isNumber, isBoolean } from "../utils/validate";
 import { CustomBodyRequest } from "../interface/controller";
 import {
   CreateAccountParameter,
   LoginParameter,
   UpdateAccountStarsParameter,
+  UpdateAccountGoldParameter,
 } from "../interface/service";
 import { INVALID_CREDENTIALS } from "../constant/general";
 
@@ -137,6 +140,14 @@ export const updateStarsController = async (
 ) => {
   try {
     const { username, didWin, hasStarProtection, stars } = req.body;
+
+    if (!isString(username)) throw new TypeError("username must be a string");
+    if (!isBoolean(didWin))
+      throw new TypeError("didWin param must be a boolean");
+    if (!isBoolean(hasStarProtection))
+      throw new TypeError("hasStarProtection param must be a boolean");
+    if (!isNumber(stars)) throw new TypeError("stars param must be a number");
+
     const account = await updateAccountStars({
       username,
       didWin,
@@ -157,6 +168,51 @@ export const updateStarsController = async (
 
     if (error instanceof Error) {
       return responseUnauthorized(res, INVALID_CREDENTIALS, error);
+    }
+
+    return responseInternalServerError(res, errorMessage, error);
+  }
+};
+
+export const updateGoldController = async (
+  req: CustomBodyRequest<UpdateAccountGoldParameter>,
+  res: Response
+) => {
+  try {
+    const { username, gold, goldUpdateAmount } = req.body;
+
+    if (!isString(username)) throw new TypeError("username must be a string");
+    if (!isNumber(gold)) throw new TypeError("gold must be a number");
+    if (!isNumber(goldUpdateAmount))
+      throw new TypeError("goldUpdateAmount sername must be a number");
+
+    if (goldUpdateAmount + gold < 0) {
+      throw new Error("User cannot spend more than his current gold");
+    }
+
+    const updatedAccount = await updateAccountGold({
+      username,
+      gold,
+      goldUpdateAmount,
+    });
+
+    if (updatedAccount === null) {
+      throw new Error("Account does not exist");
+    }
+
+    return responseSuccess(res, updatedAccount);
+  } catch (error: unknown) {
+    let errorMessage = "";
+    if (error instanceof TypeError) {
+      errorMessage += error.message;
+      return responseBadRequest(res, errorMessage);
+    }
+
+    if (error instanceof Error) {
+      if (error.message === "Account does not exist") {
+        return responseUnauthorized(res, INVALID_CREDENTIALS, error);
+      }
+      return customResponseInsufficientFunds(res, "Insufficient Funds");
     }
 
     return responseInternalServerError(res, errorMessage, error);

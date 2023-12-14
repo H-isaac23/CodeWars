@@ -16,7 +16,7 @@ For styling there is css, so do not ever put any css inline unless absolutely re
 
 ### Backend
 
-The backend uses [Express.js](https://expressjs.com/) as server for hosting a REST API, which is all set up inside the `src/index.js`.
+The backend uses [Express.js](https://expressjs.com/) as server for hosting a REST API, which is all set up inside the `src/index.ts`.
 Backend also uses several other library:
 
 - [Mongoose](https://expressjs.com/) as ODM for Mongo DB
@@ -43,18 +43,38 @@ backend
 
 ## Available Scripts
 
-In the project directory of the backend, you can run:
+In the root directory of the project, the following commands are:
 
-### `npm start`
+### `yarn dev`
 
-Runs the server in production mode.\
-The server will be listening for calls in [http://localhost:3003](http://localhost:3003).
+Runs both the frontend and the backend concurrently.
 
-### `npm run dev`
+### `yarn devFrontend`
 
-Runs the server in development mode.\
-The server will be listening for calls in [http://localhost:3003](http://localhost:3003).
+Runs the frontend server in development mode.\
+The website can be accessed in [http://localhost:5173](http://localhost:5173).
+
+### `yarn devBackend`
+
+Runs the backend server in development mode.\
+The server will be listening for calls in [http://localhost:3000](http://localhost:3000).
 
 ### Test Accounts
 
 - Username: server-1-test Password: server-1-test
+
+## Contributing
+
+Follow these steps:
+
+1. Fork the repository from [here](https://github.com/H-isaac23/CodeWars).
+
+2. Clone your fork locally.
+
+3. Optional, but recommended: Create a new branch on the latest commit of the branch you want to contribute to.
+
+4. Commit to the new branch (or the branch you want to contribute to, if you decided not to make a new branch).
+
+5. Push to your fork.
+
+6. [Create a pull request](https://github.com/H-isaac23/CodeWars/pulls) from the branch you committed to _in your fork_ to the branch you want to contribute to in the original repository. We don't have a format for pull request descriptions, but please include any details that would help a reviewer.

@@ -34,11 +34,6 @@
     font-size: 22px;
     margin-bottom: 1em;
     margin-top: 2em;
-    text-shadow:
-     -1px -1px 0 #000,  
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-       1px 1px 0 #000;
   }
 
   .aboutUs-box h5 {

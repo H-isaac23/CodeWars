@@ -2,6 +2,7 @@ import { AccountDoc, IAccount, AccountModel } from "../models/account";
 import {
   CreateAccountParameter,
   UpdateAccountStarsParameter,
+  UpdateAccountGoldParameter,
   BaseAccountRequest,
 } from "../interface/service";
 import bcrypt from "bcrypt";
@@ -60,4 +61,18 @@ export const updateAccountStars = async ({
   );
 
   return updatedUserStars;
+};
+
+export const updateAccountGold = async ({
+  username,
+  gold,
+  goldUpdateAmount,
+}: UpdateAccountGoldParameter): Promise<AccountDoc | null> => {
+  const updatedAccount = AccountModel.findOneAndUpdate(
+    { username: username },
+    { gold: gold + goldUpdateAmount },
+    { new: true }
+  );
+
+  return updatedAccount;
 };

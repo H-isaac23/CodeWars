@@ -1,20 +1,39 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaRegStar, FaCheck } from "react-icons/fa";
-//thsi is
+
 import useConfigStore from "../../store/configStore";
 import AudioButton from "../../components/AudioButton/AudioButton";
-import Settings from "../Settings/Settings";
+import Settings from "../../components/Settings/Settings";
 import "./PVP.css";
+
 import bg from "../../assets/img/4455.jpg";
-import clock from "../../assets/img/clock.png";
+import bg2 from "../../assets/img/bg3.jpg";
+import bg_bottom from "../../assets/img/bg-brown.jpg";
+
+import doubleDamage from "../../assets/img/double_damage_transparent.gif";
+import heal from "../../assets/img/heal_transparent.gif";
+import shield1 from "../../assets/img/shield_transparent.gif";
+
 import charMan from "../../assets/img/final_male_anim_IDLE.gif";
 import charWoman from "../../assets/img/final_female_anim_IDLE(fixed frames).gif";
+import maleKick from "../..//assets/img/final_male_anim_KICK.gif";
+
 import setting from "../../assets/img/settingbtn.png";
 import xbtn from "../../assets/img/x.png";
+import vs from "../../assets/img/vs.png";
+import clock from "../../assets/img/clock.png";
+import swordCross from "../../assets/img/sword_cross.png";
+import shield_icon from "../../assets/img/protection.png";
+import sword_icon from "../../assets/img/sword.png";
+import heal_icon from "../../assets/img/heal.png";
+
 import lose from "../../assets/audio/lose.mp3";
 import win from "../../assets/audio/win.mp3";
-import vs from "../../assets/img/vs.png";
+import kick from "../../assets/audio/kick.mp3";
+import shieldSound from "../../assets/audio/shield.mp3";
+import healSound from "../../assets/audio/heal.mp3";
+import damageSound from "../../assets/audio/sword.mp3";
+
 import rewardChest from "../../assets/img/reward_box.png";
 import shield from "../../assets/img/star_protection.png";
 
@@ -25,14 +44,16 @@ import Console from "../../components/Console/Console";
 import { motion, useMotionValue } from "framer-motion";
 import { socket } from "../../socket";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import questions from "../../questions.json";
+import questions from "../../25-medium-questions.json";
 import axios from "axios";
+import Surrender from "../../components/PVPComponents/Surrender/Surrender";
 
 export default function PVP() {
-  const [sett, showSettings] = useState(false);
+  const navigate = useNavigate();
+  const optionCharacter = useConfigStore((state) => state.optionCharacter);
+  const [sett, setShowSettings] = useState(false);
   const [surrender, showSurrender] = useState(false);
-  const [confirm, showconfirm] = useState(false);
-  const [playlosersound, setPlayLoserSound] = useState(false);
+  const [confirm, showConfirm] = useState(false);
   const [input, setInput] = useState("");
   const [rcount, setrCount] = useState(1);
   const [victory, showVictory] = useState(false);
@@ -41,10 +62,39 @@ export default function PVP() {
   const [starPage, showStarPage] = useState(false);
   const [correct, showCorrect] = useState(false);
   const [correctStatus, setCorrectStatus] = useState(false);
-  const navigate = useNavigate();
   const account = useConfigStore((state) => state.account);
   const setAccount = useConfigStore((state) => state.setAccount);
-  const [disableBtn,setDisabledBtn] = useState(false);
+  const [disableBtn, setDisabledBtn] = useState(false);
+  const [clickSubmit, userClickSubmit] = useState(false);
+
+  const [playlosersound, setPlayLoserSound] = useState(false);
+  const [kickSound, setKickSound] = useState(false);
+  const [protectionSound, setProtectionSound] = useState(false);
+  const [regenSound, setRegenSound] = useState(false);
+  const [doubleDamageSound, setDoubleDamageSound] = useState(false);
+
+  const [healEffect, showHealEffect] = useState(false);
+  const [damageEffect, showDamageEffect] = useState(false);
+  const [reflectEffect, showReflectEffect] = useState(false);
+
+  const [reflectEffectIcon, showReflectEffectIcon] = useState(false);
+  const [damageEffectIcon, showDamageEffectIcon] = useState(false);
+  const [healEffectIcon, showHealEffectIcon] = useState(false);
+
+  const [healBuffClicked, setHealBuffClicked] = useState(false);
+  const [damageBuffClicked, setDamageBuffClicked] = useState(false);
+  const [reflectBuffClicked, setReflectBuffClicked] = useState(false);
+
+  const [countHealUsed, setCountHealUsed] = useState(0);
+  const [countDamageUsed, setCountDamageUsed] = useState(0);
+  const [countReflectUsed, setCountReflectUsed] = useState(0);
+
+  const [charAttack, setcharAttack] = useState(false);
+
+  const backgroundImages = [bg, bg2];
+  const [backgroundIndex, setBackgroundIndex] = useState(
+    Math.floor(Math.random() * backgroundImages.length)
+  );
 
   const [hprval, setHprval] = useState(100);
   const [hplval, setHplval] = useState(100);
@@ -56,7 +106,7 @@ export default function PVP() {
   // const rand = Math.floor(Math.random() * questions.length);
   const [qnum, setQnum] = useState(0);
   const location = useLocation();
-  const userId = location.state;
+  const userId = location.state.id;
   const room_id = useParams(":matchid").matchid;
   useEffect(() => {
     socket.on("match_result", async (data) => {
@@ -128,7 +178,8 @@ export default function PVP() {
         setAccount(
           res.data.account.username,
           res.data.account.email,
-          res.data.account.stars
+          res.data.account.stars,
+          res.data.account.gold
         );
 
         console.log({ stars });
@@ -148,19 +199,18 @@ export default function PVP() {
     socket.on("player_code_submit", (res) => {
       if (res.correct && socket.id === res.socketId) {
         setHprval(hprval - 25);
-        setrCount(rcount+1);
-        setQnum(res.question_index);
+        setrCount(rcount + 1);
+        setQnum(res.questionIndex);
         console.log(hprval, qnum);
         showCorrect(!correct);
       } else if (res.correct && socket.id !== res.socketId) {
-        setrCount(rcount+1);
+        setrCount(rcount + 1);
         setHplval(hplval - 25);
-        setQnum(res.question_index);
+        setQnum(res.questionIndex);
         console.log(hplval, qnum);
       }
       // For submit button
       setDisabledBtn(true);
-      
     });
 
     if (hplval <= 0) {
@@ -168,45 +218,40 @@ export default function PVP() {
     }
   }, [hprval, hplval]);
 
+  function extractExpr2(str) {
+    const regex = /==\s*(.*?)(?=\s*\)$)/;
+    const match = str.match(regex);
+    return match ? match[1].trim() : null;
+  }
+
   // display the settings UI
   const toggleSettings = () => {
-    showSettings(!sett);
+    setShowSettings(!sett);
   };
 
   // display the surrender UI
   const toggleSurrender = () => {
-    showSurrender(!surrender);
+    showSurrender(true);
   };
 
   //Triggers when user clicks the confirm or check button
-  const toggleConfirm = async () => {
-    const data = {
-      username,
-      stars,
-      didWin: false,
-    };
+  useEffect(() => {
+    if (confirm) {
+      const data = {
+        username,
+        stars,
+        didWin: false,
+      };
 
-    console.log({ stars });
-    const res = await axios.put(
-      `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts/star`,
-      data
-    );
-    window.localStorage.setItem("loggedUser", JSON.stringify(res.data.account));
+      setPlayLoserSound(true);
+      console.log({ room_id });
+      socket.emit("surrender", { roomId: room_id, userId });
 
-    setAccount(
-      res.data.account.username,
-      res.data.account.email,
-      res.data.account.stars
-    );
-
-    showconfirm(!confirm);
-    showSurrender(surrender);
-    setPlayLoserSound(true);
-    socket.emit("surrender", { room_id, userId });
-    setTimeout(() => {
-      setPlaySound(false);
-    }, 3000);
-  };
+      setTimeout(() => {
+        setPlaySound(false);
+      }, 3000);
+    }
+  }, [confirm]);
 
   const toggleLose = () => {
     showconfirm(!confirm);
@@ -232,9 +277,52 @@ export default function PVP() {
     showStarProtection(!starProtection);
     showStarPage(false);
     showVictory(false);
-    showconfirm(false);
+    showConfirm(false);
     showReward(false);
     showSurrender(false);
+  };
+
+  const toggleHeal = () => {
+    if (!healBuffClicked) {
+      showHealEffect(true);
+      setRegenSound(true);
+      showHealEffectIcon(true);
+      setCountHealUsed((c) => c + 1);
+      setTimeout(() => {
+        showHealEffect(false);
+        showHealEffectIcon(false);
+        setRegenSound(false);
+      }, 3000);
+      setHealBuffClicked(true);
+    }
+  };
+
+  const toggleDamage = () => {
+    if (!damageBuffClicked) {
+      showDamageEffect(true);
+      setDoubleDamageSound(true);
+      showDamageEffectIcon(true);
+      setCountDamageUsed((c) => c + 1);
+      setTimeout(() => {
+        showDamageEffect(false);
+        setDoubleDamageSound(false);
+      }, 3000);
+      setDamageBuffClicked(true);
+    }
+  };
+
+  const toggleReflect = () => {
+    if (!reflectBuffClicked) {
+      showReflectEffect(true);
+      setProtectionSound(true);
+      showReflectEffectIcon(true);
+      setCountReflectUsed((c) => c + 1);
+      setTimeout(() => {
+        setProtectionSound(false);
+        showReflectEffect(false);
+      }, 3000);
+      setReflectBuffClicked(true);
+    }
   };
 
   // get the value inputted by user
@@ -246,31 +334,48 @@ export default function PVP() {
   const handleReset = () => {
     console.log("clear");
     setInput("");
-    console.log(input)
-
+    console.log(input);
   };
 
   // get the input then evaluate then display in the output container
   const handleClick = () => {
+    userClickSubmit(true);
     setDisabledBtn(false);
+    setcharAttack(true);
+    setKickSound(true);
     setCorrectStatus(!correctStatus);
     const code = input;
     const playerDetails = {
       userId,
     };
+    const buffs = [];
+    if (countDamageUsed < 1 && damageBuffClicked) {
+      buffs.push("damage");
+    }
+    if (countReflectUsed < 1 && reflectBuffClicked) {
+      buffs.push("damage");
+    }
+    if (countHealUsed < 1 && healBuffClicked) {
+      buffs.push("damage");
+    }
     socket.emit("match_submit", {
-      room_id,
+      username,
+      roomId: room_id,
       code,
       socketId: socket.id,
       questionDetails: questions[qnum],
+      buffs,
     });
+    setTimeout(() => {
+      userClickSubmit(false);
+      setcharAttack(false);
+      setKickSound(false);
+    }, 480);
   };
 
   return (
     <>
-      <div className={`settings-pvp  ${sett ? "on" : "off"}`}>
-        <Settings isTransparent={true} />
-      </div>
+      {sett && <Settings showSettings={setShowSettings} />}
       {/* <div className="pvpmatchfound">
         <div className="yourchar">
           <h2>Dazai</h2>
@@ -289,15 +394,27 @@ export default function PVP() {
         </div>
       </div> */}
       <div className="container container-pvp">
-        <img src={bg} alt="bg" className="pvp-bg" />
+        <img
+          src={backgroundImages[backgroundIndex]}
+          alt=""
+          className="pvp-bg"
+        />
+        {/* This one below is just my thing to solve the bg  */}
+        {backgroundImages[backgroundIndex] == bg2 && (
+          <div className="bg-bottom">
+            <img src={bg_bottom} />
+          </div>
+        )}
         <div className="pvp-container">
           <div className="pvp-container-content">
             <div className="pvp-container-left">
               <div className="pvp-left-content">
-                <div className="question">
-                  <p>
-                    <strong>Q:</strong> {questions[qnum].question}
-                  </p>
+                <div className="pvp-left-content">
+                  <div className="question">
+                    <p>
+                      <strong>Q:</strong> {questions[qnum].question}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -326,13 +443,82 @@ export default function PVP() {
                   <div className="username username1">
                     <h4>{username}</h4>
                   </div>
-                  <div className="firstchar">
-                    <img src={charMan} alt="" />
+                  <div className="username1-buff-status">
+                    {reflectEffectIcon && (
+                      <div className="reflect-buff reflect-buff-icon">
+                        <img src={shield_icon} />
+                      </div>
+                    )}
+                    {damageEffectIcon && (
+                      <div className="doubledmg-buff doubledmg-buff-icon">
+                        <img src={sword_icon} />
+                      </div>
+                    )}
+                    {healEffectIcon && (
+                      <div className="heal-buff heal-buff-icon">
+                        <img src={heal_icon} />
+                      </div>
+                    )}
+                  </div>
+                  <div className={`firstchar ${charAttack ? "attack" : ""}`}>
+                    {/* <img src={optionCharacter ? maleKick : charMan} alt="" /> */}
+                    {charAttack ? (
+                      <img src={maleKick} />
+                    ) : (
+                      <img src={optionCharacter ? charMan : charWoman} alt="" />
+                    )}
+
+                    {clickSubmit && (
+                      <div className="attack-indicator">
+                        <img src={swordCross} />
+                      </div>
+                    )}
+                    {healEffect && (
+                      <div className="heal-effect">
+                        <img src={heal} />
+                      </div>
+                    )}
+                    {damageEffect && (
+                      <div className="damage-effect">
+                        <img src={doubleDamage} />
+                      </div>
+                    )}
+                    {reflectEffect && (
+                      <div className="reflect-effect">
+                        <img src={shield1} />
+                      </div>
+                    )}
+                  </div>
+                  <div className="buffs">
+                    <div
+                      className={`reflect-buff ${
+                        reflectBuffClicked ? "buff-disabled" : ""
+                      }`}
+                      onClick={toggleReflect}
+                    >
+                      <img src={shield_icon} />
+                    </div>
+                    <div
+                      className={`doubledmg-buff ${
+                        damageBuffClicked ? "buff-disabled" : ""
+                      }`}
+                      onClick={toggleDamage}
+                    >
+                      <img src={sword_icon} />
+                    </div>
+                    <div
+                      className={`heal-buff ${
+                        healBuffClicked ? "buff-disabled" : ""
+                      }`}
+                      onClick={toggleHeal}
+                    >
+                      <img src={heal_icon} />
+                    </div>
                   </div>
                 </div>
                 <div className="pvptop-center">
                   <div className="clock">
-                    <img src={vs}/>
+                    <img src={vs} />
                   </div>
                   <div className="round">
                     <h2>Round {rcount}</h2>
@@ -362,11 +548,54 @@ export default function PVP() {
                   <div className="username username2">
                     <h4>Test</h4>
                   </div>
-                  <div className="secondchar">
-                    <img src={charWoman} alt="" />
+                  <div className="username2-buff-status">
+                    {reflectEffectIcon && (
+                      <div className="reflect-buff reflect-buff-icon reflect-buff-icon-opponent">
+                        <img src={shield_icon} />
+                      </div>
+                    )}
+                    {damageEffectIcon && (
+                      <div className="doubledmg-buff doubledmg-buff-icon doubledmg-buff-icon-opponent">
+                        <img src={sword_icon} />
+                      </div>
+                    )}
+                    {healEffectIcon && (
+                      <div className="heal-buff heal-buff-icon heal-buff-icon-opponent">
+                        <img src={heal_icon} />
+                      </div>
+                    )}
+                  </div>
+                  <div className={`secondchar ${charAttack ? "attack" : ""}`}>
+                    {/* <img src={optionCharacter ? maleKick : charMan} alt="" /> */}
+                    {charAttack ? (
+                      <img src={maleKick} />
+                    ) : (
+                      <img src={optionCharacter ? charMan : charWoman} alt="" />
+                    )}
+
+                    {clickSubmit && (
+                      <div className="attack-indicator attack-indicator-opponent">
+                        <img src={swordCross} />
+                      </div>
+                    )}
+                    {healEffect && (
+                      <div className="heal-effect heal-effect-opponent">
+                        <img src={heal} />
+                      </div>
+                    )}
+                    {damageEffect && (
+                      <div className="damage-effect damage-effect-opponent">
+                        <img src={doubleDamage} />
+                      </div>
+                    )}
+                    {reflectEffect && (
+                      <div className="reflect-effect">
+                        <img src={shield1} />
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="settings">
+                <div className="settings-button">
                   <img
                     src={!sett ? setting : xbtn}
                     alt=""
@@ -377,8 +606,7 @@ export default function PVP() {
             </div>
           </div>
           <div className="pvpbottom">
-            <div
-              className="bottom-left">
+            <div className="bottom-left">
               <div className="userinput">
                 <CodeMirror
                   value={questions[qnum].template}
@@ -395,7 +623,11 @@ export default function PVP() {
                   }}
                 />
                 <div className="buttons">
-                  <div className="btn submitbtn" onClick={handleClick} disabled={disableBtn ? true : false}>
+                  <div
+                    className="btn submitbtn"
+                    onClick={handleClick}
+                    disabled={disableBtn ? true : false}
+                  >
                     SUBMIT
                   </div>
                   {/* <div className="btn clearbtn" onClick={handleReset}>
@@ -409,9 +641,15 @@ export default function PVP() {
                 <div className="display-output">
                   <div className="test-case">
                     <h3>TEST CASES:</h3>
-                    <p>Case 1: {questions[qnum].testCases[0].exe}</p>
-                    <p>Case 2: {questions[qnum].testCases[1].exe}</p>
-                    <p>Case 3: {questions[qnum].testCases[2].exe}</p>
+                    <p>
+                      Case 1: {extractExpr2(questions[qnum].testCases[0].exe)}
+                    </p>
+                    <p>
+                      Case 2: {extractExpr2(questions[qnum].testCases[1].exe)}
+                    </p>
+                    <p>
+                      Case 3: {extractExpr2(questions[qnum].testCases[2].exe)}
+                    </p>
                   </div>
                   <div className="output-test">
                     <h3>OUTPUT:</h3>
@@ -429,37 +667,7 @@ export default function PVP() {
           </div>
         </div>
         {surrender && (
-          <div className="surrender">
-            <div className="surrender-container">
-              <div className="surrender-top">
-                <h1>Surrender</h1>
-                <h1>
-                  <span>Game</span>
-                </h1>
-              </div>
-              <div className="surrender-content">
-                <h2>Do you want to surrender?</h2>
-                <div className="surr-star">
-                  <h2>You will lose a</h2>
-                  <span className="star">&#9733;</span>
-                </div>
-                <div className="surr-buttons">
-                  <div
-                    className="btn confirmbtn"
-                    onClick={() => {
-                      toggleConfirm();
-                      toggleSurrender();
-                    }}
-                  >
-                    <FaCheck className="check" />
-                  </div>
-                  <div className="btn" onClick={toggleSurrender}>
-                    <span>X</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Surrender showSurrender={showSurrender} showConfirm={showConfirm} />
         )}
         {confirm && (
           <div className="lose" onClick={toggleStarPage}>
@@ -486,41 +694,44 @@ export default function PVP() {
         )}
 
         {starPage && (
-            <div className="starpage" onClick={victory ? toggleReward : toggleStarProtection}>
-              <div className="starpage-content">
-                <div className="starpage-star">
-                  <div className={`${victory ? "stargain" : "starfall"}`}>
-                    <h2>&#9733;</h2>
-                  </div>
+          <div
+            className="starpage"
+            onClick={victory ? toggleReward : toggleStarProtection}
+          >
+            <div className="starpage-content">
+              <div className="starpage-star">
+                <div className={`${victory ? "stargain" : "starfall"}`}>
                   <h2>&#9733;</h2>
                 </div>
-                <div className="starcount">
-                  <h2 className="currentstar">{stars}</h2>
-                  <h2 className="updatedstar">
-                    {victory ? stars + 1 : stars - 1}{" "}
-                  </h2>
-                  <div
-                    className="addorminus"
-                    style={{ color: victory ? "yellow" : "red" }}
-                  >
-                    <h2>{victory ? "+1" : "-1"}</h2>
-                  </div>
+                <h2>&#9733;</h2>
+              </div>
+              <div className="starcount">
+                <h2 className="currentstar">{stars}</h2>
+                <h2 className="updatedstar">
+                  {victory ? stars + 1 : stars - 1}{" "}
+                </h2>
+                <div
+                  className="addorminus"
+                  style={{ color: victory ? "yellow" : "red" }}
+                >
+                  <h2>{victory ? "+1" : "-1"}</h2>
                 </div>
               </div>
-              <p>Click anywhere to continue...</p>
             </div>
+            <p>Click anywhere to continue...</p>
+          </div>
         )}
 
         {reward && (
           <Link to="/" ref={linkRef}>
             <div className="reward">
               <div className="reward-content">
-                  <h2>PVP REWARD</h2>
-                  <div className="rewardChest">
-                    <img src={rewardChest}/>
-                  </div>
-                  <h3>300 Gold</h3>
-                  <p>Click anywhere to continue...</p>
+                <h2>PVP REWARD</h2>
+                <div className="rewardChest">
+                  <img src={rewardChest} />
+                </div>
+                <h3>300 Gold</h3>
+                <p>Click anywhere to continue...</p>
               </div>
             </div>
           </Link>
@@ -530,18 +741,16 @@ export default function PVP() {
           <Link to="/" ref={linkRef}>
             <div className="star-protection">
               <div className="star-protection-content">
-                  <h2>STAR PROTECTION</h2>
-                  <div className="shield">
-                    <img src={shield}/>
-                  </div>
-                  <h4>You will not lose a star this time.</h4>
-                  <p>Click anywhere to continue...</p>
+                <h2>STAR PROTECTION</h2>
+                <div className="shield">
+                  <img src={shield} />
+                </div>
+                <h4>You will not lose a star this time.</h4>
+                <p>Click anywhere to continue...</p>
               </div>
             </div>
           </Link>
         )}
-
-
 
         {playlosersound && (
           <div>
@@ -554,6 +763,38 @@ export default function PVP() {
         {victory && (
           <div>
             <audio autoPlay src={win} type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        )}
+
+        {kickSound && (
+          <div>
+            <audio autoPlay src={kick} type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        )}
+
+        {regenSound && (
+          <div>
+            <audio autoPlay src={healSound} type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        )}
+
+        {protectionSound && (
+          <div>
+            <audio autoPlay src={shieldSound} type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        )}
+
+        {doubleDamageSound && (
+          <div>
+            <audio autoPlay src={damageSound} type="audio/mpeg">
               Your browser does not support the audio element.
             </audio>
           </div>

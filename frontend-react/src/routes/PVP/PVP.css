@@ -26,7 +26,6 @@ a{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .yourchar{
@@ -76,6 +75,8 @@ a{
   animation: vs 2s 5s forwards;
 }
 
+
+
 .pvp-container {
   height: 95vh;
   width: 90%;
@@ -110,11 +111,12 @@ a{
 .question {
   width: 80%;
   height: 21em;
-  background: rgba(217, 217, 217, 0.8);
   border-radius: 15px;
-  color: black;
+  color: white;
+  font-weight: 300;
   padding: 0em 1em 0 1em;
   font-size: 1.1rem;
+  background: rgba(178, 74, 71,0.5);
 }
 
 .pvp-container-right {
@@ -169,6 +171,35 @@ a{
   border: 4px solid white;
   border-top: none;
   left: 68%;
+}
+
+.username1-buff-status,
+.username2-buff-status{
+  height: 2em;
+  position: absolute;
+  top: 3em;
+  right: 0;
+  display: flex;
+  gap: .1em;
+  align-items: center;
+}
+
+.username2-buff-status{
+  left: 0;
+}
+
+.username1-buff-status .reflect-buff-icon,
+.username1-buff-status .doubledmg-buff-icon,
+.username1-buff-status .heal-buff-icon,
+.username2-buff-status .reflect-buff-icon,
+.username2-buff-status .doubledmg-buff-icon,
+.username2-buff-status .heal-buff-icon
+{
+  width: 2em;
+  height: 2em;
+  border-radius: 0;
+  border: 3px solid white;
+  font-size: 1.1rem;
 }
 
 
@@ -256,7 +287,7 @@ a{
   right: -18px;
 }
 
-.settings {
+.settings-button {
   position: absolute;
   right: -5.5em;
   top: -0.5em;
@@ -264,17 +295,133 @@ a{
   width: 3em;
   height: 3em;
   transition: 0.5s;
-  z-index: 50;
+  z-index: 100;
 }
 
-.settings:hover {
+
+.settings-button:hover {
   transform: scale(1.1);
 }
 
-.settings img {
+.settings-button img {
   height: 3em;
   width: 3em;
 }
+
+.attack-indicator {
+  position: absolute;
+  font-size: 1.5rem;
+  height: 1.8em;
+  width: 1.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: .3em;
+  left: 6em;
+}
+
+.attack-indicator img{
+  height: 100%;
+  width: 100%;
+}
+
+.buffs{
+ height: 18em;
+ width: 6em;
+ position: absolute;
+ z-index: 4;
+ bottom: 0;
+ left: 0em;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ gap: 1em;
+ cursor: pointer;
+}
+
+.reflect-buff,
+.doubledmg-buff,
+.heal-buff{
+  height: 5em;
+  border-radius: 50%;
+  border: 6px solid white;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.reflect-buff{
+  background-color: blue;
+  position: relative;
+}
+
+.reflect-buff img,
+.doubledmg-buff img,
+.heal-buff img{
+  height: 1.6em;
+  width: 1.6em;
+  position: absolute;
+  z-index: 2;
+}
+
+.doubledmg-buff img{
+  height: 1.4em;
+  width: 1.4em;
+}
+
+.doubledmg-buff{
+  background: red;
+
+}
+
+.heal-buff{
+  background: green;
+}
+
+.buffs .buff-disabled {
+  opacity: 0.5; 
+  pointer-events: none; 
+  cursor: not-allowed; 
+}
+
+
+.heal-effect,
+.reflect-effect,
+.damage-effect{
+  position: absolute;
+  top: 0;
+  left: -3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heal-effect{
+  transform: rotate(0deg);
+  width: 28em;
+  height: 48vh;
+}
+
+.reflect-effect{
+  transform: rotate(0deg);
+  height: 49vh;
+  width: 26em;
+}
+
+.damage-effect{
+  height: 49vh;
+  width: 51em;
+}
+
+.damage-effect-opponent{
+  position: absolute;
+  left: -28.5em;
+}
+
+
 
 .pvpbottom {
   width: 100%;
@@ -303,14 +450,13 @@ a{
 .userinput {
   width: 96%;
   height: 16em;
-  background: rgba(217, 217, 217, 0.8);
+  background: rgba(178, 74, 71,0.5);
   border-radius: 15px;
   position: relative;
 }
 
 .codemirror {
-  color: black;
-  outline: none !important;
+  color: white;
 }
 
 .cm-editor {
@@ -356,6 +502,7 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
+  outline-style: none;
 }
 
 .submitbtn:hover,
@@ -389,15 +536,15 @@ a{
   padding: 0 1em;
   margin: 5px 0 10px 0;
   border-radius: 16px;
-  background: rgba(217, 217, 217, 0.8);
   display: flex;
   flex-direction: column;
   padding-top: 1em;
+  background: rgba(178, 74, 71,0.5);
 }
 
 .outputs p{
-  color: black;
-  font-weight: bold;
+  color: white;
+  font-weight: 300;
 }
 
 .outputs h3 {
@@ -423,15 +570,11 @@ a{
 }
 
 
-.test-case h3{
-  color: black;
+.test-case h3, .output-test h3{
+  color: white;
   padding-top: 0;
 }
 
-.output-test h3{
-  color: black;
-  padding-top: 0;
-}
 
 .btn-exit {
   text-align: center;
@@ -455,7 +598,17 @@ a{
   margin-bottom: 20em;
 }
 
-.surrender,
+.bg-bottom{
+  position: absolute;
+  height: 8em;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  
+}
+
+
+
 .lose,
 .win {
   width: 100%;
@@ -477,94 +630,6 @@ a{
 .win {
   z-index: 101;
   /* display: none; */
-}
-
-.surrender-container {
-  width: 50%;
-  height: 55vh;
-  max-width: 400px;
-  background: linear-gradient(
-    179.97deg,
-    rgba(200, 103, 69, 0.5) 18.08%,
-    rgba(223, 187, 137, 0.6)
-  );
-  box-shadow: 9px 10px 4px 1px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  padding-top: 3em;
-  display: flex;
-
-  flex-direction: column;
-  position: relative;
-  z-index: 3;
-}
-
-.surr-star {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-  position: relative;
-}
-
-.surr-star h2 {
-  margin-top: 0.5em;
-  margin-right: 2em;
-}
-
-.star {
-  color: yellow;
-  font-size: 4rem;
-  position: absolute;
-  right: 1.2em;
-  top: -0.3em;
-}
-
-.surrender-top h1 {
-  font-weight: bolder;
-  font-size: 5rem;
-  position: absolute;
-  top: -1.6em;
-  right: 0.7em;
-  text-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.surrender-top span {
-  position: absolute;
-  top: 0.8em;
-  right: -0.65em;
-}
-
-.surrender-content {
-  margin-top: 4.5em;
-}
-
-.surrender-content h2 {
-  font-size: 1.75rem;
-}
-
-.surr-buttons {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.surr-buttons .btn {
-  text-align: center;
-  width: 40%;
-  padding: 0.4em 0;
-}
-
-.check {
-  font-size: 1.5rem;
-}
-
-.surr-buttons .btn span {
-  font-size: 1.5rem;
-  font-weight: bolder;
 }
 
 .lose,
@@ -730,6 +795,15 @@ a{
 .addorminus{
   position: relative;
   animation: appear 1s forwards;
+}
+
+.firstchar.attack{
+  animation: attack .24s linear infinite alternate;
+}
+
+@keyframes attack {
+  0%{left: 0em;}
+  100%{left: 27em;}
 }
 
 @keyframes matchfound {

@@ -1,26 +1,28 @@
 import React from "react";
 import "./UserProfile.css";
 import bg from "../../assets/img/4455.jpg";
+import Settings from "../Settings/Settings";
 import { Link } from "react-router-dom";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../../socket";
 import useConfigStore from "../../store/configStore";
 
-export default function UserProfile() {
+export default function UserProfile({showProfile}) {
   const navigate = useNavigate();
   const account = useConfigStore((state) => state.account);
   const removeAccount = useConfigStore((state) => state.removeAccount);
   const toggle = useConfigStore((state) => state.togglePlaying);
   const isPlaying = useConfigStore((state) => state.isPlaying);
-
+  const [settings, showSettings] = useState(false);
+  
   useEffect(() => {
     if (account.username === "") {
       navigate("/");
     }
-  });
-
+  },[]);
+  
   const onLogout = () => {
     removeAccount();
     socket.disconnect();
@@ -29,6 +31,10 @@ export default function UserProfile() {
       toggle();
     }
     navigate("/");
+  };
+  
+  const toggleSettings = () => {
+    showSettings(true);
   };
 
   return (
@@ -54,19 +60,24 @@ export default function UserProfile() {
             <p>{account.email}</p>
           </div>
         </div>
-
+        
         <div className="first-line">
-          <Link to="/settings">
+          <div onClick={toggleSettings}>
             <button className="btn">SETTINGS</button>
+          </div>
+          <Link to="/">
+            <button className="btn" onClick={onLogout}>
+              LOGOUT
+            </button>
           </Link>
-          <button className="btn" onClick={onLogout}>
-            LOGOUT
-          </button>
         </div>
-        <Link to="/home">
+        <div onClick={() => showProfile(false)}>
           <button className="btn"> RETURN </button>
-        </Link>
+        </div>
       </div>
+      {settings && <div className="userSettings">
+        <Settings showSettings={showSettings}/>
+      </div>}
     </div>
   );
 }

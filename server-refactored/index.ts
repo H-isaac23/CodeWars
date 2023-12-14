@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import route from "./route";
 import initDB from "./db";
+import setupSocketServer from "./socket";
+import http from "http";
 import { createServer } from "https";
 import { STATUS_DB_CONNECTED } from "./constant/general";
 dotenv.config();
@@ -47,11 +49,13 @@ async function startServer() {
     //   cert: readFileSync(CERT),
     // };
     const options = {};
+    const server = http.createServer(app);
+    setupSocketServer(server);
 
     // Start the server
     if (NODE_ENV === "development") {
       // dev mode use http server
-      app.listen(PORT, () => {
+      server.listen(PORT, () => {
         console.info(
           `Backend service listening on http://localhost:${PORT} in ${NODE_ENV} mode`
         );
