@@ -199,13 +199,42 @@ export default function PVP() {
     socket.on("player_code_submit", (res) => {
       if (res.correct && socket.id === res.socketId) {
         setHprval(hprval - 25);
+
+        if (res.buffs.includes("heal") && res.playerUsername === account.username){
+          setHplval(100);
+        }
+        console.log("no its not ", !(res.playerUsername === account.username));
+        if (res.buffs.includes("damage") && !(res.playerUsername === account.username)){
+  
+          console.log("damage received");
+          setHprval(hprval - 50) ;
+  
+        } 
+
+        if (res.buffs.includes("reflect") && !(res.playerUsername !== account.username)){
+          setHprval(hprval + 25) ;
+        }
+
         setrCount(rcount + 1);
         setQnum(res.questionIndex);
         console.log(hprval, qnum);
         showCorrect(!correct);
+
       } else if (res.correct && socket.id !== res.socketId) {
-        setrCount(rcount + 1);
         setHplval(hplval - 25);
+        if (res.buffs.includes("heal") && !(res.playerUsername !== account.username)){
+          setHprval(100);
+        }
+        console.log("hello ", res.buffs.includes("damage"), "hi ", res.playerUsername !== account.username)
+        if (res.buffs.includes("damage") && !(res.playerUsername !== account.username)){
+          console.log("pumasok")
+          console.log(hplval);
+          setHplval(hplval - 50) ;
+        } 
+        if (res.buffs.includes("reflect") && !(res.playerUsername !== account.username)){
+          setHplval(hplval + 25);
+        }
+        setrCount(rcount + 1);
         setQnum(res.questionIndex);
         console.log(hplval, qnum);
       }
@@ -349,15 +378,16 @@ export default function PVP() {
       userId,
     };
     const buffs = [];
-    if (countDamageUsed < 1 && damageBuffClicked) {
+    if (countDamageUsed <= 1 && damageBuffClicked) {
       buffs.push("damage");
     }
-    if (countReflectUsed < 1 && reflectBuffClicked) {
-      buffs.push("damage");
+    if (countReflectUsed <= 1 && reflectBuffClicked) {
+      buffs.push("reflect");
     }
-    if (countHealUsed < 1 && healBuffClicked) {
-      buffs.push("damage");
+    if (countHealUsed <= 1 && healBuffClicked) {
+      buffs.push("heal");
     }
+    console.log({buffs});
     socket.emit("match_submit", {
       username,
       roomId: room_id,
