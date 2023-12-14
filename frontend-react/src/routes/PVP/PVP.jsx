@@ -463,7 +463,8 @@ export default function PVP() {
 
   return (
     <>
-      {sett && <Settings showSettings={setShowSettings} />}
+    {/* Temp remove the settings - Jay */}
+      {/* {sett && <Settings showSettings={setShowSettings} />} */}
       {/* <div className="pvpmatchfound">
         <div className="yourchar">
           <h2>Dazai</h2>
@@ -684,13 +685,14 @@ export default function PVP() {
                     )} */}
                   </div>
                 </div>
-                <div className="settings-button">
+                {/* Temp remove the settings -Jay */}
+                {/* <div className="settings-button">
                   <img
                     src={!sett ? setting : xbtn}
                     alt=""
                     onClick={toggleSettings}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
