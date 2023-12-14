@@ -77,6 +77,7 @@ export default function PVP() {
   const [protectionSound, setProtectionSound] = useState(false);
   const [regenSound, setRegenSound] = useState(false);
   const [doubleDamageSound, setDoubleDamageSound] = useState(false);
+  const [battleMusic, setBattleMusic] = useState(false);
 
   const [healEffect, showHealEffect] = useState(false);
   const [damageEffect, showDamageEffect] = useState(false);
@@ -123,6 +124,7 @@ export default function PVP() {
           didWin: true,
         };
         showVictory(true);
+        setBattleMusic(false);
         const res = await axios.put(
           `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts/star`,
           data
@@ -329,6 +331,7 @@ export default function PVP() {
       };
 
       setPlayLoserSound(true);
+      setBattleMusic(false);
       console.log({ room_id });
       socket.emit("surrender", { roomId: room_id, userId });
 
@@ -341,6 +344,7 @@ export default function PVP() {
   const toggleLose = () => {
     showConfirm(!confirm);
     setPlayLoserSound(true);
+    setBattleMusic(false);
     setTimeout(() => {
       setPlaySound(false);
     }, 3000);
@@ -452,6 +456,10 @@ export default function PVP() {
       buffs,
     });
   };
+
+  useEffect(() => {
+    setBattleMusic(true);
+  }, []);
 
   return (
     <>
@@ -876,6 +884,14 @@ export default function PVP() {
         {doubleDamageSound && (
           <div>
             <audio autoPlay src={damageSound} type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        )}
+
+        {battleMusic && (
+          <div>
+            <audio autoPlay loop src={fight} type="audio/mpeg">
               Your browser does not support the audio element.
             </audio>
           </div>
