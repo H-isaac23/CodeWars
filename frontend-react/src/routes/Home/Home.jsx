@@ -7,6 +7,7 @@ import BattleCharacter from "../../components/BattleCharacter/BattleCharacter";
 import Match from "../../components/Match/Match";
 import LoadingPage from "../../components/LoadingPage/LoadingPage";
 import "./Home.css";
+
 // import bg from "../../assets/img/4455.jpg";
 // import bg1 from "../../assets/img/ancient_rome.jpg";
 import bg2 from "../../assets/img/bg2.jpg";
@@ -31,9 +32,11 @@ export default function Home() {
   // ];
 
   const notify = () => toast("Socket forcefully disconnected.");
+  const isPlaying = useConfigStore(state => state.isPlaying);
 
   const [find, findMatch] = useState(false);
   const [profile, showProfile] = useState(false);
+  const [playMusic, setPlayMusic] = useState(false);
   // const [backgroundIndex, setBackgroundIndex] = useState(
   //   Math.floor(Math.random() * backgroundImages.length)
   // );
@@ -54,10 +57,15 @@ export default function Home() {
   const toggleProfile = () => {
     showProfile(true);
   };
+
+  useEffect(() => {
+    setPlayMusic(true);
+  }, [] );
+
   return (
     <div className="container">
       <img src={bg2} alt="" />
-      {/* {isLoadingCount<=1 && <LoadingPage />} */}
+      <LoadingPage/>
       <Match
         showFind={find}
         findMatch={findMatch}
@@ -76,6 +84,9 @@ export default function Home() {
           <UserProfile showProfile={showProfile} />
         </div>
       )}
+      {playMusic &&
+        <AudioPlayer isPlaying={isPlaying}/>
+      }
     </div>
   );
 }
