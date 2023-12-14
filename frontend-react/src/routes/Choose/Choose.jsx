@@ -1,25 +1,59 @@
 import React, { useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import imgBg from "../../assets/img/bg.png"
-import easyQ from "../../25-medium-questions.json";
-import mediumQ from "../../25-medium-questions.json";
-import hardQ from "../../25-medium-questions.json";
+import easyQ from "../../easy-questions.json";
+import mediumQ from "../../medium-questions.json";
+import hardQ from "../../hard_questions.json";
 import "../../../output.css"
+import Cookies from "js-cookie"
 export default function Choose() {
   const [eCount, setECount] = useState([0, 0, 0]);
   const [cookieCount, setCookieCount] = useState([0, 0, 0]);
-
+  function countCookieValues(cookie){
+    const instArr = cookie.split(',')
+    let i  = 0
+    instArr.map(itemArr=>{
+      i++
+    })
+    return i
+  }
   useEffect(() => {
-    const easyCount = easyQ.length;
-    const mediumCount = mediumQ.length;
-    const hardCount = hardQ.length;
+    const easyCount = easyQ.length-1;
+    const mediumCount = mediumQ.length-1;
+    const hardCount = hardQ.length-1;
 
     setECount([easyCount, mediumCount, hardCount]);
 
-    const cookieEasy =  0;
-    const cookieMedium =  0;
-    const cookieHard = 0;
+    let cookieEasy =  0;
+    let cookieMedium =  0;
+    let cookieHard = 0;
+
+    const userLog = window.localStorage.getItem("loggedUser");
+    const data = JSON.parse(userLog);
+    const username = data.content.username;
+    
+    const easyUser = Cookies.get(`easyQ_${username}`)
+    const mediumUser = Cookies.get(`mediumQ_${username}`)
+    const hardUser = Cookies.get(`hardQ_${username}`)
+    console.log({easyUser, mediumUser, hardUser})
+    if(!easyUser){
+      Cookies.set(`easyQ_${username}`,'0', { expires: 30})
+    }else{
+      cookieEasy = countCookieValues(easyUser)
+    }
+    if(!mediumUser){
+      Cookies.set(`mediumQ_${username}`,'0', { expires: 30})
+    }else{
+      cookieMedium = countCookieValues(mediumUser)
+    }
+    if(!hardUser){
+      Cookies.set(`hardQ_${username}`,'0', { expires: 30})
+    }else{
+      cookieHard = countCookieValues(hardUser)
+    }
+
     setCookieCount([cookieEasy, cookieMedium, cookieHard]);
+
   }, []);
 
 
