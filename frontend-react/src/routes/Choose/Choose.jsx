@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import imgBg from "../../assets/img/bg.png"
 import easyQ from "../../25-medium-questions.json";
 import mediumQ from "../../25-medium-questions.json";
 import hardQ from "../../25-medium-questions.json";
-import imgBg from "../../25-medium-questions.json";
+import "../../../output.css"
 export default function Choose() {
   const [eCount, setECount] = useState([0, 0, 0]);
   const [cookieCount, setCookieCount] = useState([0, 0, 0]);
