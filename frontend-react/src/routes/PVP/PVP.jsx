@@ -47,7 +47,8 @@ import Console from "../../components/Console/Console";
 import { motion, useMotionValue } from "framer-motion";
 import { socket } from "../../socket";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import questions from "../../80-easy-questions.json";
+// import questions from "../../80-easy-questions.json";
+import questions from "../../25-medium-questions.json";
 import axios from "axios";
 import Surrender from "../../components/PVPComponents/Surrender/Surrender";
 
@@ -488,12 +489,12 @@ export default function PVP() {
       </div> */}
       <div className="container container-pvp">
         <img
-          src={backgroundImages[backgroundIndex]}
+          src={bg2}
           alt=""
           className="pvp-bg"
         />
         {/* This one below is just my thing to solve the bg  */}
-        {backgroundImages[backgroundIndex] == bg2 && (
+        { true && (
           <div className="bg-bottom">
             <img src={bg_bottom} />
           </div>
@@ -576,16 +577,16 @@ export default function PVP() {
                         <img src={doubleDamage} />
                       </div>
                     )}
-                    {reflectEffect && (
+                    {/* {reflectEffect && (
                       <div className="reflect-effect">
                         <img src={shield1} />
                       </div>
-                    )}
+                    )} */}
                   </div>
                   <div className="buffs">
                     <div
                       className={`reflect-buff ${
-                        reflectBuffClicked ? "buff-disabled" : ""
+                        true ? "buff-disabled" : ""
                       }`}
                       onClick={toggleReflect}
                     >
