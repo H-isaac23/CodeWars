@@ -251,7 +251,7 @@ export default function PVP() {
           res.playerUsername === account.username
         ) {
           setHprval(hprval - 50);
-        }
+        }  
 
         if (
           res.buffs.includes("reflect") &&
@@ -285,7 +285,8 @@ export default function PVP() {
           res.playerUsername !== account.username
         ) {
           setHplval(hplval - 50);
-        }
+        } 
+
         if (
           res.buffs.includes("reflect") &&
           !(res.playerUsername !== account.username)
@@ -600,7 +601,7 @@ export default function PVP() {
                     </div>
                     <div
                       className={`heal-buff ${
-                        healBuffClicked ? "buff-disabled" : ""
+                        healBuffClicked || hplval === 100 ? "buff-disabled" : ""
                       }`}
                       onClick={toggleHeal}
                     >
