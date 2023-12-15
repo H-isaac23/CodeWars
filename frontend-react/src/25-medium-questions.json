@@ -313,7 +313,7 @@
   },
 
   {
-    "question": "Write a function that converts a given weight in kilograms to pounds.",
+    "question": "Write a function that converts a given weight in kilograms to pounds. (0.453592kg = 1lbs)",
     "template": "def kilograms_to_pounds(kilograms):",
     "testCases": [
       {

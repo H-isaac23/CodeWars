@@ -126,7 +126,7 @@ export default function PVP() {
         showVictory(true);
         setBattleMusic(false);
         const res = await axios.put(
-          `${import.meta.env.VITE_URL_PREFIX}:3003/api/accounts/star`,
+          `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/update/star`,
           data
         );
         window.localStorage.setItem(
@@ -376,7 +376,6 @@ export default function PVP() {
       showHealEffect(true);
       setRegenSound(true);
       showHealEffectIcon(true);
-      setCountHealUsed((c) => c + 1);
       setTimeout(() => {
         showHealEffect(false);
         showHealEffectIcon(false);
@@ -391,7 +390,6 @@ export default function PVP() {
       showDamageEffect(true);
       setDoubleDamageSound(true);
       showDamageEffectIcon(true);
-      setCountDamageUsed((c) => c + 1);
       setTimeout(() => {
         showDamageEffect(false);
         setDoubleDamageSound(false);
@@ -405,7 +403,6 @@ export default function PVP() {
       showReflectEffect(true);
       setProtectionSound(true);
       showReflectEffectIcon(true);
-      setCountReflectUsed((c) => c + 1);
       setTimeout(() => {
         setProtectionSound(false);
         showReflectEffect(false);
@@ -437,15 +434,21 @@ export default function PVP() {
       userId,
     };
     const buffs = [];
-    if (countDamageUsed <= 1 && damageBuffClicked) {
+    if (countDamageUsed < 1 && damageBuffClicked) {
       buffs.push("damage");
+      setCountDamageUsed((c) => c + 1);
     }
-    if (countReflectUsed <= 1 && reflectBuffClicked) {
+    if (countReflectUsed < 1 && reflectBuffClicked) {
       buffs.push("reflect");
+      setCountReflectUsed((c) => c + 1);
     }
-    if (countHealUsed <= 1 && healBuffClicked) {
+    if (countHealUsed < 1 && healBuffClicked) {
+      console.log({ buffs });
       buffs.push("heal");
+      console.log("bro");
+      setCountHealUsed((c) => c + 1);
     }
+    console.log({ countHealUsed, healBuffClicked });
     console.log({ buffs });
     socket.emit("match_submit", {
       username,

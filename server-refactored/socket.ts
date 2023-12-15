@@ -52,7 +52,7 @@ const setupSocketServer = (server: HTTPServer): SocketIOServer => {
 
         console.log({ correct });
         if (total === correct) {
-          const index = Math.floor(Math.random() * 24);
+          const index = Math.floor(Math.random() * 20);
 
           io.to(roomId).emit("player_code_submit", {
             correct: true,
