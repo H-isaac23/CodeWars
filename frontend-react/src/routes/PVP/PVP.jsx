@@ -47,7 +47,7 @@ import Console from "../../components/Console/Console";
 import { motion, useMotionValue } from "framer-motion";
 import { socket } from "../../socket";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import questions from "../../25-medium-questions.json";
+import questions from "../../80-easy-questions.json";
 import axios from "axios";
 import Surrender from "../../components/PVPComponents/Surrender/Surrender";
 
