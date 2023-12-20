@@ -30,7 +30,7 @@ export const postNewMatchController = async (
   try {
     const { player1, player2, win } = req.body;
 
-    if (!(player1 && player2 && win)) {
+    if (!player1 && !player2 && !win) {
       throw new TypeError("player1, player2, and win parameter is required");
     }
 

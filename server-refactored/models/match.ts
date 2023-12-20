@@ -1,5 +1,5 @@
 import { Document, model } from "mongoose";
-import { MODEL_BONUS } from "../constant/general";
+import { MODEL_MATCH } from "../constant/general";
 import { matchSchema } from "./schemas/match";
 
 export interface IMatch {
@@ -9,4 +9,4 @@ export interface IMatch {
 }
 
 export interface MatchDoc extends Document, IMatch {}
-export const MatchModel = model<MatchDoc>(MODEL_BONUS, matchSchema);
+export const MatchModel = model<MatchDoc>(MODEL_MATCH, matchSchema);

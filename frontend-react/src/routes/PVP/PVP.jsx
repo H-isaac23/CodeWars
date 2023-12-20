@@ -68,6 +68,7 @@ export default function PVP() {
   const account = useConfigStore((state) => state.account);
   const setAccount = useConfigStore((state) => state.setAccount);
   const [disableBtn, setDisabledBtn] = useState(false);
+  const [opponentUsername, setOpponentUsername] = useState("");
 
   const [clickSubmit, userClickSubmit] = useState(false);
   const [clickOpponentSubmit, opponentClickSubmit] = useState(false);
@@ -115,13 +116,26 @@ export default function PVP() {
   const location = useLocation();
   const userId = location.state.id;
   const room_id = useParams(":matchid").matchid;
+
   useEffect(() => {
+    if (username === location.state.username[1]) {
+      setOpponentUsername(location.state.username[0]);
+    } else {
+      setOpponentUsername(location.state.username[1]);
+    }
     socket.on("match_result", async (data) => {
       if (data.msg === "You won!") {
         const data = {
           username,
           stars,
+          hasStarProtection: true,
           didWin: true,
+        };
+
+        const matchData = {
+          player1: username,
+          player2: opponentUsername,
+          win: username,
         };
         showVictory(true);
         setBattleMusic(false);
@@ -129,22 +143,30 @@ export default function PVP() {
           `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/update/star`,
           data
         );
+
+        try {
+          const matchRes = await axios.post(
+            `${import.meta.env.VITE_URL_PREFIX}:3000/public/v1/create/match`,
+            matchData
+          );
+        } catch (error) {
+          console.log(error);
+        }
+
         window.localStorage.setItem(
           "loggedUser",
-          JSON.stringify(res.data.account)
+          JSON.stringify({ content: res.data.content })
         );
 
         setAccount(
-          res.data.account.username,
-          res.data.account.email,
-          res.data.account.stars
+          res.data.content.username,
+          res.data.content.email,
+          res.data.content.stars
         );
       }
     });
 
     socket.on("match_end", async (data) => {
-      console.log(data.loser);
-      console.log(socket.id);
       if (data.loser === socket.id) {
         const data = {
           username,
@@ -161,15 +183,12 @@ export default function PVP() {
           JSON.stringify({ content: res.data.content })
         );
 
-        console.log(res);
-
         setAccount(
           res.data.content.username,
           res.data.content.email,
           res.data.content.stars
         );
 
-        console.log({ stars });
         setTimeout(() => {
           toggleLose();
         }, 2500);
@@ -195,8 +214,6 @@ export default function PVP() {
           res.data.content.stars,
           res.data.content.gold
         );
-
-        console.log({ stars });
 
         setTimeout(() => {
           showVictory(true);
@@ -262,7 +279,6 @@ export default function PVP() {
 
         setrCount(rcount + 1);
         setQnum(res.questionIndex);
-        console.log(hprval, qnum);
         showCorrect(!correct);
       } else if (res.correct && socket.id !== res.socketId) {
         setOpponentAttack(true);
@@ -294,7 +310,6 @@ export default function PVP() {
         }
         setrCount(rcount + 1);
         setQnum(res.questionIndex);
-        console.log(hplval, qnum);
       }
       // For submit button
       setDisabledBtn(true);
@@ -332,7 +347,6 @@ export default function PVP() {
 
       setPlayLoserSound(true);
       setBattleMusic(false);
-      console.log({ room_id });
       socket.emit("surrender", { roomId: room_id, userId });
 
       setTimeout(() => {
@@ -358,7 +372,7 @@ export default function PVP() {
     showReward(!reward);
     showStarPage(false);
     showVictory(false);
-    showconfirm(false);
+    showConfirm(false);
     showStarProtection(false);
   };
 
@@ -418,9 +432,7 @@ export default function PVP() {
 
   // for reset button to clear the text
   const handleReset = () => {
-    console.log("clear");
     setInput("");
-    console.log(input);
   };
 
   // get the input then evaluate then display in the output container
@@ -443,13 +455,10 @@ export default function PVP() {
       setCountReflectUsed((c) => c + 1);
     }
     if (countHealUsed < 1 && healBuffClicked) {
-      console.log({ buffs });
       buffs.push("heal");
-      console.log("bro");
       setCountHealUsed((c) => c + 1);
     }
-    console.log({ countHealUsed, healBuffClicked });
-    console.log({ buffs });
+
     socket.emit("match_submit", {
       username,
       roomId: room_id,
@@ -638,7 +647,7 @@ export default function PVP() {
                     ></motion.div>
                   </div>
                   <div className="username username2">
-                    <h4>Test</h4>
+                    <h4>{opponentUsername}</h4>
                   </div>
                   <div className="username2-buff-status">
                     {/* {reflectEffectIcon && (
