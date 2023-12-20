@@ -35,7 +35,7 @@ export default function BattleCharacter({ findMatch }) {
         stars: account.stars,
       });
     } else {
-      navigate("/single-player");
+      navigate("/choose");
     }
   };
 

@@ -7,6 +7,7 @@ import Settings from "./components/Settings/Settings";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ContactUs from "./components/ContactUs/Contact";
 import SinglePlayer from "./routes/SinglePlayer/SinglePlayer";
+import Choose from "./routes/Choose/Choose";
 import RequestPass from "./routes/RequestPass/RequestPass";
 import UpdatePass from "./routes/UpdatePass/UpdatePass";
 import About from "./components/About/About";
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/single-player",
     element: <SinglePlayer />,
+  },
+  {
+    path: "/choose",
+    element: <Choose />,
   },
   {
     path: "/requestPassword",

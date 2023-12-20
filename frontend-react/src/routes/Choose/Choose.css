@@ -1,0 +1,73 @@
+
+
+.bg-custom-gradient {
+  background: linear-gradient(to right, rgba(221, 126, 71, 0.60) 54.81%, rgba(221, 112, 49, 0.11) 75.08%);
+}
+.bg-active-gradient {
+  background: linear-gradient(180deg, rgba(169, 73, 69, 0.60) 54.81%, rgba(221, 112, 49, 0.11) 75.08%);
+}
+
+.bg-active-color {
+  background: rgba(174, 69, 66, 0.60);
+}
+.bg-inactive-color {
+  background: rgba(223, 203, 163, 0.60);
+}
+
+.bg-half-color {
+  background: rgba(188, 104, 87, 0.40);
+}
+
+
+.overflow{
+  overflow: auto;
+}
+
+.overflow::-webkit-scrollbar{
+  width: 0;
+}
+
+.content{
+  width: 30%;
+  position: relative;
+  border-radius: .5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title{
+  width: 100%;
+  display: flex;
+  font-size: 2em;
+  justify-content: center;
+  position: absolute;
+  top: -32%;
+  letter-spacing: .1em;
+}
+.title-down{
+  position: relative;;
+  margin-top: 1.7em;
+}
+
+.category {
+  width: 80%;
+  background-color: #3DDC7D;
+  margin-bottom: 1em;
+  border-radius: .5em;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 2em;
+  font-size: 1.5em;
+  border: 5px solid white;
+  border-radius: .5em;
+}
+
+.category-item p{
+  line-height: 0;
+}
