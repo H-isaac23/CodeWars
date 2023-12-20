@@ -62,7 +62,7 @@ export default function settings({showSettings}) {
         </div>
         <div className="first-line">
           <div>
-          <a href="https://docs.google.com/forms/d/1ZtbvEnBt0QsdCUOYbxrrQyFTgRnEJ6wMFuU0C0GHHOI/edit" target="_blank"><button className="btn"> RATING</button></a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHhaXaRBjTZOQFTzWA5Alpg7oSuRu6eFfpsMSlYD6RARWHPw/viewform" target="_blank"><button className="btn"> RATING</button></a>
           </div>
           <div onClick={() => showSettings(false)}>
             <button className="btn"> RETURN </button>

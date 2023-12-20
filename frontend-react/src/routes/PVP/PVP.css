@@ -450,7 +450,7 @@ a{
 .userinput {
   width: 96%;
   height: 16em;
-  background: rgba(178, 74, 71,0.5);
+  background: rgba(247, 245, 245, 0.9);
   border-radius: 15px;
   position: relative;
 }
