@@ -2,13 +2,14 @@
   "private": true,
   "workspaces": [
     "frontend-react",
-    "server-refactored"
+    "server-refactored",
+    "single_test"
   ],
   "dependencies": {
     "concurrently": "^8.2.2"
   },
   "scripts": {
-    "dev": "concurrently \"cd frontend-react && yarn dev\" \"cd server-refactored && yarn dev\"",
+    "dev": "concurrently \"cd frontend-react && yarn dev\" \"cd server-refactored && yarn dev\" \"cd single_test && npm start  \"",
     "devBackend": "cd server-refactored && yarn dev",
     "devFrontend": "cd frontend-react && yarn dev"
   }
